@@ -1,0 +1,14 @@
+html,body,#app{
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+.header{
+    background-color: #202020;
+}
+.el-footer{
+    background-color: #282828;
+    height: 200px!important;
+    display: flex;
+    justify-content: center;
+}
