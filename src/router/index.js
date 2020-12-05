@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Main from '../components/main/main.vue'
+import Footer from '../components/footer/footer.vue'
 
 Vue.use(VueRouter)
 
@@ -10,6 +11,11 @@ const routes = [
     name: 'Main',
     component: Main
   },
+  {
+    path: '/footer',
+    name: 'Footer',
+    component: Footer
+  }
 
 ]
 
