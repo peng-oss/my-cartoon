@@ -3,14 +3,24 @@ import VueRouter from 'vue-router'
 import Main from '../components/main/main.vue'
 import Footer from '../components/footer/footer.vue'
 
+import MainContext from '../components/context/mainContext.vue'
+
+
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Main',
-    component: Main
+    component: Main,
+    redirect: '/context',
+    children: [
+      {
+        path: '/context',
+        component: MainContext,
+      },
+    ],
   },
+
   {
     path: '/footer',
     name: 'Footer',
@@ -19,11 +29,8 @@ const routes = [
 
 ]
 
-
-
-
 const router = new VueRouter({
-  routes
+  routes,
 })
 
 export default router

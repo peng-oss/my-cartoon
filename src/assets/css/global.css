@@ -12,3 +12,18 @@ html,body,#app{
     display: flex;
     justify-content: center;
 }
+.el-card{
+    margin-left:170px ;
+    padding: 0  !important;
+}
+a{
+    text-decoration : none;
+    color:hsl(228, 4%, 55%)
+}
+li{
+    list-style: none;
+}
+ul{
+    margin: 0;
+    padding: 0;
+}
