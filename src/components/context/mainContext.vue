@@ -216,6 +216,12 @@
         </li>
       </ul>
     </el-card>
+      <!--  恋爱分类部分 -->
+  
+  <!-- 置顶部分辅助导航栏 -->
+    <el-backtop  :bottom="100" :visibility-height="800">
+      <i class="el-icon-top"></i>
+  </el-backtop>
   </div>
 </template>
 
@@ -796,6 +802,7 @@ export default {
           name: "唯美",
         },
       ],
+      activeName:'second'
     };
   },
   methods: {
@@ -839,7 +846,7 @@ img:hover {
   justify-content: center;
 }
 .el-carousel__item {
-  width: 100%;
+ /*  width: 100%; */
   display: flex;
   align-items: center;
 }
@@ -1247,4 +1254,7 @@ li:nth-of-type(3n) .imgandp {
   font-style: normal;
   text-align: center;
 }
+/* 恋爱分类部分 */
+
+
 </style>

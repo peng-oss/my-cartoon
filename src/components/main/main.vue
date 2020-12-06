@@ -12,7 +12,7 @@
           <el-menu-item
             v-for="(item, index) in topMenuList"
             :key="item.id"
-            :index="item.index"
+            :index="item.id"
             >{{ item.topMenuNname }}
           </el-menu-item>
           <el-menu-item>
