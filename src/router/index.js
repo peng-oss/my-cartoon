@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Main from '../components/main/main.vue'
 import Footer from '../components/footer/footer.vue'
-
+import Login from '../components/login/login.vue'
 import MainContext from '../components/context/mainContext.vue'
 
 
@@ -17,6 +17,10 @@ const routes = [
       {
         path: '/context',
         component: MainContext,
+      },
+      {
+        path: '/login',
+        component:Login,
       },
     ],
   },

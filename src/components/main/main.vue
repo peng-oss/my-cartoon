@@ -12,7 +12,7 @@
           <el-menu-item
             v-for="(item, index) in topMenuList"
             :key="item.id"
-            :index="item.id"
+            :index="item.index"
             >{{ item.topMenuNname }}
           </el-menu-item>
           <el-menu-item>
@@ -127,5 +127,5 @@ header {
 }
 /* #main{
   height:100%
-} */
+}  */
 </style>
