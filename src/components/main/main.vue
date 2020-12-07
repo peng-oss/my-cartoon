@@ -161,8 +161,8 @@ header {
 .el-icon-search {
   position: absolute;
   right: 15px;
-  top: 1px;
-  font-size: 25px;
+  top: 3px;
+  font-size: 20px;
   color: #d2d2d2;
 }
 .login {

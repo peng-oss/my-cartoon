@@ -200,9 +200,6 @@ export default {
 };
 </script>
 <style scoped>
-div {
-  /* height: 636px; */
-}
 .sortFther {
   display: flex;
   justify-content: center;

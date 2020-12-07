@@ -2,7 +2,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Main from '../components/main/main.vue'
 import MainContext from '../components/context/mainContext.vue'
-import Footer from '../components/footer/footer.vue'
 import Sort from '../components/sort/sort.vue'
 import Rank from '../components/rank/rank.vue'
 import World from '../components/world/world.vue'
@@ -20,13 +19,7 @@ const routes = [
       { path: '/rank', component: Rank, },
       { path: '/world', component: World, },
     ],
-  },
-  {
-    path: '/footer',
-    name: 'Footer',
-    component: Footer
   }
-
 ]
 
 const router = new VueRouter({
