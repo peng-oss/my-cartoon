@@ -1,17 +1,6 @@
 <template>
   <div>
-     <!--  恋爱分类部分 -->
-   <el-card class="loveClassification">
-     <div class="loveClassificationBig">
-       <div class="loveheader">
-         <ul class="loveul">
-           <li v-for="(item,index) in loveheadlist" :key="index">
-             {{item.name}}
-           </li>
-         </ul>
-       </div>
-     </div>
-   </el-card>
+   
   </div>
 </template>
 <script>

@@ -14,6 +14,7 @@ const routes = [
     path: '/',
     component: Main,
     children: [
+      { path: '/', redirect: '/context' },
       { path: '/context', component: MainContext, },
       { path: '/sort', component: Sort, },
       { path: '/rank', component: Rank, },
