@@ -607,7 +607,7 @@ export default {
             "https://tn1-f2.kkmh.com/image/200716/vdTwyZvcw.webp-t.w180.webp.h",
         },
       ],
-      // 展示图片
+      // 新作榜飙升榜展示图片
       showImgsList: [],
       newActive: true,
       riseActive: false,

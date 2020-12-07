@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Main from '../components/main/main.vue'
-import Footer from '../components/footer/footer.vue'
-
 import MainContext from '../components/context/mainContext.vue'
+import Footer from '../components/footer/footer.vue'
+import Sort from '../components/sort/sort.vue'
+import Rank from '../components/rank/rank.vue'
+import World from '../components/world/world.vue'
 
 
 Vue.use(VueRouter)
@@ -12,15 +14,13 @@ const routes = [
   {
     path: '/',
     component: Main,
-    redirect: '/context',
     children: [
-      {
-        path: '/context',
-        component: MainContext,
-      },
+      { path: '/context', component: MainContext, },
+      { path: '/sort', component: Sort, },
+      { path: '/rank', component: Rank, },
+      { path: '/world', component: World, },
     ],
   },
-
   {
     path: '/footer',
     name: 'Footer',

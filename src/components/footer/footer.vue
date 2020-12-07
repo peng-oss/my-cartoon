@@ -37,7 +37,5 @@ export default {
 .loveClassificationBig{
   width: 1184px;
 }
-.loveul{
-  
-}
+
 </style>
