@@ -27,7 +27,8 @@
               />
               <i class="el-icon-search"></i>
             </span>
-            <a href="#" class="login">登录</a>
+            <a href="#" class="login" @click="loging" v-show="appear==true">登录</a>
+            <a href="#" class="login" @click="loging" v-show="appear==false">个人中心</a>
           </ul>
         </div>
       </el-header>
@@ -81,6 +82,7 @@ export default {
       ],
       currentId: 1, // 当前导航栏的位置
       inputValue: "",
+      appear:true
     };
   },
   methods: {
@@ -88,6 +90,10 @@ export default {
     changeNav(id) {
       this.currentId = id;
     },
+    loging(){
+      this.$router.push('/login')
+      this.appear=!this.appear
+    }
   },
   created() {},
 };

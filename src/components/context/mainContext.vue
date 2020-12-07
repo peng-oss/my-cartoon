@@ -22,7 +22,7 @@
       text-color="#c1c1c1"
     >
       <el-menu-item
-        v-for="(item, index) in cartoonTypeList"
+        v-for="item in cartoonTypeList"
         :index="item.index"
         :key="item.id"
         >{{ item.typeName }}</el-menu-item
@@ -216,12 +216,12 @@
         </li>
       </ul>
     </el-card>
-      <!--  恋爱分类部分 -->
-  
-  <!-- 置顶部分辅助导航栏 -->
-    <el-backtop  :bottom="100" :visibility-height="800">
+    <!--  恋爱分类部分 -->
+
+    <!-- 置顶部分辅助导航栏 -->
+    <el-backtop :bottom="100" :visibility-height="800">
       <i class="el-icon-top"></i>
-  </el-backtop>
+    </el-backtop>
   </div>
 </template>
 
@@ -802,7 +802,7 @@ export default {
           name: "唯美",
         },
       ],
-      activeName:'second'
+      activeName: "second",
     };
   },
   methods: {
@@ -846,7 +846,7 @@ img:hover {
   justify-content: center;
 }
 .el-carousel__item {
- /*  width: 100%; */
+  /*  width: 100%; */
   display: flex;
   align-items: center;
 }
@@ -923,7 +923,7 @@ img:hover {
   border-radius: 4px;
   transition: all 0.2s linear;
 }
-.changeContent li:hover  {
+.changeContent li:hover {
   box-shadow: 8px 8px 20px #ccc;
   transform: translate(0, -5px);
 }
@@ -1255,6 +1255,4 @@ li:nth-of-type(3n) .imgandp {
   text-align: center;
 }
 /* 恋爱分类部分 */
-
-
 </style>
