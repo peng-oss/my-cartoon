@@ -22,6 +22,7 @@ a{
 }
 li{
     list-style: none;
+    padding: 0!important;
 }
 ul{
     margin: 0;
@@ -39,3 +40,7 @@ i{
     margin-left:13px ;
     cursor: pointer;
   }
+  .el-textarea__inner {
+    resize: none !important;
+  }
+  

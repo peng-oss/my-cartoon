@@ -4,10 +4,7 @@
       <!-- 头部区域 -->
       <el-header>
         <div class="headerContent">
-          <router-link 
-          class="logo" 
-          to="/" 
-          @click="backMain"
+          <router-link class="logo" to="/" @click="backMain"
             >灰喵！</router-link
           >
           <ul class="headerNav">
@@ -26,7 +23,6 @@
             <span class="inputFather">
               <input
                 type="text"
-                class="navSearch"
                 v-model="inputValue"
                 placeholder="搜索作品，作者名"
               />
