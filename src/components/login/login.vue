@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import "./font/iconfont.js";
+import "../../assets/font/iconfont.js";                  
 export default {
   created() {},
   data() {
