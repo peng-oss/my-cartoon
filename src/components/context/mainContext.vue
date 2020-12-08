@@ -1,12 +1,10 @@
 <template>
   <div>
     <!--  轮播图 -->
-    <el-carousel :interval="1000" type="card" height="520px"arrow="always">
+    <el-carousel :interval="1000" type="card" height="520px">
       <el-carousel-item v-for="(img, index) in LBimgList" :key="index">
         <el-image style="width: 800px; height: 560px" :src="img.url"></el-image>
       </el-carousel-item>
-       <div class="leftMask"></div>
-    <div class="rightMask"></div>
     </el-carousel>
    
     <!-- 导航栏 -->
@@ -850,24 +848,6 @@ export default {
 <style scoped>
 
 /* 轮播图于原创部分 */
-.leftMask{
-  width: 380px;
-  height: 435px;
-  background:rgba(0, 0, 0, 0.5);
-  position: absolute;
-  top: 44px;
-  left: 0;
-  z-index: 999;
-}
-.rightMask{
-  width: 379px;
-  height: 435px;
-  background:rgba(0, 0, 0, 0.5);
-  position: absolute;
-  top:44px;
-  right: 0;
-  z-index: 999;
-}
 .el-carousel__arrow--left{
   width: 70px  !important;
   height:70px !important;

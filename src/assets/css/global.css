@@ -39,3 +39,21 @@ i{
     margin-left:13px ;
     cursor: pointer;
   }
+  .el-tabs__item{
+    font-size: 18px  !important;
+  }
+.el-carousel__arrow{
+    width: 60px;
+    height: 60px;
+    background-color:rgba(31,45,61,.5);
+}
+.el-carousel__arrow--right{
+    right: 293px;
+}
+.el-carousel__arrow--left{
+    left: 293px;
+}
+/* .el-tab-pane{
+    display: flex;
+    justify-content: space-around;
+} */
