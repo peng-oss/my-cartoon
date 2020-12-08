@@ -4,7 +4,9 @@
       <!-- 头部区域 -->
       <el-header>
         <div class="headerContent">
-          <span class="logo">灰喵！</span>
+          <div class="logo" @click="backMain"
+            >灰喵！</div
+          >
           <ul class="headerNav">
             <li
               :key="item.id"
@@ -21,14 +23,18 @@
             <span class="inputFather">
               <input
                 type="text"
-                class="navSearch"
                 v-model="inputValue"
                 placeholder="搜索作品，作者名"
+                class="navSearch"
               />
               <i class="el-icon-search"></i>
             </span>
-            <a href="#" class="login" @click="loging" v-show="appear==true">登录</a>
-            <a href="#" class="login" @click="loging" v-show="appear==false">个人中心</a>
+            <a href="#" class="login" @click="loging" v-if="appear === true"
+              >登录</a
+            >
+            <a href="#" class="login"  v-else
+              >个人中心</a
+            >
           </ul>
         </div>
       </el-header>
@@ -82,7 +88,7 @@ export default {
       ],
       currentId: 1, // 当前导航栏的位置
       inputValue: "",
-      appear:true
+      appear: true,
     };
   },
   methods: {
@@ -90,10 +96,14 @@ export default {
     changeNav(id) {
       this.currentId = id;
     },
-    loging(){
-      this.$router.push('/login')
-      this.appear=!this.appear
-    }
+    loging() {
+      this.$router.push("/login");
+      this.appear = false;
+    },
+    backMain() {
+      this.currentId = 1;
+      this.$router.push('./')
+    },
   },
   created() {},
 };
@@ -116,26 +126,28 @@ header {
   height: 64px !important;
 }
 .headerContent {
+  position: relative;
   width: 1184px;
   height: 64px;
   box-sizing: border-box;
 }
 .logo {
   position: absolute;
-  top: 16px;
-  width: 64px;
+  top: 14px;
+  left: 5px;
+  width: 100px;
   height: 32px;
   text-align: center;
   line-height: 32px;
-  font-size: 20px;
+  font-size: 30px;
   box-sizing: border-box;
-  color: #ffd806;
+  color: pink;
   cursor: pointer;
   font-weight: 700;
 }
 .headerNav {
   display: inline-block;
-  padding-left: 90px;
+  padding-left: 100px;
   height: 32px;
   line-height: 32px;
   margin-top: 16px;

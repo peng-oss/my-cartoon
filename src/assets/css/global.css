@@ -57,3 +57,7 @@ i{
     display: flex;
     justify-content: space-around;
 } */
+  .el-textarea__inner {
+    resize: none !important;
+  }
+  
