@@ -6,6 +6,7 @@ import MainContext from '../components/context/mainContext.vue'
 import Sort from '../components/sort/sort.vue'
 import Rank from '../components/rank/rank.vue'
 import World from '../components/world/world.vue'
+import Works from '../components/works/works.vue'
 
 
 Vue.use(VueRouter)
@@ -21,6 +22,7 @@ const routes = [
       { path: '/rank', component: Rank, },
       { path: '/world', component: World, },
       { path: '/login', component: Login, },
+      { path: '/works', component: Works, },
     ],
   }
 ]

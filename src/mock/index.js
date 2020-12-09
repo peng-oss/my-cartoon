@@ -594,9 +594,9 @@ const getYong = Mock.mock('/rank/yong', 'get', (options) => {
     status: 200,
     msg: '获取成功',
     list: yongLists,
-   
-    }
-  })
+
+  }
+})
 
 
 // 世界评论页面的数据和接口
@@ -608,7 +608,7 @@ let commentsList = [
       "https://tncache1-f1.v3mh.com/734ecd72bd8e5ca7214201a38beb94b0_1607221734636",
     userName: "小飞侠",
     word: "小飞侠太喜欢看漫画了",
-    time: "2020-12-18  14:40",
+    time: "2020-12-08  14:40",
   },
   {
     id: 2,
@@ -679,3 +679,92 @@ const deleteComment = Mock.mock(/\/world\/delete/, 'get', (options) => {
     backContent: addContent
   }
 })
+/* 作品组件(works)获取作品简介 */
+// 数据
+let BackArtData = {
+  url:
+    "https://tn1-f2.kkmh.com/image/201208/hyIKSuRfi.webp-t.w750.webp.h",
+  name: "狄奥多之歌",
+  autor: "乱步羊羊羊（主笔）+角年千兆（编剧）",
+  introduction:
+    "活泼好动的西帝国公主希尔娜在年幼时邂逅了来自北方王国的质子拉提奥，两人的心逐渐靠近，而东帝国的少年国王尼亚也在暗中窥视...可惜三国之间只是表面和平，战争一触即发，昔日的青梅竹马也终将面临爱情、责任间的抉择：剑与血，硝烟与眼泪，真心与背叛，共同交织谱写一曲少年少女的“狄奥多之歌”.每周二更新...",
+}
+/* 作品组件(works)获取漫画章节 */
+let backSItemData = [
+  {
+    url: "https://f2.kkmh.com/image/200103/klF8eNuNi.webp-t.w207.webp.h",
+    chapter: "序章  硝烟域泪",
+    num: "69486",
+    time: "01-03",
+    likeIf: false
+  },
+  {
+    url: "https://f2.kkmh.com/image/200104/KXXNqCAXU.webp-t.w207.webp.h",
+    chapter: " 第1话  我要你做我仆人！",
+    num: "120024",
+    time: "01-04",
+    likeIf: false
+  },
+  {
+    url: "https://f2.kkmh.com/image/200106/P3VV5iFbK.webp-t.w207.webp.h",
+    chapter: "第2话  作为仆人的“惩罚",
+    num: "82362",
+    time: "01-07",
+    likeIf: false
+  },
+  {
+    url: "https://f2.kkmh.com/image/200113/bmowYN7al.webp-t.w207.webp.h",
+    chapter: "第3话  骑马教学这么甜？！",
+    num: "78106",
+    time: "01-14",
+    likeIf: false
+  },
+  {
+    url: "https://f2.kkmh.com/image/200203/OnfHiC4Dy.webp-t.w207.webp.h",
+    chapter: "第4话  公主的价值",
+    num: "571440",
+    time: "01-21",
+    likeIf: false
+  },
+  {
+    url: "https://f2.kkmh.com/image/200120/BBY4tBVir.webp-t.w207.webp.h",
+    chapter: "第5话  鼓励",
+    num: "69367",
+    time: "01-28",
+    likeIf: false
+  },
+]
+// 接口
+const getArtData = Mock.mock('/works/artData', 'get', (options) => {
+  return {
+    status: 200,
+    msg: '获取成功',
+    BackArtData,
+    backSItemData
+  }
+})
+// followWorks是关注作品的对象 里面有作品名和作者名
+// 关注 
+let followWorks = {};
+const followed = Mock.mock('/works/followed', 'post', options => {
+  const { id: id } = JSON.parse(options.body);
+  if (id == 1) {
+    const { name, author } = JSON.parse(options.body);
+    followWorks.worksName = name
+    followWorks.worksAuthor = author
+    console.log(followWorks)
+    return {
+      status: 200,
+      msg: "关注成功咯!!!"
+    }
+  } else {
+    followWorks = {}
+    console.log(followWorks)
+    return {
+      status: 200,
+      msg: "已取消关注，记得回来哟!!!"
+    }
+  }
+})
+// 取消关注
+

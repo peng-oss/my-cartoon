@@ -3,7 +3,11 @@
     <!--  轮播图 -->
     <el-carousel :interval="1000" type="card" height="520px">
       <el-carousel-item v-for="(img, index) in LBimgList" :key="index">
-        <el-image style="width: 800px; height: 560px" :src="img.url"></el-image>
+        <el-image
+          style="width: 800px; height: 560px"
+          :src="img.url"
+          @click="enterWorks(index)"
+        ></el-image>
       </el-carousel-item>
     </el-carousel>
 
@@ -223,18 +227,15 @@
 export default {
   data() {
     return {
+      // 轮播图图片
       LBimgList: [
         {
           url:
+            "https://tn1-f2.kkmh.com/image/201208/hyIKSuRfi.webp-t.w750.webp.h",
+        },
+        {
+          url:
             "https://tn1-f2.kkmh.com/image/201202/yIqDubkLA.webp-t.w750.webp.h",
-        },
-        {
-          url:
-            "https://tn1-f2.kkmh.com/image/201202/MbWjRZCVw.webp-t.w750.webp.h",
-        },
-        {
-          url:
-            "https://tn1-f2.kkmh.com/image/201126/BJrFLduUd.webp-t.w750.webp.h",
         },
         {
           url:
@@ -242,11 +243,15 @@ export default {
         },
         {
           url:
+            "https://tn1-f2.kkmh.com/image/201208/VLvIkiQDr.webp-t.w750.webp.h",
+        },
+        {
+          url:
             "https://tn1-f2.kkmh.com/image/201129/JCgPzApgH.webp-t.w750.webp.h",
         },
         {
           url:
-            "https://tn1-f2.kkmh.com/image/201202/wMmWNpSEZ.webp-t.w750.webp.h",
+            "https://tn1-f2.kkmh.com/image/201205/WyxxGsnJh.webp-t.w750.webp.h",
         },
       ],
       originalImgList: [
@@ -838,6 +843,11 @@ export default {
     getRedImgs() {
       this.showImgsList = this.newWorkImgsList;
     },
+    enterWorks(index) {
+      if (index == 0) {
+        this.$router.push("/works");
+      }
+    },
   },
   // 生命周期触发开始的事件
   created() {
@@ -1086,7 +1096,6 @@ li:nth-of-type(3n) .imgandp {
 }
 /* 悬疑部分 */
 .suspense {
-  /* background-color: pink; */
   display: flex;
   justify-content: center;
   overflow: hidden;
@@ -1264,5 +1273,4 @@ li:nth-of-type(3n) .imgandp {
   font-style: normal;
   text-align: center;
 }
-/* 恋爱分类部分 */
 </style>
