@@ -60,4 +60,7 @@ i{
   .el-textarea__inner {
     resize: none !important;
   }
-  
+  .el-input el-input--small{
+      width: 90px;
+  }
+ 

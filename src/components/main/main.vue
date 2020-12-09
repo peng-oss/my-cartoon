@@ -29,11 +29,11 @@
               />
               <i class="el-icon-search"></i>
             </span>
-            <a href="#" class="login" @click="loging" v-if="appear === true"
+            <a href="#" class="login" @click="loging" v-if="$store.state.appear === true"
               >登录</a
             >
-            <a href="#" class="login"  v-else
-              >个人中心</a
+            <a href="#" class="login"   v-else
+            @click="drawer = true"  >个人中心</a
             >
           </ul>
         </div>
@@ -68,6 +68,18 @@
         </div>
       </el-footer>
     </el-container>
+       <!-- 置顶部分辅助导航栏 -->
+    <el-backtop :bottom="100" :visibility-height="800">
+      <i class="el-icon-top"></i>
+    </el-backtop>
+  <!--   个人中心 -->
+
+<el-drawer
+  title="我是标题"
+  :visible.sync="drawer"
+  :with-header="false">
+  <span>我来啦!</span>
+</el-drawer>
   </div>
 </template>
 
@@ -88,7 +100,7 @@ export default {
       ],
       currentId: 1, // 当前导航栏的位置
       inputValue: "",
-      appear: true,
+       drawer: false,
     };
   },
   methods: {
@@ -98,7 +110,6 @@ export default {
     },
     loging() {
       this.$router.push("/login");
-      this.appear = false;
     },
     backMain() {
       this.currentId = 1;

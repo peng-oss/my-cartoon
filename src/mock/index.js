@@ -14,23 +14,6 @@ const getQuery = (url, name) => {
   }
   /* return null */
 }
-//分页功能
-const data = Mock.mock(/\/api\/news/, 'get', (options) => {
-  const pagesize = getQuery(options.url, 'name')
-  const pageIndex = getQuery(options.url, 'pageindex')
-  //截取数据开始位置
-  const start = (pageIndex - 1) * pagesize
-  //截取数据结束位置
-  const end = pageIndex * pagesize
-  //计算总页数
-  /*  const totalPage=Math.ceil(total/pagesize) */
-
-  /*  const list=pageIndex>totalPage?[]:newList.splice(start,end) */
-  return {
-    status: 200,
-    msg: '获取数据成功',
-  }
-})
 
 const data1 = Mock.mock('/api/data', 'post', (options) => {
   console.log(options)
@@ -55,7 +38,7 @@ let userList = [
   {
     name: '游客',
     password: 'ahui123456',
-  }
+  },
 ]
 // 添加用户
 const addUser = Mock.mock('/user/add', 'post', (options) => {
@@ -77,7 +60,7 @@ const login = Mock.mock('/user/search', 'post', (options) => {
       return {
         meta: {
           msg: 'success',
-          status: 200
+          status: 200,
         },
       }
     }
@@ -594,10 +577,8 @@ const getYong = Mock.mock('/rank/yong', 'get', (options) => {
     status: 200,
     msg: '获取成功',
     list: yongLists,
-   
-    }
-  })
-
+  }
+})
 
 // 世界评论页面的数据和接口
 // 数据
@@ -605,77 +586,997 @@ let commentsList = [
   {
     id: 1,
     url:
-      "https://tncache1-f1.v3mh.com/734ecd72bd8e5ca7214201a38beb94b0_1607221734636",
-    userName: "小飞侠",
-    word: "小飞侠太喜欢看漫画了",
-    time: "2020-12-18  14:40",
+      'https://tncache1-f1.v3mh.com/734ecd72bd8e5ca7214201a38beb94b0_1607221734636',
+    userName: '小飞侠',
+    word: '小飞侠太喜欢看漫画了',
+    time: '2020-12-18  14:40',
   },
   {
     id: 2,
-    url:
-      "https://tncache1-f1.v3mh.com/social/9b83b34e44278fa9fadc479dda340c86",
-    userName: "小杨同学",
-    word: "小杨喜欢吃饭，看漫画，打豆豆",
-    time: "2020-11-11  11:11",
+    url: 'https://tncache1-f1.v3mh.com/social/9b83b34e44278fa9fadc479dda340c86',
+    userName: '小杨同学',
+    word: '小杨喜欢吃饭，看漫画，打豆豆',
+    time: '2020-11-11  11:11',
   },
   {
     id: 3,
-    url:
-      "https://tncache1-f1.v3mh.com/social/acba1fe653605b0fe00f4e1753c7c3be",
-    userName: "豆豆",
-    word: "豆豆这么可爱，为什么要打他",
-    time: "2020-10-10  09:45",
+    url: 'https://tncache1-f1.v3mh.com/social/acba1fe653605b0fe00f4e1753c7c3be',
+    userName: '豆豆',
+    word: '豆豆这么可爱，为什么要打他',
+    time: '2020-10-10  09:45',
   },
   {
     id: 4,
     url:
-      "https://tncache1-f1.v3mh.com/social/008b1d8a3be6c7db5c64479566188961-cover-faces",
-    userName: "喵喵拳",
-    word: "喵喵拳看了漫画之后，握紧了他的拳头",
-    time: "2020-10-02  07:09",
+      'https://tncache1-f1.v3mh.com/social/008b1d8a3be6c7db5c64479566188961-cover-faces',
+    userName: '喵喵拳',
+    word: '喵喵拳看了漫画之后，握紧了他的拳头',
+    time: '2020-10-02  07:09',
   },
   {
     id: 5,
     url:
-      "https://tncache1-f1.v3mh.com/social/6d6a498e5aa9184441d05d10ae6a9ebf-crop10-2-cover",
-    userName: "喔喔糖",
-    word: "边吃喔喔糖边看漫画更有感觉哟",
-    time: "2020-09-19  7:00",
-  }
+      'https://tncache1-f1.v3mh.com/social/6d6a498e5aa9184441d05d10ae6a9ebf-crop10-2-cover',
+    userName: '喔喔糖',
+    word: '边吃喔喔糖边看漫画更有感觉哟',
+    time: '2020-09-19  7:00',
+  },
 ]
 // 获取已存在评论内容接口
 const existComment = Mock.mock('/world/getComment', 'get', (options) => {
   return {
     status: 200,
-    msg: "获取成功",
-    list: commentsList
+    msg: '获取成功',
+    list: commentsList,
   }
 })
 let addContent = {
   url:
-    "https://tncache1-f1.v3mh.com/social/9aa6e4a060ddad59aac4e2926f9738e8-cover-faces",
+    'https://tncache1-f1.v3mh.com/social/9aa6e4a060ddad59aac4e2926f9738e8-cover-faces',
   userName: userList[userList.length - 1].name,
 }
 // 发表评论接口
 const publishComment = Mock.mock('/world/publish', 'post', (options) => {
   const { inputComments, date } = JSON.parse(options.body)
-  addContent.word = inputComments;
-  addContent.time = date;
+  addContent.word = inputComments
+  addContent.time = date
   console.log(addContent)
-  commentsList.unshift(addContent);
+  commentsList.unshift(addContent)
   return {
     status: 200,
-    msg: "评论成功"
+    msg: '评论成功',
   }
 })
 // 删除评论接口
 const deleteComment = Mock.mock(/\/world\/delete/, 'get', (options) => {
-  const id = getQuery(options.url, "delIndex")
-  console.log(id);
+  const id = getQuery(options.url, 'delIndex')
+  console.log(id)
   commentsList.splice(id, 1)
   return {
     status: 200,
-    msg: "删除成功",
-    backContent: addContent
+    msg: '删除成功',
+    backContent: addContent,
   }
+})
+
+/* 分类图片数据与接口*/
+//分类数据
+let sortImgsList = [
+  {
+    id: 1,
+    bookName: '再度与你',
+    author: '晗旭L-Mo',
+    url: 'https://tn1-f2.kkmh.com/image/190802/fmXsWW7tI.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'剧情'
+  },
+  {
+    id: 2,
+    bookName: '他那么撩',
+    author: '曲小蛐（原著）',
+    url: 'https://tn1-f2.kkmh.com/image/200925/nLtcHbBAW.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'恋爱'
+  },
+  {
+    id: 3,
+    bookName: '星辰于我',
+    author: '犬一',
+    url: 'https://tn1-f2.kkmh.com/image/200716/vdTwyZvcw.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'剧情'
+  },
+  {
+    id: 4,
+    bookName: '未曾知晓的那一日',
+    author: '胡桃',
+    url: 'https://tn1-f2.kkmh.com/image/200109/bnvAWgbBb.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'玄幻'
+  },
+  {
+    id: 5,
+    bookName: '花开未满',
+    author: '莉莉君',
+    url: 'https://tn1-f2.kkmh.com/image/190702/ll1t9SFXQ.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'古风'
+  },
+  {
+    id: 6,
+    bookName: '今天的她也是如此可爱',
+    author: '郭斯特',
+    url: 'https://tn1-f2.kkmh.com/image/190905/YbVcMODaa.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'古风'
+  },
+  {
+    id: 7,
+    bookName: '韩琰（编剧）+西瓜（主笔）',
+    author: '晗旭L-Mo',
+    url: 'https://tn1-f2.kkmh.com/image/191217/ewuopQRcs.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'恋爱'
+  },
+  {
+    id: 8,
+    bookName: '逆光之绊',
+    author: 'bless',
+    url: 'https://tn1-f2.kkmh.com/image/200122/NdxSWJHYR.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'唯美'
+  },
+  {
+    id: 9,
+    bookName: '白日梦图鉴',
+    author: '帅天森',
+    url: 'https://tn1-f2.kkmh.com/image/190703/HztHOHhJU.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'校园'
+  },
+  {
+    id: 10,
+    bookName: '恋是樱草色',
+    author: '漫阅优品',
+    url: 'https://tn1-f2.kkmh.com/image/161220/txoq04r10.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'校园'
+  },
+  {
+    id: 11,
+    bookName: '拯救我的高一八班',
+    author: '葱渣渣',
+    url: 'https://tn1-f2.kkmh.com/image/181116/hilFVHrEB.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'校园'
+  },
+  {
+    id: 12,
+    bookName: '朝花惜时',
+    author: '壳小杀／夏天岛+左小翎／夏天岛',
+    url: 'https://tn1-f2.kkmh.com/image/190802/fmXsWW7tI.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'奇幻'
+  },
+  {
+    id: 13,
+    bookName: '成也萧河',
+    author: '壳小杀',
+    url: 'https://tn1-f2.kkmh.com/image/200703/KYnRXhLuQ.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'校园'
+  },
+  {
+    id: 14,
+    bookName: '被遗忘的7月',
+    author: 'muryu',
+    url: 'https://tn1-f2.kkmh.com/image/190703/4l7VcZNZN.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'韩漫'
+  },
+  {
+    id: 15,
+    bookName: '我想吃掉你的胰脏',
+    author: '住野夜（原作）+桐原泉（作画）',
+    url: 'https://tn1-f2.kkmh.com/image/180827/BcP9SZM9B.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'日漫'
+  },
+  {
+    id: 16,
+    bookName: '爱你有些小偏执',
+    author: '灿灿/夏天岛',
+    url: 'https://tn1-f2.kkmh.com/image/190703/oMEEpgwyl.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'日漫'
+  },
+  {
+    id: 17,
+    bookName: '当校霸爱上学霸',
+    author: '灿灿/夏天岛',
+    url: 'https://tn1-f2.kkmh.com/image/180705/KD7348uAV.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'恋爱'
+  },
+  {
+    id: 18,
+    bookName: '晨星未落时',
+    author: '葵子',
+    url: 'https://tn1-f2.kkmh.com/image/170630/hiwvsfn1p.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'日漫'
+  },
+  {
+    id: 19,
+    bookName: '女王的短裤',
+    author: 'Jagyum+saedle',
+    url: 'https://tn1-f2.kkmh.com/image/200923/NHCkmCbWm.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'完结'
+  },
+  {
+    id: 20,
+    bookName: '缄默法则',
+    author: '好了神文化',
+    url: 'https://tn1-f2.kkmh.com/image/201113/oQaocBcCT.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'完结'
+  },
+  {
+    id: 21,
+    bookName: '唯有套路得帝心',
+    author: 'jinyagi+Team Neok-bu-rang',
+    url: 'https://tn1-f2.kkmh.com/image/200923/DNddytSTG.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'穿越'
+  },
+  {
+    id: 22,
+    bookName: '泽皇录',
+    author: 'Brothers without a tomorrow+U-jewel media',
+    url: 'https://tn1-f2.kkmh.com/image/200925/iYQGUFVsg.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'完结'
+  },
+  {
+    id: 23,
+    bookName: '昼夜连绵',
+    author: 'Anjeo',
+    url: 'https://tn1-f2.kkmh.com/image/190305/tmfbQ6DrA.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'灵异'
+  },
+  {
+    id: 24,
+    bookName: '榻上公子',
+    author: '百鬼随行',
+    url: 'https://tn1-f2.kkmh.com/image/200923/TSEznEQxX.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'完结'
+  },
+  {
+    id: 25,
+    bookName: '今日晴朗，局部掉龙！',
+    author: '索索（主笔）+郭晓（编剧）',
+    url: 'https://tn1-f2.kkmh.com/image/200923/LUJqMVckn.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'完结'
+  },
+  {
+    id: 26,
+    bookName: '追逐游戏',
+    author: '索索（主笔）+郭晓（编剧）',
+    url: 'https://tn1-f2.kkmh.com/image/200926/gbTUzFFCl.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'灵异'
+  },
+  {
+    id: 27,
+    bookName: '爱情的样子：心之所向',
+    author: '路边张三',
+    url: 'https://tn1-f2.kkmh.com/image/200706/MpvYndrLa.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'灵异'
+  },
+  {
+    id: 28,
+    bookName: '重生成恋人的死对头怎么办',
+    author: '米花·糖',
+    url: 'https://tn1-f2.kkmh.com/image/200928/VlXzkeYPL.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'灵异'
+  },
+  {
+    id: 29,
+    bookName: '谎言先生',
+    author: '电鳗漫画工作室',
+    url: 'https://tn1-f2.kkmh.com/image/200713/fedBYwzDU.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'灵异'
+  },
+  {
+    id: 30,
+    bookName: '刻在眉眼间',
+    author: '梁阿渣',
+    url: 'https://tn1-f2.kkmh.com/image/200828/OFrPFVhYR.webp-t.w207.webp.h',
+    distinguish: true,
+  },
+  {
+    id: 31,
+    bookName: '粉黛',
+    author: '七英俊（原著）+博易漫画+Maslow',
+    url: 'https://tn1-f2.kkmh.com/image/200713/NcnGRKcOV.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'灵异'
+  },
+  {
+    id: 32,
+    bookName: '那个男人让我无法拒绝',
+    author: '鸡精君+守',
+    url: 'https://tn1-f2.kkmh.com/image/200108/OgNfzbAsE.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'恋爱'
+  },
+  {
+    id: 33,
+    bookName: '不如在今天恋爱',
+    author: 'Woo Ji Hye + Dur',
+    url: 'https://tn1-f2.kkmh.com/image/200911/QwsprxNoK.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'恋爱'
+  },
+  {
+    id: 34,
+    bookName: '忘忧旅店',
+    author: '小白南',
+    url: 'https://tn1-f2.kkmh.com/image/200723/Q0HZx0y89.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'奇幻'
+  },
+  {
+    id: 35,
+    bookName: '双杀',
+    author: '娜可露露（原著）+欧啦漫画',
+    url: 'https://tn1-f2.kkmh.com/image/200706/pvUkRerQd.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'都市'
+  },
+  {
+    id: 36,
+    bookName: '渐近的心跳',
+    author: '橘枳',
+    url: 'https://tn1-f2.kkmh.com/image/190331/JhZIY8PGd.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'恋爱'
+  },
+  {
+    id: 37,
+    bookName: '一代灵后',
+    author: 'TUTU(主笔）',
+    url: 'https://tn1-f2.kkmh.com/image/190103/LyS9fzBt6.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'古风'
+  },
+  {
+    id: 38,
+    bookName: '救赎',
+    author: 'MINA + ZIHO',
+    url: 'https://tn1-f2.kkmh.com/image/200622/pZiAvkSdc.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'大女王'
+  },
+  {
+    id: 39,
+    bookName: '宇宙琴未响',
+    author: '丁冰',
+    url: 'https://tn1-f2.kkmh.com/image/190725/zO75c1vV7.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'恋爱'
+  },
+  {
+    id:40,
+    bookName: '鬼灭之刃',
+    author: '吾峠呼世晴',
+    url: 'https://tn1-f2.kkmh.com/image/200109/diEQHgAWn.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'玄幻'
+  },
+  {
+    id: 41,
+    bookName: '佔有姜西',
+    author: '鱼不语（原著）',
+    url: 'https://tn1-f2.kkmh.com/image/200814/ucPnxkKJD.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'恋爱'
+  },
+  {
+    id: 42,
+    bookName: '小心哥哥们',
+    author: 'Min Iyeong+Plutus+CARROTOON',
+    url: 'https://tn1-f2.kkmh.com/image/200706/hybBWBZNd.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'萌系'
+  },
+  {
+    id: 43,
+    bookName: '时光沙漏·逆转命运的少女',
+    author: 'antstudio',
+    url: 'https://tn1-f2.kkmh.com/image/200702/rYSZESQTA.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'大女主'
+  },
+  {
+    id: 44,
+    bookName: '魔女的逆袭',
+    author: 'MinJakk',
+    url: 'https://tn1-f2.kkmh.com/image/200709/rAvHoSLMa.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'穿越'
+  },
+  {
+    id: 45,
+    bookName: 'MONSTER沉默野兽的温度',
+    author: '六柴',
+    url: 'https://tn1-f2.kkmh.com/image/200618/hdHAKBvev.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'恋爱'
+  },
+  {
+    id: 46,
+    bookName: '逃婚郡主和她的影卫们',
+    author: ' Jung hoon+Su Gook',
+    url: 'https://tn1-f2.kkmh.com/image/200713/QlyNcTFis.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'穿越'
+  },
+  {
+    id: 47,
+    bookName: '颤抖吧！原著女主',
+    author: 'Bae Heejin+Yusoo+Lemi',
+    url: 'https://tn1-f2.kkmh.com/image/200713/QPtzOSqhy.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'大女主'
+  },
+  {
+    id: 48,
+    bookName: '本王不要公主抱',
+    author: '南岐（原著）',
+    url: 'https://tn1-f2.kkmh.com/image/200814/sSFUQwmQF.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'投搞'
+  },
+  {
+    id: 49,
+    bookName: '荒岛蜜月-这个婚约我拒绝！',
+    author: 'ByulSatangYang+SaRyong',
+    url: 'https://tn1-f2.kkmh.com/image/200713/CGbJlRvQM.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'搞笑'
+  },
+  {
+    id: 50,
+    bookName: '叫我设计师',
+    author: '潇湘碧影（原著）',
+    url: 'https://tn1-f2.kkmh.com/image/200714/uWfohXxek.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'投搞'
+  },
+  {
+    id: 51,
+    bookName: '明日高校',
+    author: '子雾啊',
+    url: 'https://tn1-f2.kkmh.com/image/200709/MaJWXHsNB.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'校园'
+  },
+  {
+    id: 52,
+    bookName: '硬核一中',
+    author: 'BunnyJobs（主笔）',
+    url: 'https://tn1-f2.kkmh.com/image/200707/JSwlpSFPl.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'校园'
+  },
+  {
+    id: 53,
+    bookName: '恋爱铃',
+    author: '千桂永',
+    url: 'https://tn1-f2.kkmh.com/image/170821/tkjglgra1.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'恋爱'
+  },
+  {
+    id: 54,
+    bookName: '骸骨王座',
+    author: 'Cartoon Life+CARROTOON',
+    url: 'https://tn1-f2.kkmh.com/image/200714/tPZbayXUS.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'搞笑'
+  },
+  {
+    id: 55,
+    bookName: '养敌为患',
+    author: '风与自然（原著）',
+    url: 'https://tn1-f2.kkmh.com/image/200714/YYtOoOGdy.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'正能量'
+  },
+  {
+    id: 56,
+    bookName: '拔剑九亿次',
+    author: 'YKB+ SOON-Q+ STUDIO KHIT',
+    url: 'https://tn1-f2.kkmh.com/image/200611/ZxqCJEgwj.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'投稿'
+  },
+  {
+    id: 57,
+    bookName: '宇宙的星星',
+    author: 'KR',
+    url: 'https://tn1-f2.kkmh.com/image/200417/OUBnVMBMj.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'投搞'
+  },
+  {
+    id: 58,
+    bookName: '高等灵魂',
+    author: '千亮',
+    url: 'https://tn1-f2.kkmh.com/image/181113/stfsPy78q.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'都市'
+  },
+  {
+    id: 59,
+    bookName: '反转现实',
+    author: '天极焉加',
+    url: 'https://tn1-f2.kkmh.com/image/170123/33h3huvuw.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'剧情'
+  },
+
+  {
+    id: 60,
+    bookName: '第二模式',
+    author: '千幽·灵',
+    url: 'https://tn1-f2.kkmh.com/image/170922/43h4885wg.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'剧情'
+  },
+  {
+    id: 61,
+    bookName: '甄嬛传·叙花列',
+    author: '魏莹/夏天岛',
+    url: 'https://tn1-f2.kkmh.com/image/161220/40kx8hu00.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'剧情'
+  },
+  {
+    id: 62,
+    bookName: '被自己束缚的金丝雀',
+    author: '鱼二（原著）',
+    url: 'https://tn1-f2.kkmh.com/image/200923/lLUIYkzhe.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'唯美'
+  },
+  {
+    id: 63,
+    bookName: '不可爱的TA',
+    author: 'zero',
+    url: 'https://tn1-f2.kkmh.com/image/190103/nJzja4cVQ.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'唯美'
+  },
+  {
+    id: 64,
+    bookName: '伪装小丑的王子',
+    author: '月色樱草',
+    url: 'https://tn1-f2.kkmh.com/image/190328/8EfY99P3k.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'唯美'
+  },
+  {
+    id: 65,
+    bookName: '最终魂意',
+    author: 'MOKF',
+    url: 'https://tn1-f2.kkmh.com/image/200424/gKGIggfpl.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'热血'
+  },
+  {
+    id: 66,
+    bookName: '全职高手',
+    author: '阅文漫画',
+    url: 'https://tn1-f2.kkmh.com/image/201017/kATF6FZEk.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'热血'
+  },
+  {
+    id: 67,
+    bookName: '月光雕刻师',
+    author: 'PARK JUNG YEOL',
+    url: 'https://tn1-f2.kkmh.com/image/200610/ZunryLzNj.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'热血'
+  },
+  {
+    id: 68,
+    bookName: '我和总裁相了个亲',
+    author: 'Yeondam',
+    url: 'https://tn1-f2.kkmh.com/image/191107/hYVReVGxF.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'总裁'
+  },
+  {
+    id: 69,
+    bookName: '霸道总裁轻点爱',
+    author: '热萌文化',
+    url: 'https://tn1-f2.kkmh.com/image/200110/qiiEcSTR6.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'总裁'
+  },
+  {
+    id: 70,
+    bookName: '纯情陆少',
+    author: '博易创为动漫',
+    url: 'https://tn1-f2.kkmh.com/image/201010/iMd8ZFpcv.webp-t.w207.webp.h',
+    distinguish: true,
+    type:'总裁'
+  },
+
+
+]
+//分页功能
+const paging = Mock.mock(/\/paging\/img/, 'get', (options) => {
+  const pagesize = getQuery(options.url, 'pagesize')
+  const pageNum = getQuery(options.url, 'pagenum')
+  //总数
+  const total = sortImgsList.length
+  //截取数据开始位置
+  const start = (pageNum - 1) * pagesize
+  //截取数据结束位置
+  const end = pageNum * pagesize
+  //计算总页数
+  const totalPage = Math.ceil(total / pagesize)
+  //判断当前页数是否大于总页数
+  const list = pageNum > totalPage ? [] : sortImgsList.slice(start, end)
+  return {
+    status: 200,
+    msg: '获取数据成功',
+    pag: list,
+    total: total,
+  }
+})
+
+//收藏漫画的数据
+let collectionList=[]
+//增加收藏功能
+const Collection=Mock.mock('/paging/collection','post',(options)=>{
+     const collections=JSON.parse(options.body);
+      collectionList.push(collections)
+      console.log(collectionList)
+    const id=collections.id
+    for(let i=0;i<sortImgsList.length-1;i++){
+         if(id===sortImgsList[i].id){
+          sortImgsList[i].distinguish=false
+         }
+    }
+    return{
+      msg:'收藏成功',
+      status:200
+    }
+})
+
+//取消收藏功能
+const CollectionDel=Mock.mock('/paging/collectionDec','post',(options)=>{
+  const collections=JSON.parse(options.body);
+ const id=collections.id
+ for(let i=0;i<collectionList.length;i++){
+  if(id===collectionList[i].id){
+    collectionList.splice(i,1)
+    for(let j=0;j<sortImgsList.length-1;j++){
+      if(id===sortImgsList[j].id){
+        sortImgsList[j].distinguish=true
+      }
+     
+    }
+  }
+}
+console.log(collectionList)
+ return{
+   msg:'取消收藏成功',
+   status:200
+ }
+})
+
+//查找分类功能
+const  searchSort=Mock.mock(/\/paging\/sort/,'post',(options)=>{
+ const name=JSON.parse(options.body).name
+ console.log(name)
+
+    if(name==='恋爱'){
+    const love=[];
+    const total=love.length
+    for(let i=0;i<sortImgsList.length;i++){
+      if(sortImgsList[i].type==='恋爱'){
+        love.push(sortImgsList[i])
+      }
+    }
+   return {
+    msg:'获取分类成功',
+    status:200,
+    list:love,
+    total:total
+   } 
+   }else if(name==='剧情'){
+    const plot=[];
+    const total=plot.length
+    for(let i=0;i<sortImgsList.length;i++){
+      if(sortImgsList[i].type==='剧情'){
+        plot.push(sortImgsList[i])
+      }
+    }
+   return {
+    msg:'获取分类成功',
+    status:200,
+    list:plot,
+    total:total
+   } 
+   }else if(name==='古风'){
+    const Ancient =[];
+    const total=Ancient.length
+    for(let i=0;i<sortImgsList.length;i++){
+      if(sortImgsList[i].type==='古风'){
+        Ancient .push(sortImgsList[i])
+      }
+    }
+   return {
+    msg:'获取分类成功',
+    status:200,
+    list:Ancient,
+    total:total
+   } 
+   }else if(name==='校园'){
+    const school =[];
+    const total=school.length
+    for(let i=0;i<sortImgsList.length;i++){
+      if(sortImgsList[i].type==='校园'){
+        school.push(sortImgsList[i])
+      }
+    }
+   return {
+    msg:'获取分类成功',
+    status:200,
+    list:school,
+    total:total
+   } 
+   }else if(name==='奇幻'){
+    const Fantasy =[];
+    const total=Fantasy.length
+    for(let i=0;i<sortImgsList.length;i++){
+      if(sortImgsList[i].type==='奇幻'){
+        Fantasy.push(sortImgsList[i])
+      }
+    }
+   return {
+    msg:'获取分类成功',
+    status:200,
+    list:Fantasy,
+    total:total
+   } 
+   }else if(name==='唯美'){
+    const Aestheticism =[];
+    const total=Aestheticism.length
+    for(let i=0;i<sortImgsList.length;i++){
+      if(sortImgsList[i].type==='唯美'){
+        Aestheticism.push(sortImgsList[i])
+      }
+    }
+   return {
+    msg:'获取分类成功',
+    status:200,
+    list:Aestheticism,
+    total:total
+   } 
+   }else if(name==='热血'){
+    const warm =[];
+    const total=warm.length
+    for(let i=0;i<sortImgsList.length;i++){
+      if(sortImgsList[i].type==='热血'){
+        warm.push(sortImgsList[i])
+      }
+    }
+   return {
+    msg:'获取分类成功',
+    status:200,
+    list:warm,
+    total:total
+   } 
+   }else if(name==='日漫'){
+    const jan =[];
+    const total=jan.length
+    for(let i=0;i<sortImgsList.length;i++){
+      if(sortImgsList[i].type==='日漫'){
+        jan.push(sortImgsList[i])
+      }
+    }
+   return {
+    msg:'获取分类成功',
+    status:200,
+    list:jan,
+    total:total
+   } 
+   }else if(name==='韩漫'){
+    const Han =[];
+    const total=Han.length
+    for(let i=0;i<sortImgsList.length;i++){
+      if(sortImgsList[i].type==='韩漫'){
+        Han.push(sortImgsList[i])
+      }
+    }
+   return {
+    msg:'获取分类成功',
+    status:200,
+    list:Han,
+    total:total
+   } 
+   }else if(name==='大女主'){
+    const empress =[];
+    const total=empress.length
+    for(let i=0;i<sortImgsList.length;i++){
+      if(sortImgsList[i].type==='大女主'){
+        empress.push(sortImgsList[i])
+      }
+    }
+   return {
+    msg:'获取分类成功',
+    status:200,
+    list:empress,
+    total:total
+   } 
+   }else if(name==='完结'){
+    const end =[];
+    const total=end.length
+    for(let i=0;i<sortImgsList.length;i++){
+      if(sortImgsList[i].type==='完结'){
+        end.push(sortImgsList[i])
+      }
+    }
+   return {
+    msg:'获取分类成功',
+    status:200,
+    list:end,
+    total:total
+   } 
+   }else if(name==='穿越'){
+    const pass =[];
+    const total=pass.length
+    for(let i=0;i<sortImgsList.length;i++){
+      if(sortImgsList[i].type==='穿越'){
+        pass.push(sortImgsList[i])
+      }
+    }
+   return {
+    msg:'获取分类成功',
+    status:200,
+    list:pass,
+    total:total
+   } 
+   }else if(name==='萌系'){
+    const Adorable =[];
+    const total=Adorable.length
+    for(let i=0;i<sortImgsList.length;i++){
+      if(sortImgsList[i].type==='萌系'){
+        Adorable.push(sortImgsList[i])
+      }
+    }
+   return {
+    msg:'获取分类成功',
+    status:200,
+    list:Adorable,
+    total:total
+   } 
+   }else if(name==='灵异'){
+    const Supernatural =[];
+    const total=Supernatural.length
+    for(let i=0;i<sortImgsList.length;i++){
+      if(sortImgsList[i].type==='灵异'){
+        Supernatural.push(sortImgsList[i])
+      }
+    }
+   return {
+    msg:'获取分类成功',
+    status:200,
+    list:Supernatural,
+    total:total
+   } 
+   }else if(name==='玄幻'){
+    const Fantasy =[];
+    const total=Fantasy.length
+    for(let i=0;i<sortImgsList.length;i++){
+      if(sortImgsList[i].type==='奇幻'){
+        Fantasy.push(sortImgsList[i])
+      }
+    }
+   return {
+    msg:'获取分类成功',
+    status:200,
+    list:Fantasy,
+    total:total
+   } 
+   }else if(name==='搞笑'){
+    const Funny =[];
+    const total=Funny.length
+    for(let i=0;i<sortImgsList.length;i++){
+      if(sortImgsList[i].type==='搞笑'){
+        Funny.push(sortImgsList[i])
+      }
+    }
+   return {
+    msg:'获取分类成功',
+    status:200,
+    list:Funny,
+    total:total
+   } 
+   }else if(name==='都市'){
+    const urban =[];
+    const total=urban.length
+    for(let i=0;i<sortImgsList.length;i++){
+      if(sortImgsList[i].type==='都市'){
+        urban.push(sortImgsList[i])
+      }
+    }
+   return {
+    msg:'获取分类成功',
+    status:200,
+    list:urban,
+    total:total
+   } 
+   } else if(name==='投稿'){
+    const touGao =[];
+    const total=touGao.length
+    for(let i=0;i<sortImgsList.length;i++){
+      if(sortImgsList[i].type==='投搞'){
+        touGao.push(sortImgsList[i])
+      }
+    }
+   return {
+    msg:'获取分类成功',
+    status:200,
+    list:touGao,
+    total:total
+   } 
+  }
+   else if(name==='总裁'){
+    const CEO =[];
+    const total=CEO.length
+    for(let i=0;i<sortImgsList.length;i++){
+      if(sortImgsList[i].type==='总裁'){
+        CEO.push(sortImgsList[i])
+      }
+    }
+   return {
+    msg:'获取分类成功',
+    status:200,
+    list:CEO,
+    total:total
+   } 
+   }else if(name==='正能量'){
+    const positive =[];
+    const total=positive.length
+    for(let i=0;i<sortImgsList.length;i++){
+      if(sortImgsList[i].type==='正能量'){
+        positive.push(sortImgsList[i])
+      }
+    }
+   return {
+    msg:'获取分类成功',
+    status:200,
+    list:positive,
+    total:total
+   } 
+   }else{
+     return {
+       msg:'ok'
+     }
+   }
 })
