@@ -5,6 +5,7 @@
         <div class="userSelected">
           <span>已选</span>
           <el-tag
+           type="warning"
             v-for="(item, index) in allSelect"
             :key="index"
             closable

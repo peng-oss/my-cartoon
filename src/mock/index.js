@@ -15,15 +15,6 @@ const getQuery = (url, name) => {
   /* return null */
 }
 
-const data1 = Mock.mock('/api/data', 'post', (options) => {
-  console.log(options)
-  const body = JSON.parse(options.body)
-  console.log(body)
-  return {
-    status: 200,
-    msg: '获取数据成功',
-  }
-})
 // 登录页面的数据和接口
 /* 用户列表 */
 let userList = [
@@ -43,7 +34,7 @@ let userList = [
 // 添加用户
 const addUser = Mock.mock('/user/add', 'post', (options) => {
   const body = JSON.parse(options.body)
-  userList.push(body)
+  userList.unshift(body)
   console.log(body)
   return {
     list: userList,
@@ -584,29 +575,25 @@ const getYong = Mock.mock('/rank/yong', 'get', (options) => {
 // 数据
 let commentsList = [
   {
-    id: 1,
     url:
       'https://tncache1-f1.v3mh.com/734ecd72bd8e5ca7214201a38beb94b0_1607221734636',
     userName: '小飞侠',
     word: '小飞侠太喜欢看漫画了',
-    time: '2020-12-18  14:40',
+    time: '2020-12-08  14:40',
   },
   {
-    id: 2,
     url: 'https://tncache1-f1.v3mh.com/social/9b83b34e44278fa9fadc479dda340c86',
     userName: '小杨同学',
     word: '小杨喜欢吃饭，看漫画，打豆豆',
     time: '2020-11-11  11:11',
   },
   {
-    id: 3,
     url: 'https://tncache1-f1.v3mh.com/social/acba1fe653605b0fe00f4e1753c7c3be',
     userName: '豆豆',
     word: '豆豆这么可爱，为什么要打他',
     time: '2020-10-10  09:45',
   },
   {
-    id: 4,
     url:
       'https://tncache1-f1.v3mh.com/social/008b1d8a3be6c7db5c64479566188961-cover-faces',
     userName: '喵喵拳',
@@ -614,7 +601,6 @@ let commentsList = [
     time: '2020-10-02  07:09',
   },
   {
-    id: 5,
     url:
       'https://tncache1-f1.v3mh.com/social/6d6a498e5aa9184441d05d10ae6a9ebf-crop10-2-cover',
     userName: '喔喔糖',
@@ -630,10 +616,11 @@ const existComment = Mock.mock('/world/getComment', 'get', (options) => {
     list: commentsList,
   }
 })
+let newUserList = userList;
 let addContent = {
   url:
     'https://tncache1-f1.v3mh.com/social/9aa6e4a060ddad59aac4e2926f9738e8-cover-faces',
-  userName: userList[userList.length - 1].name,
+  userName:newUserList[0].name,
 }
 // 发表评论接口
 const publishComment = Mock.mock('/world/publish', 'post', (options) => {
@@ -642,6 +629,9 @@ const publishComment = Mock.mock('/world/publish', 'post', (options) => {
   addContent.time = date
   console.log(addContent)
   commentsList.unshift(addContent)
+  console.log(commentsList)
+  console.log(userList)
+  console.log(newUserList)
   return {
     status: 200,
     msg: '评论成功',
@@ -668,7 +658,7 @@ let sortImgsList = [
     author: '晗旭L-Mo',
     url: 'https://tn1-f2.kkmh.com/image/190802/fmXsWW7tI.webp-t.w207.webp.h',
     distinguish: true,
-    type:'剧情'
+    type: '剧情',
   },
   {
     id: 2,
@@ -676,7 +666,7 @@ let sortImgsList = [
     author: '曲小蛐（原著）',
     url: 'https://tn1-f2.kkmh.com/image/200925/nLtcHbBAW.webp-t.w207.webp.h',
     distinguish: true,
-    type:'恋爱'
+    type: '恋爱',
   },
   {
     id: 3,
@@ -684,7 +674,7 @@ let sortImgsList = [
     author: '犬一',
     url: 'https://tn1-f2.kkmh.com/image/200716/vdTwyZvcw.webp-t.w207.webp.h',
     distinguish: true,
-    type:'剧情'
+    type: '剧情',
   },
   {
     id: 4,
@@ -692,7 +682,7 @@ let sortImgsList = [
     author: '胡桃',
     url: 'https://tn1-f2.kkmh.com/image/200109/bnvAWgbBb.webp-t.w207.webp.h',
     distinguish: true,
-    type:'玄幻'
+    type: '玄幻',
   },
   {
     id: 5,
@@ -700,7 +690,7 @@ let sortImgsList = [
     author: '莉莉君',
     url: 'https://tn1-f2.kkmh.com/image/190702/ll1t9SFXQ.webp-t.w207.webp.h',
     distinguish: true,
-    type:'古风'
+    type: '古风',
   },
   {
     id: 6,
@@ -708,7 +698,7 @@ let sortImgsList = [
     author: '郭斯特',
     url: 'https://tn1-f2.kkmh.com/image/190905/YbVcMODaa.webp-t.w207.webp.h',
     distinguish: true,
-    type:'古风'
+    type: '古风',
   },
   {
     id: 7,
@@ -716,7 +706,7 @@ let sortImgsList = [
     author: '晗旭L-Mo',
     url: 'https://tn1-f2.kkmh.com/image/191217/ewuopQRcs.webp-t.w207.webp.h',
     distinguish: true,
-    type:'恋爱'
+    type: '恋爱',
   },
   {
     id: 8,
@@ -724,7 +714,7 @@ let sortImgsList = [
     author: 'bless',
     url: 'https://tn1-f2.kkmh.com/image/200122/NdxSWJHYR.webp-t.w207.webp.h',
     distinguish: true,
-    type:'唯美'
+    type: '唯美',
   },
   {
     id: 9,
@@ -732,7 +722,7 @@ let sortImgsList = [
     author: '帅天森',
     url: 'https://tn1-f2.kkmh.com/image/190703/HztHOHhJU.webp-t.w207.webp.h',
     distinguish: true,
-    type:'校园'
+    type: '校园',
   },
   {
     id: 10,
@@ -740,7 +730,7 @@ let sortImgsList = [
     author: '漫阅优品',
     url: 'https://tn1-f2.kkmh.com/image/161220/txoq04r10.webp-t.w207.webp.h',
     distinguish: true,
-    type:'校园'
+    type: '校园',
   },
   {
     id: 11,
@@ -748,7 +738,7 @@ let sortImgsList = [
     author: '葱渣渣',
     url: 'https://tn1-f2.kkmh.com/image/181116/hilFVHrEB.webp-t.w207.webp.h',
     distinguish: true,
-    type:'校园'
+    type: '校园',
   },
   {
     id: 12,
@@ -756,7 +746,7 @@ let sortImgsList = [
     author: '壳小杀／夏天岛+左小翎／夏天岛',
     url: 'https://tn1-f2.kkmh.com/image/190802/fmXsWW7tI.webp-t.w207.webp.h',
     distinguish: true,
-    type:'奇幻'
+    type: '奇幻',
   },
   {
     id: 13,
@@ -764,7 +754,7 @@ let sortImgsList = [
     author: '壳小杀',
     url: 'https://tn1-f2.kkmh.com/image/200703/KYnRXhLuQ.webp-t.w207.webp.h',
     distinguish: true,
-    type:'校园'
+    type: '校园',
   },
   {
     id: 14,
@@ -772,7 +762,7 @@ let sortImgsList = [
     author: 'muryu',
     url: 'https://tn1-f2.kkmh.com/image/190703/4l7VcZNZN.webp-t.w207.webp.h',
     distinguish: true,
-    type:'韩漫'
+    type: '韩漫',
   },
   {
     id: 15,
@@ -780,7 +770,7 @@ let sortImgsList = [
     author: '住野夜（原作）+桐原泉（作画）',
     url: 'https://tn1-f2.kkmh.com/image/180827/BcP9SZM9B.webp-t.w207.webp.h',
     distinguish: true,
-    type:'日漫'
+    type: '日漫',
   },
   {
     id: 16,
@@ -788,7 +778,7 @@ let sortImgsList = [
     author: '灿灿/夏天岛',
     url: 'https://tn1-f2.kkmh.com/image/190703/oMEEpgwyl.webp-t.w207.webp.h',
     distinguish: true,
-    type:'日漫'
+    type: '日漫',
   },
   {
     id: 17,
@@ -796,7 +786,7 @@ let sortImgsList = [
     author: '灿灿/夏天岛',
     url: 'https://tn1-f2.kkmh.com/image/180705/KD7348uAV.webp-t.w207.webp.h',
     distinguish: true,
-    type:'恋爱'
+    type: '恋爱',
   },
   {
     id: 18,
@@ -804,7 +794,7 @@ let sortImgsList = [
     author: '葵子',
     url: 'https://tn1-f2.kkmh.com/image/170630/hiwvsfn1p.webp-t.w207.webp.h',
     distinguish: true,
-    type:'日漫'
+    type: '日漫',
   },
   {
     id: 19,
@@ -812,7 +802,7 @@ let sortImgsList = [
     author: 'Jagyum+saedle',
     url: 'https://tn1-f2.kkmh.com/image/200923/NHCkmCbWm.webp-t.w207.webp.h',
     distinguish: true,
-    type:'完结'
+    type: '完结',
   },
   {
     id: 20,
@@ -820,7 +810,7 @@ let sortImgsList = [
     author: '好了神文化',
     url: 'https://tn1-f2.kkmh.com/image/201113/oQaocBcCT.webp-t.w207.webp.h',
     distinguish: true,
-    type:'完结'
+    type: '完结',
   },
   {
     id: 21,
@@ -828,7 +818,7 @@ let sortImgsList = [
     author: 'jinyagi+Team Neok-bu-rang',
     url: 'https://tn1-f2.kkmh.com/image/200923/DNddytSTG.webp-t.w207.webp.h',
     distinguish: true,
-    type:'穿越'
+    type: '穿越',
   },
   {
     id: 22,
@@ -836,7 +826,7 @@ let sortImgsList = [
     author: 'Brothers without a tomorrow+U-jewel media',
     url: 'https://tn1-f2.kkmh.com/image/200925/iYQGUFVsg.webp-t.w207.webp.h',
     distinguish: true,
-    type:'完结'
+    type: '完结',
   },
   {
     id: 23,
@@ -844,7 +834,7 @@ let sortImgsList = [
     author: 'Anjeo',
     url: 'https://tn1-f2.kkmh.com/image/190305/tmfbQ6DrA.webp-t.w207.webp.h',
     distinguish: true,
-    type:'灵异'
+    type: '灵异',
   },
   {
     id: 24,
@@ -852,7 +842,7 @@ let sortImgsList = [
     author: '百鬼随行',
     url: 'https://tn1-f2.kkmh.com/image/200923/TSEznEQxX.webp-t.w207.webp.h',
     distinguish: true,
-    type:'完结'
+    type: '完结',
   },
   {
     id: 25,
@@ -860,7 +850,7 @@ let sortImgsList = [
     author: '索索（主笔）+郭晓（编剧）',
     url: 'https://tn1-f2.kkmh.com/image/200923/LUJqMVckn.webp-t.w207.webp.h',
     distinguish: true,
-    type:'完结'
+    type: '完结',
   },
   {
     id: 26,
@@ -868,7 +858,7 @@ let sortImgsList = [
     author: '索索（主笔）+郭晓（编剧）',
     url: 'https://tn1-f2.kkmh.com/image/200926/gbTUzFFCl.webp-t.w207.webp.h',
     distinguish: true,
-    type:'灵异'
+    type: '灵异',
   },
   {
     id: 27,
@@ -876,7 +866,7 @@ let sortImgsList = [
     author: '路边张三',
     url: 'https://tn1-f2.kkmh.com/image/200706/MpvYndrLa.webp-t.w207.webp.h',
     distinguish: true,
-    type:'灵异'
+    type: '灵异',
   },
   {
     id: 28,
@@ -884,7 +874,7 @@ let sortImgsList = [
     author: '米花·糖',
     url: 'https://tn1-f2.kkmh.com/image/200928/VlXzkeYPL.webp-t.w207.webp.h',
     distinguish: true,
-    type:'灵异'
+    type: '灵异',
   },
   {
     id: 29,
@@ -892,7 +882,7 @@ let sortImgsList = [
     author: '电鳗漫画工作室',
     url: 'https://tn1-f2.kkmh.com/image/200713/fedBYwzDU.webp-t.w207.webp.h',
     distinguish: true,
-    type:'灵异'
+    type: '灵异',
   },
   {
     id: 30,
@@ -907,7 +897,7 @@ let sortImgsList = [
     author: '七英俊（原著）+博易漫画+Maslow',
     url: 'https://tn1-f2.kkmh.com/image/200713/NcnGRKcOV.webp-t.w207.webp.h',
     distinguish: true,
-    type:'灵异'
+    type: '灵异',
   },
   {
     id: 32,
@@ -915,7 +905,7 @@ let sortImgsList = [
     author: '鸡精君+守',
     url: 'https://tn1-f2.kkmh.com/image/200108/OgNfzbAsE.webp-t.w207.webp.h',
     distinguish: true,
-    type:'恋爱'
+    type: '恋爱',
   },
   {
     id: 33,
@@ -923,7 +913,7 @@ let sortImgsList = [
     author: 'Woo Ji Hye + Dur',
     url: 'https://tn1-f2.kkmh.com/image/200911/QwsprxNoK.webp-t.w207.webp.h',
     distinguish: true,
-    type:'恋爱'
+    type: '恋爱',
   },
   {
     id: 34,
@@ -931,7 +921,7 @@ let sortImgsList = [
     author: '小白南',
     url: 'https://tn1-f2.kkmh.com/image/200723/Q0HZx0y89.webp-t.w207.webp.h',
     distinguish: true,
-    type:'奇幻'
+    type: '奇幻',
   },
   {
     id: 35,
@@ -939,7 +929,7 @@ let sortImgsList = [
     author: '娜可露露（原著）+欧啦漫画',
     url: 'https://tn1-f2.kkmh.com/image/200706/pvUkRerQd.webp-t.w207.webp.h',
     distinguish: true,
-    type:'都市'
+    type: '都市',
   },
   {
     id: 36,
@@ -947,7 +937,7 @@ let sortImgsList = [
     author: '橘枳',
     url: 'https://tn1-f2.kkmh.com/image/190331/JhZIY8PGd.webp-t.w207.webp.h',
     distinguish: true,
-    type:'恋爱'
+    type: '恋爱',
   },
   {
     id: 37,
@@ -955,7 +945,7 @@ let sortImgsList = [
     author: 'TUTU(主笔）',
     url: 'https://tn1-f2.kkmh.com/image/190103/LyS9fzBt6.webp-t.w207.webp.h',
     distinguish: true,
-    type:'古风'
+    type: '古风',
   },
   {
     id: 38,
@@ -963,7 +953,7 @@ let sortImgsList = [
     author: 'MINA + ZIHO',
     url: 'https://tn1-f2.kkmh.com/image/200622/pZiAvkSdc.webp-t.w207.webp.h',
     distinguish: true,
-    type:'大女王'
+    type: '大女王',
   },
   {
     id: 39,
@@ -971,15 +961,15 @@ let sortImgsList = [
     author: '丁冰',
     url: 'https://tn1-f2.kkmh.com/image/190725/zO75c1vV7.webp-t.w207.webp.h',
     distinguish: true,
-    type:'恋爱'
+    type: '恋爱',
   },
   {
-    id:40,
+    id: 40,
     bookName: '鬼灭之刃',
     author: '吾峠呼世晴',
     url: 'https://tn1-f2.kkmh.com/image/200109/diEQHgAWn.webp-t.w207.webp.h',
     distinguish: true,
-    type:'玄幻'
+    type: '玄幻',
   },
   {
     id: 41,
@@ -987,7 +977,7 @@ let sortImgsList = [
     author: '鱼不语（原著）',
     url: 'https://tn1-f2.kkmh.com/image/200814/ucPnxkKJD.webp-t.w207.webp.h',
     distinguish: true,
-    type:'恋爱'
+    type: '恋爱',
   },
   {
     id: 42,
@@ -995,7 +985,7 @@ let sortImgsList = [
     author: 'Min Iyeong+Plutus+CARROTOON',
     url: 'https://tn1-f2.kkmh.com/image/200706/hybBWBZNd.webp-t.w207.webp.h',
     distinguish: true,
-    type:'萌系'
+    type: '萌系',
   },
   {
     id: 43,
@@ -1003,7 +993,7 @@ let sortImgsList = [
     author: 'antstudio',
     url: 'https://tn1-f2.kkmh.com/image/200702/rYSZESQTA.webp-t.w207.webp.h',
     distinguish: true,
-    type:'大女主'
+    type: '大女主',
   },
   {
     id: 44,
@@ -1011,7 +1001,7 @@ let sortImgsList = [
     author: 'MinJakk',
     url: 'https://tn1-f2.kkmh.com/image/200709/rAvHoSLMa.webp-t.w207.webp.h',
     distinguish: true,
-    type:'穿越'
+    type: '穿越',
   },
   {
     id: 45,
@@ -1019,7 +1009,7 @@ let sortImgsList = [
     author: '六柴',
     url: 'https://tn1-f2.kkmh.com/image/200618/hdHAKBvev.webp-t.w207.webp.h',
     distinguish: true,
-    type:'恋爱'
+    type: '恋爱',
   },
   {
     id: 46,
@@ -1027,7 +1017,7 @@ let sortImgsList = [
     author: ' Jung hoon+Su Gook',
     url: 'https://tn1-f2.kkmh.com/image/200713/QlyNcTFis.webp-t.w207.webp.h',
     distinguish: true,
-    type:'穿越'
+    type: '穿越',
   },
   {
     id: 47,
@@ -1035,7 +1025,7 @@ let sortImgsList = [
     author: 'Bae Heejin+Yusoo+Lemi',
     url: 'https://tn1-f2.kkmh.com/image/200713/QPtzOSqhy.webp-t.w207.webp.h',
     distinguish: true,
-    type:'大女主'
+    type: '大女主',
   },
   {
     id: 48,
@@ -1043,7 +1033,7 @@ let sortImgsList = [
     author: '南岐（原著）',
     url: 'https://tn1-f2.kkmh.com/image/200814/sSFUQwmQF.webp-t.w207.webp.h',
     distinguish: true,
-    type:'投搞'
+    type: '投搞',
   },
   {
     id: 49,
@@ -1051,7 +1041,7 @@ let sortImgsList = [
     author: 'ByulSatangYang+SaRyong',
     url: 'https://tn1-f2.kkmh.com/image/200713/CGbJlRvQM.webp-t.w207.webp.h',
     distinguish: true,
-    type:'搞笑'
+    type: '搞笑',
   },
   {
     id: 50,
@@ -1059,7 +1049,7 @@ let sortImgsList = [
     author: '潇湘碧影（原著）',
     url: 'https://tn1-f2.kkmh.com/image/200714/uWfohXxek.webp-t.w207.webp.h',
     distinguish: true,
-    type:'投搞'
+    type: '投搞',
   },
   {
     id: 51,
@@ -1067,7 +1057,7 @@ let sortImgsList = [
     author: '子雾啊',
     url: 'https://tn1-f2.kkmh.com/image/200709/MaJWXHsNB.webp-t.w207.webp.h',
     distinguish: true,
-    type:'校园'
+    type: '校园',
   },
   {
     id: 52,
@@ -1075,7 +1065,7 @@ let sortImgsList = [
     author: 'BunnyJobs（主笔）',
     url: 'https://tn1-f2.kkmh.com/image/200707/JSwlpSFPl.webp-t.w207.webp.h',
     distinguish: true,
-    type:'校园'
+    type: '校园',
   },
   {
     id: 53,
@@ -1083,7 +1073,7 @@ let sortImgsList = [
     author: '千桂永',
     url: 'https://tn1-f2.kkmh.com/image/170821/tkjglgra1.webp-t.w207.webp.h',
     distinguish: true,
-    type:'恋爱'
+    type: '恋爱',
   },
   {
     id: 54,
@@ -1091,7 +1081,7 @@ let sortImgsList = [
     author: 'Cartoon Life+CARROTOON',
     url: 'https://tn1-f2.kkmh.com/image/200714/tPZbayXUS.webp-t.w207.webp.h',
     distinguish: true,
-    type:'搞笑'
+    type: '搞笑',
   },
   {
     id: 55,
@@ -1099,7 +1089,7 @@ let sortImgsList = [
     author: '风与自然（原著）',
     url: 'https://tn1-f2.kkmh.com/image/200714/YYtOoOGdy.webp-t.w207.webp.h',
     distinguish: true,
-    type:'正能量'
+    type: '正能量',
   },
   {
     id: 56,
@@ -1107,7 +1097,7 @@ let sortImgsList = [
     author: 'YKB+ SOON-Q+ STUDIO KHIT',
     url: 'https://tn1-f2.kkmh.com/image/200611/ZxqCJEgwj.webp-t.w207.webp.h',
     distinguish: true,
-    type:'投稿'
+    type: '投稿',
   },
   {
     id: 57,
@@ -1115,7 +1105,7 @@ let sortImgsList = [
     author: 'KR',
     url: 'https://tn1-f2.kkmh.com/image/200417/OUBnVMBMj.webp-t.w207.webp.h',
     distinguish: true,
-    type:'投搞'
+    type: '投搞',
   },
   {
     id: 58,
@@ -1123,7 +1113,7 @@ let sortImgsList = [
     author: '千亮',
     url: 'https://tn1-f2.kkmh.com/image/181113/stfsPy78q.webp-t.w207.webp.h',
     distinguish: true,
-    type:'都市'
+    type: '都市',
   },
   {
     id: 59,
@@ -1131,7 +1121,7 @@ let sortImgsList = [
     author: '天极焉加',
     url: 'https://tn1-f2.kkmh.com/image/170123/33h3huvuw.webp-t.w207.webp.h',
     distinguish: true,
-    type:'剧情'
+    type: '剧情',
   },
 
   {
@@ -1140,7 +1130,7 @@ let sortImgsList = [
     author: '千幽·灵',
     url: 'https://tn1-f2.kkmh.com/image/170922/43h4885wg.webp-t.w207.webp.h',
     distinguish: true,
-    type:'剧情'
+    type: '剧情',
   },
   {
     id: 61,
@@ -1148,7 +1138,7 @@ let sortImgsList = [
     author: '魏莹/夏天岛',
     url: 'https://tn1-f2.kkmh.com/image/161220/40kx8hu00.webp-t.w207.webp.h',
     distinguish: true,
-    type:'剧情'
+    type: '剧情',
   },
   {
     id: 62,
@@ -1156,7 +1146,7 @@ let sortImgsList = [
     author: '鱼二（原著）',
     url: 'https://tn1-f2.kkmh.com/image/200923/lLUIYkzhe.webp-t.w207.webp.h',
     distinguish: true,
-    type:'唯美'
+    type: '唯美',
   },
   {
     id: 63,
@@ -1164,7 +1154,7 @@ let sortImgsList = [
     author: 'zero',
     url: 'https://tn1-f2.kkmh.com/image/190103/nJzja4cVQ.webp-t.w207.webp.h',
     distinguish: true,
-    type:'唯美'
+    type: '唯美',
   },
   {
     id: 64,
@@ -1172,7 +1162,7 @@ let sortImgsList = [
     author: '月色樱草',
     url: 'https://tn1-f2.kkmh.com/image/190328/8EfY99P3k.webp-t.w207.webp.h',
     distinguish: true,
-    type:'唯美'
+    type: '唯美',
   },
   {
     id: 65,
@@ -1180,7 +1170,7 @@ let sortImgsList = [
     author: 'MOKF',
     url: 'https://tn1-f2.kkmh.com/image/200424/gKGIggfpl.webp-t.w207.webp.h',
     distinguish: true,
-    type:'热血'
+    type: '热血',
   },
   {
     id: 66,
@@ -1188,7 +1178,7 @@ let sortImgsList = [
     author: '阅文漫画',
     url: 'https://tn1-f2.kkmh.com/image/201017/kATF6FZEk.webp-t.w207.webp.h',
     distinguish: true,
-    type:'热血'
+    type: '热血',
   },
   {
     id: 67,
@@ -1196,7 +1186,7 @@ let sortImgsList = [
     author: 'PARK JUNG YEOL',
     url: 'https://tn1-f2.kkmh.com/image/200610/ZunryLzNj.webp-t.w207.webp.h',
     distinguish: true,
-    type:'热血'
+    type: '热血',
   },
   {
     id: 68,
@@ -1204,7 +1194,7 @@ let sortImgsList = [
     author: 'Yeondam',
     url: 'https://tn1-f2.kkmh.com/image/191107/hYVReVGxF.webp-t.w207.webp.h',
     distinguish: true,
-    type:'总裁'
+    type: '总裁',
   },
   {
     id: 69,
@@ -1212,7 +1202,7 @@ let sortImgsList = [
     author: '热萌文化',
     url: 'https://tn1-f2.kkmh.com/image/200110/qiiEcSTR6.webp-t.w207.webp.h',
     distinguish: true,
-    type:'总裁'
+    type: '总裁',
   },
   {
     id: 70,
@@ -1220,10 +1210,8 @@ let sortImgsList = [
     author: '博易创为动漫',
     url: 'https://tn1-f2.kkmh.com/image/201010/iMd8ZFpcv.webp-t.w207.webp.h',
     distinguish: true,
-    type:'总裁'
+    type: '总裁',
   },
-
-
 ]
 //分页功能
 const paging = Mock.mock(/\/paging\/img/, 'get', (options) => {
@@ -1248,335 +1236,419 @@ const paging = Mock.mock(/\/paging\/img/, 'get', (options) => {
 })
 
 //收藏漫画的数据
-let collectionList=[]
+let collectionList = []
 //增加收藏功能
-const Collection=Mock.mock('/paging/collection','post',(options)=>{
-     const collections=JSON.parse(options.body);
-      collectionList.push(collections)
-      console.log(collectionList)
-    const id=collections.id
-    for(let i=0;i<sortImgsList.length-1;i++){
-         if(id===sortImgsList[i].id){
-          sortImgsList[i].distinguish=false
-         }
+const Collection = Mock.mock('/paging/collection', 'post', (options) => {
+  const collections = JSON.parse(options.body)
+  collectionList.push(collections)
+  console.log(collectionList)
+  const id = collections.id
+  for (let i = 0; i < sortImgsList.length - 1; i++) {
+    if (id === sortImgsList[i].id) {
+      sortImgsList[i].distinguish = false
     }
-    return{
-      msg:'收藏成功',
-      status:200
-    }
+  }
+  return {
+    msg: '收藏成功',
+    status: 200,
+  }
 })
 
 //取消收藏功能
-const CollectionDel=Mock.mock('/paging/collectionDec','post',(options)=>{
-  const collections=JSON.parse(options.body);
- const id=collections.id
- for(let i=0;i<collectionList.length;i++){
-  if(id===collectionList[i].id){
-    collectionList.splice(i,1)
-    for(let j=0;j<sortImgsList.length-1;j++){
-      if(id===sortImgsList[j].id){
-        sortImgsList[j].distinguish=true
+const CollectionDel = Mock.mock('/paging/collectionDec', 'post', (options) => {
+  const collections = JSON.parse(options.body)
+  const id = collections.id
+  for (let i = 0; i < collectionList.length; i++) {
+    if (id === collectionList[i].id) {
+      collectionList.splice(i, 1)
+      for (let j = 0; j < sortImgsList.length - 1; j++) {
+        if (id === sortImgsList[j].id) {
+          sortImgsList[j].distinguish = true
+        }
       }
-     
     }
   }
-}
-console.log(collectionList)
- return{
-   msg:'取消收藏成功',
-   status:200
- }
+  console.log(collectionList)
+  return {
+    msg: '取消收藏成功',
+    status: 200,
+  }
 })
 
 //查找分类功能
-const  searchSort=Mock.mock(/\/paging\/sort/,'post',(options)=>{
- const name=JSON.parse(options.body).name
- console.log(name)
+const searchSort = Mock.mock(/\/paging\/sort/, 'post', (options) => {
+  const name = JSON.parse(options.body).name
+  console.log(name)
 
-    if(name==='恋爱'){
-    const love=[];
-    const total=love.length
-    for(let i=0;i<sortImgsList.length;i++){
-      if(sortImgsList[i].type==='恋爱'){
+  if (name === '恋爱') {
+    const love = []
+    const total = love.length
+    for (let i = 0; i < sortImgsList.length; i++) {
+      if (sortImgsList[i].type === '恋爱') {
         love.push(sortImgsList[i])
       }
     }
-   return {
-    msg:'获取分类成功',
-    status:200,
-    list:love,
-    total:total
-   } 
-   }else if(name==='剧情'){
-    const plot=[];
-    const total=plot.length
-    for(let i=0;i<sortImgsList.length;i++){
-      if(sortImgsList[i].type==='剧情'){
+    return {
+      msg: '获取分类成功',
+      status: 200,
+      list: love,
+      total: total,
+    }
+  } else if (name === '剧情') {
+    const plot = []
+    const total = plot.length
+    for (let i = 0; i < sortImgsList.length; i++) {
+      if (sortImgsList[i].type === '剧情') {
         plot.push(sortImgsList[i])
       }
     }
-   return {
-    msg:'获取分类成功',
-    status:200,
-    list:plot,
-    total:total
-   } 
-   }else if(name==='古风'){
-    const Ancient =[];
-    const total=Ancient.length
-    for(let i=0;i<sortImgsList.length;i++){
-      if(sortImgsList[i].type==='古风'){
-        Ancient .push(sortImgsList[i])
+    return {
+      msg: '获取分类成功',
+      status: 200,
+      list: plot,
+      total: total,
+    }
+  } else if (name === '古风') {
+    const Ancient = []
+    const total = Ancient.length
+    for (let i = 0; i < sortImgsList.length; i++) {
+      if (sortImgsList[i].type === '古风') {
+        Ancient.push(sortImgsList[i])
       }
     }
-   return {
-    msg:'获取分类成功',
-    status:200,
-    list:Ancient,
-    total:total
-   } 
-   }else if(name==='校园'){
-    const school =[];
-    const total=school.length
-    for(let i=0;i<sortImgsList.length;i++){
-      if(sortImgsList[i].type==='校园'){
+    return {
+      msg: '获取分类成功',
+      status: 200,
+      list: Ancient,
+      total: total,
+    }
+  } else if (name === '校园') {
+    const school = []
+    const total = school.length
+    for (let i = 0; i < sortImgsList.length; i++) {
+      if (sortImgsList[i].type === '校园') {
         school.push(sortImgsList[i])
       }
     }
-   return {
-    msg:'获取分类成功',
-    status:200,
-    list:school,
-    total:total
-   } 
-   }else if(name==='奇幻'){
-    const Fantasy =[];
-    const total=Fantasy.length
-    for(let i=0;i<sortImgsList.length;i++){
-      if(sortImgsList[i].type==='奇幻'){
+    return {
+      msg: '获取分类成功',
+      status: 200,
+      list: school,
+      total: total,
+    }
+  } else if (name === '奇幻') {
+    const Fantasy = []
+    const total = Fantasy.length
+    for (let i = 0; i < sortImgsList.length; i++) {
+      if (sortImgsList[i].type === '奇幻') {
         Fantasy.push(sortImgsList[i])
       }
     }
-   return {
-    msg:'获取分类成功',
-    status:200,
-    list:Fantasy,
-    total:total
-   } 
-   }else if(name==='唯美'){
-    const Aestheticism =[];
-    const total=Aestheticism.length
-    for(let i=0;i<sortImgsList.length;i++){
-      if(sortImgsList[i].type==='唯美'){
+    return {
+      msg: '获取分类成功',
+      status: 200,
+      list: Fantasy,
+      total: total,
+    }
+  } else if (name === '唯美') {
+    const Aestheticism = []
+    const total = Aestheticism.length
+    for (let i = 0; i < sortImgsList.length; i++) {
+      if (sortImgsList[i].type === '唯美') {
         Aestheticism.push(sortImgsList[i])
       }
     }
-   return {
-    msg:'获取分类成功',
-    status:200,
-    list:Aestheticism,
-    total:total
-   } 
-   }else if(name==='热血'){
-    const warm =[];
-    const total=warm.length
-    for(let i=0;i<sortImgsList.length;i++){
-      if(sortImgsList[i].type==='热血'){
+    return {
+      msg: '获取分类成功',
+      status: 200,
+      list: Aestheticism,
+      total: total,
+    }
+  } else if (name === '热血') {
+    const warm = []
+    const total = warm.length
+    for (let i = 0; i < sortImgsList.length; i++) {
+      if (sortImgsList[i].type === '热血') {
         warm.push(sortImgsList[i])
       }
     }
-   return {
-    msg:'获取分类成功',
-    status:200,
-    list:warm,
-    total:total
-   } 
-   }else if(name==='日漫'){
-    const jan =[];
-    const total=jan.length
-    for(let i=0;i<sortImgsList.length;i++){
-      if(sortImgsList[i].type==='日漫'){
+    return {
+      msg: '获取分类成功',
+      status: 200,
+      list: warm,
+      total: total,
+    }
+  } else if (name === '日漫') {
+    const jan = []
+    const total = jan.length
+    for (let i = 0; i < sortImgsList.length; i++) {
+      if (sortImgsList[i].type === '日漫') {
         jan.push(sortImgsList[i])
       }
     }
-   return {
-    msg:'获取分类成功',
-    status:200,
-    list:jan,
-    total:total
-   } 
-   }else if(name==='韩漫'){
-    const Han =[];
-    const total=Han.length
-    for(let i=0;i<sortImgsList.length;i++){
-      if(sortImgsList[i].type==='韩漫'){
+    return {
+      msg: '获取分类成功',
+      status: 200,
+      list: jan,
+      total: total,
+    }
+  } else if (name === '韩漫') {
+    const Han = []
+    const total = Han.length
+    for (let i = 0; i < sortImgsList.length; i++) {
+      if (sortImgsList[i].type === '韩漫') {
         Han.push(sortImgsList[i])
       }
     }
-   return {
-    msg:'获取分类成功',
-    status:200,
-    list:Han,
-    total:total
-   } 
-   }else if(name==='大女主'){
-    const empress =[];
-    const total=empress.length
-    for(let i=0;i<sortImgsList.length;i++){
-      if(sortImgsList[i].type==='大女主'){
+    return {
+      msg: '获取分类成功',
+      status: 200,
+      list: Han,
+      total: total,
+    }
+  } else if (name === '大女主') {
+    const empress = []
+    const total = empress.length
+    for (let i = 0; i < sortImgsList.length; i++) {
+      if (sortImgsList[i].type === '大女主') {
         empress.push(sortImgsList[i])
       }
     }
-   return {
-    msg:'获取分类成功',
-    status:200,
-    list:empress,
-    total:total
-   } 
-   }else if(name==='完结'){
-    const end =[];
-    const total=end.length
-    for(let i=0;i<sortImgsList.length;i++){
-      if(sortImgsList[i].type==='完结'){
+    return {
+      msg: '获取分类成功',
+      status: 200,
+      list: empress,
+      total: total,
+    }
+  } else if (name === '完结') {
+    const end = []
+    const total = end.length
+    for (let i = 0; i < sortImgsList.length; i++) {
+      if (sortImgsList[i].type === '完结') {
         end.push(sortImgsList[i])
       }
     }
-   return {
-    msg:'获取分类成功',
-    status:200,
-    list:end,
-    total:total
-   } 
-   }else if(name==='穿越'){
-    const pass =[];
-    const total=pass.length
-    for(let i=0;i<sortImgsList.length;i++){
-      if(sortImgsList[i].type==='穿越'){
+    return {
+      msg: '获取分类成功',
+      status: 200,
+      list: end,
+      total: total,
+    }
+  } else if (name === '穿越') {
+    const pass = []
+    const total = pass.length
+    for (let i = 0; i < sortImgsList.length; i++) {
+      if (sortImgsList[i].type === '穿越') {
         pass.push(sortImgsList[i])
       }
     }
-   return {
-    msg:'获取分类成功',
-    status:200,
-    list:pass,
-    total:total
-   } 
-   }else if(name==='萌系'){
-    const Adorable =[];
-    const total=Adorable.length
-    for(let i=0;i<sortImgsList.length;i++){
-      if(sortImgsList[i].type==='萌系'){
+    return {
+      msg: '获取分类成功',
+      status: 200,
+      list: pass,
+      total: total,
+    }
+  } else if (name === '萌系') {
+    const Adorable = []
+    const total = Adorable.length
+    for (let i = 0; i < sortImgsList.length; i++) {
+      if (sortImgsList[i].type === '萌系') {
         Adorable.push(sortImgsList[i])
       }
     }
-   return {
-    msg:'获取分类成功',
-    status:200,
-    list:Adorable,
-    total:total
-   } 
-   }else if(name==='灵异'){
-    const Supernatural =[];
-    const total=Supernatural.length
-    for(let i=0;i<sortImgsList.length;i++){
-      if(sortImgsList[i].type==='灵异'){
+    return {
+      msg: '获取分类成功',
+      status: 200,
+      list: Adorable,
+      total: total,
+    }
+  } else if (name === '灵异') {
+    const Supernatural = []
+    const total = Supernatural.length
+    for (let i = 0; i < sortImgsList.length; i++) {
+      if (sortImgsList[i].type === '灵异') {
         Supernatural.push(sortImgsList[i])
       }
     }
-   return {
-    msg:'获取分类成功',
-    status:200,
-    list:Supernatural,
-    total:total
-   } 
-   }else if(name==='玄幻'){
-    const Fantasy =[];
-    const total=Fantasy.length
-    for(let i=0;i<sortImgsList.length;i++){
-      if(sortImgsList[i].type==='奇幻'){
+    return {
+      msg: '获取分类成功',
+      status: 200,
+      list: Supernatural,
+      total: total,
+    }
+  } else if (name === '玄幻') {
+    const Fantasy = []
+    const total = Fantasy.length
+    for (let i = 0; i < sortImgsList.length; i++) {
+      if (sortImgsList[i].type === '奇幻') {
         Fantasy.push(sortImgsList[i])
       }
     }
-   return {
-    msg:'获取分类成功',
-    status:200,
-    list:Fantasy,
-    total:total
-   } 
-   }else if(name==='搞笑'){
-    const Funny =[];
-    const total=Funny.length
-    for(let i=0;i<sortImgsList.length;i++){
-      if(sortImgsList[i].type==='搞笑'){
+    return {
+      msg: '获取分类成功',
+      status: 200,
+      list: Fantasy,
+      total: total,
+    }
+  } else if (name === '搞笑') {
+    const Funny = []
+    const total = Funny.length
+    for (let i = 0; i < sortImgsList.length; i++) {
+      if (sortImgsList[i].type === '搞笑') {
         Funny.push(sortImgsList[i])
       }
     }
-   return {
-    msg:'获取分类成功',
-    status:200,
-    list:Funny,
-    total:total
-   } 
-   }else if(name==='都市'){
-    const urban =[];
-    const total=urban.length
-    for(let i=0;i<sortImgsList.length;i++){
-      if(sortImgsList[i].type==='都市'){
+    return {
+      msg: '获取分类成功',
+      status: 200,
+      list: Funny,
+      total: total,
+    }
+  } else if (name === '都市') {
+    const urban = []
+    const total = urban.length
+    for (let i = 0; i < sortImgsList.length; i++) {
+      if (sortImgsList[i].type === '都市') {
         urban.push(sortImgsList[i])
       }
     }
-   return {
-    msg:'获取分类成功',
-    status:200,
-    list:urban,
-    total:total
-   } 
-   } else if(name==='投稿'){
-    const touGao =[];
-    const total=touGao.length
-    for(let i=0;i<sortImgsList.length;i++){
-      if(sortImgsList[i].type==='投搞'){
+    return {
+      msg: '获取分类成功',
+      status: 200,
+      list: urban,
+      total: total,
+    }
+  } else if (name === '投稿') {
+    const touGao = []
+    const total = touGao.length
+    for (let i = 0; i < sortImgsList.length; i++) {
+      if (sortImgsList[i].type === '投搞') {
         touGao.push(sortImgsList[i])
       }
     }
-   return {
-    msg:'获取分类成功',
-    status:200,
-    list:touGao,
-    total:total
-   } 
-  }
-   else if(name==='总裁'){
-    const CEO =[];
-    const total=CEO.length
-    for(let i=0;i<sortImgsList.length;i++){
-      if(sortImgsList[i].type==='总裁'){
+    return {
+      msg: '获取分类成功',
+      status: 200,
+      list: touGao,
+      total: total,
+    }
+  } else if (name === '总裁') {
+    const CEO = []
+    const total = CEO.length
+    for (let i = 0; i < sortImgsList.length; i++) {
+      if (sortImgsList[i].type === '总裁') {
         CEO.push(sortImgsList[i])
       }
     }
-   return {
-    msg:'获取分类成功',
-    status:200,
-    list:CEO,
-    total:total
-   } 
-   }else if(name==='正能量'){
-    const positive =[];
-    const total=positive.length
-    for(let i=0;i<sortImgsList.length;i++){
-      if(sortImgsList[i].type==='正能量'){
+    return {
+      msg: '获取分类成功',
+      status: 200,
+      list: CEO,
+      total: total,
+    }
+  } else if (name === '正能量') {
+    const positive = []
+    const total = positive.length
+    for (let i = 0; i < sortImgsList.length; i++) {
+      if (sortImgsList[i].type === '正能量') {
         positive.push(sortImgsList[i])
       }
     }
-   return {
-    msg:'获取分类成功',
-    status:200,
-    list:positive,
-    total:total
-   } 
-   }else{
-     return {
-       msg:'ok'
-     }
-   }
+    return {
+      msg: '获取分类成功',
+      status: 200,
+      list: positive,
+      total: total,
+    }
+  } else {
+    return {
+      msg: 'ok',
+    }
+  }
+})
+/* 作品组件(works)获取作品简介 */
+// 数据
+let BackArtData = {
+  url: 'https://tn1-f2.kkmh.com/image/201208/hyIKSuRfi.webp-t.w750.webp.h',
+  name: '狄奥多之歌',
+  autor: '乱步羊羊羊（主笔）+角年千兆（编剧）',
+  introduction:
+    '活泼好动的西帝国公主希尔娜在年幼时邂逅了来自北方王国的质子拉提奥，两人的心逐渐靠近，而东帝国的少年国王尼亚也在暗中窥视...可惜三国之间只是表面和平，战争一触即发，昔日的青梅竹马也终将面临爱情、责任间的抉择：剑与血，硝烟与眼泪，真心与背叛，共同交织谱写一曲少年少女的“狄奥多之歌”.每周二更新...',
+}
+/* 作品组件(works)获取漫画章节 */
+let backSItemData = [
+  {
+    url: 'https://f2.kkmh.com/image/200103/klF8eNuNi.webp-t.w207.webp.h',
+    chapter: '序章  硝烟域泪',
+    num: '69486',
+    time: '01-03',
+    likeIf: false,
+  },
+  {
+    url: 'https://f2.kkmh.com/image/200104/KXXNqCAXU.webp-t.w207.webp.h',
+    chapter: ' 第1话  我要你做我仆人！',
+    num: '120024',
+    time: '01-04',
+    likeIf: false,
+  },
+  {
+    url: 'https://f2.kkmh.com/image/200106/P3VV5iFbK.webp-t.w207.webp.h',
+    chapter: '第2话  作为仆人的“惩罚',
+    num: '82362',
+    time: '01-07',
+    likeIf: false,
+  },
+  {
+    url: 'https://f2.kkmh.com/image/200113/bmowYN7al.webp-t.w207.webp.h',
+    chapter: '第3话  骑马教学这么甜？！',
+    num: '78106',
+    time: '01-14',
+    likeIf: false,
+  },
+  {
+    url: 'https://f2.kkmh.com/image/200203/OnfHiC4Dy.webp-t.w207.webp.h',
+    chapter: '第4话  公主的价值',
+    num: '571440',
+    time: '01-21',
+    likeIf: false,
+  },
+  {
+    url: 'https://f2.kkmh.com/image/200120/BBY4tBVir.webp-t.w207.webp.h',
+    chapter: '第5话  鼓励',
+    num: '69367',
+    time: '01-28',
+    likeIf: false,
+  },
+]
+// 接口
+const getArtData = Mock.mock('/works/artData', 'get', (options) => {
+  return {
+    status: 200,
+    msg: '获取成功',
+    BackArtData,
+    backSItemData,
+  }
+})
+// followWorks是关注作品的对象 里面有作品名和作者名
+// 关注
+let followWorks = {}
+const followed = Mock.mock('/works/followed', 'post', (options) => {
+  const { id: id } = JSON.parse(options.body)
+  if (id == 1) {
+    const { name, author } = JSON.parse(options.body)
+    followWorks.worksName = name
+    followWorks.worksAuthor = author
+    console.log(followWorks)
+    return {
+      status: 200,
+      msg: '关注成功咯!!!',
+    }
+  } else {
+    followWorks = {}
+    console.log(followWorks)
+    return {
+      status: 200,
+      msg: '已取消关注，记得回来哟!!!',
+    }
+  }
 })
