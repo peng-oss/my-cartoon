@@ -651,17 +651,16 @@ const existComment = Mock.mock('/world/getComment', 'get', (options) => {
     list: commentsList
   }
 })
-let addContent = {
-  url:
-    "https://tncache1-f1.v3mh.com/social/9aa6e4a060ddad59aac4e2926f9738e8-cover-faces",
-  userName: userList[userList.length - 1].name,
-}
 // 发表评论接口
 const publishComment = Mock.mock('/world/publish', 'post', (options) => {
   const { inputComments, date } = JSON.parse(options.body)
-  addContent.word = inputComments;
-  addContent.time = date;
-  console.log(addContent)
+  let addContent = {
+    url:
+      "https://tncache1-f1.v3mh.com/social/9aa6e4a060ddad59aac4e2926f9738e8-cover-faces",
+    userName: userList[userList.length - 1].name,
+    word: inputComments,
+    time: date
+  }
   commentsList.unshift(addContent);
   return {
     status: 200,

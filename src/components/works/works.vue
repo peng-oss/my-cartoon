@@ -131,8 +131,8 @@ export default {
       }
     },
     itemLike(likeIndex, likeIf) {
-      console.log(likeIndex);
-      console.log(likeIf);
+      // console.log(likeIndex);
+      // console.log(likeIf);
       this.itemData.some((value, index) => {
         if (likeIndex == index && likeIf === false) {
           value.num = parseInt(value.num) + 1;
