@@ -1,0 +1,16 @@
+{
+  "id": "2262815",
+  "name": "点赞",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "12873736",
+      "name": "点赞",
+      "font_class": "zan",
+      "unicode": "e620",
+      "unicode_decimal": 58912
+    }
+  ]
+}

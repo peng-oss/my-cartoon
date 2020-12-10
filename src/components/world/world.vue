@@ -37,7 +37,7 @@
             <td>
               <p class="publishContent">{{ item.word }}</p>
               <p class="publishTime">
-                {{ item.time | format("yyyy-MM-dd hh:mm ") }}
+                {{ item.time | format('yyyy-MM-dd hh:mm ') }}
               </p>
             </td>
             <td>
@@ -55,51 +55,51 @@
 export default {
   data() {
     return {
-      inputComments: "",
+      inputComments: '',
       // 评论的数据
       commentsList: [],
       date: new Date(),
-    };
+    }
   },
   created() {
     // 调用渲染已存在的评论方法
-    this.getComments();
+    this.getComments()
   },
   methods: {
     // 发表评论
     async publishContent() {
-      if (this.inputComments.length != "") {
-        const { data: res } = await this.$http.post("/world/publish", {
+      if (this.inputComments.length != '') {
+        const { data: res } = await this.$http.post('/world/publish', {
           inputComments: this.inputComments,
           date: this.date,
-        });
+        })
         if (res.status == 200) {
-          this.getComments();
-          this.inputComments = "";
+          this.getComments()
+          this.inputComments = ''
         }
       } else {
-        this.$message.error("主人评论不能为空哟");
+        this.$message.error('主人评论不能为空哟')
       }
     },
     // 删除评论
     async deleteComment(index) {
-      console.log(index);
+      console.log(index)
       // this.commentsList.splice(index, 1);
-      const { data: res } = await this.$http.get("/world/delete", {
+      const { data: res } = await this.$http.get('/world/delete', {
         params: { delIndex: index },
-      });
-      console.log(res);
+      })
+      console.log(res)
       if (res.status == 200) {
-        this.getComments();
+        this.getComments()
       }
     },
     // 打开页面渲染已存在的评论
     async getComments() {
-      const { data: res } = await this.$http.get("/world/getComment");
-      this.commentsList = res.list;
+      const { data: res } = await this.$http.get('/world/getComment')
+      this.commentsList = res.list
     },
   },
-};
+}
 </script>
 <style scoped>
 .worldContent {

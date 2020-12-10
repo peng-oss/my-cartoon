@@ -53,11 +53,21 @@ i{
 .el-carousel__arrow--left{
     left: 293px;
 }
-/* .el-tab-pane{
-    display: flex;
-    justify-content: space-around;
-} */
   .el-textarea__inner {
     resize: none !important;
   }
-  
+  .el-input el-input--small{
+      width: 90px;
+  }
+  .is-link {
+    font-weight: 400!important;
+    color: #606266!important;
+}
+.is-link:hover {
+    color: skyblue!important;
+}
+.el-icon-s-unfold {
+    font-size: 18px;
+    color: pink;
+}
+ 

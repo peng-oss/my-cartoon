@@ -9,7 +9,7 @@
             ref="ruleForm"
             label-width="70px"
           >
-            <el-form-item label="账号：" prop="name">
+            <el-form-item label="用户：" prop="name">
               <el-input v-model="ruleForm.name"></el-input>
             </el-form-item>
             <el-form-item label="密码：" prop="password">
@@ -102,7 +102,7 @@ export default {
           if (res.meta.status === 200) {
             this.$message.success("登录成功");
             this.$router.push("/context");
-            this.appear = !this.appear;
+           this.$store.state.appear = false;
           } else {
             this.$message.error("没有匹配用户");
           }
