@@ -8,8 +8,7 @@
            type="warning"
             v-for="(item, index) in allSelect"
             :key="index"
-            closable
-            @close="handleClose(item)"
+            
           >
             {{ item.selectName }}
           </el-tag>
@@ -138,20 +137,17 @@ export default {
     }
   },
   methods: {
-    handleClose(tag) {
-      this.allSelect.splice(this.allSelect.indexOf(tag), 1)
-    },
     async seletOne(name) {
       let obj = { selectName: name }
       this.allSelect.push(obj)
       this.allSelect.splice(0, 1)
-      if (name == '全部') {
-        this.getList()
-      }
+     
       const { data: res } = await this.$http.post('/paging/sort', {
         name: name,
       })
-
+ if (name === '全部') {
+        this.getList()
+      }
       this.sortImgsList = res.list
       this.total = res.total
     },
@@ -290,6 +286,6 @@ export default {
   position: absolute;
   right: 0;
   bottom: 23px;
-  z-index: 9999;
+  z-index: 100;
 }
 </style>

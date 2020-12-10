@@ -15,7 +15,520 @@ const getQuery = (url, name) => {
   /* return null */
 }
 
-// 登录页面的数据和接口
+   /* 主页面的获取数据与接口 */
+
+//轮播图图片源
+let  LBimgList= [
+  {
+    url:
+      "https://tn1-f2.kkmh.com/image/201208/hyIKSuRfi.webp-t.w750.webp.h",
+  },
+  {
+    url:
+      "https://tn1-f2.kkmh.com/image/201202/yIqDubkLA.webp-t.w750.webp.h",
+  },
+  {
+    url:
+      "https://tn1-f2.kkmh.com/image/201121/xmlrwhmgL.webp-t.w750.webp.h",
+  },
+  {
+    url:
+      "https://tn1-f2.kkmh.com/image/201208/VLvIkiQDr.webp-t.w750.webp.h",
+  },
+  {
+    url:
+      "https://tn1-f2.kkmh.com/image/201129/JCgPzApgH.webp-t.w750.webp.h",
+  },
+  {
+    url:
+      "https://tn1-f2.kkmh.com/image/201205/WyxxGsnJh.webp-t.w750.webp.h",
+  },
+]
+//原创数据与图片源
+let originalImgList= [
+  {
+    id: 1,
+    url:
+      "https://tn1-f2.kkmh.com/image/201009/OvEtlOWSI.webp-t.w207.webp.h",
+    bookName: "透过指尖的光",
+  },
+  {
+    id: 2,
+    url:
+      "https://tn1-f2.kkmh.com/image/201009/rUPqEUSEW.webp-t.w207.webp.h",
+    bookName: "改行吧魔法师",
+  },
+  {
+    id: 3,
+    url:
+      "https://tn1-f2.kkmh.com/image/190709/1BqbnrIPh.webp-t.w207.webp.h",
+    bookName: "特别恋爱关系",
+  },
+  {
+    id: 4,
+    url:
+      "https://tn1-f2.kkmh.com/image/201009/uOHhIOdju.webp-t.w207.webp.h",
+    bookName: "三界制",
+  },
+  {
+    id: 5,
+    url:
+      "https://tn1-f2.kkmh.com/image/200815/zwZFKoZdL.webp-t.w207.webp.h",
+    bookName: "愤怒的撒切尔",
+  },
+  {
+    id: 6,
+    url:
+      "https://tn1-f2.kkmh.com/image/200930/vizYZuhff.webp-t.w207.webp.h",
+    bookName: "浮游梦",
+  },
+]
+//惊恐数据与图片源
+let   suspenseImgsList= [
+  {
+    id: 1,
+    src:
+      'https://tn1-f2.kkmh.com/image/200430/khhhTiBkP.webp-t.w207.webp.h',
+    bookName: '强者永生',
+    suspenseAuthor: 'JAY KUN',
+  },
+  {
+    id: 2,
+    src:
+      'https://tn1-f2.kkmh.com/image/200110/cfXUZbqaK.webp-t.w207.webp.h',
+    bookName: '须弥千愿卷',
+    suspenseAuthor: '奥兹（主笔）+加缪（编剧）',
+  },
+  {
+    id: 3,
+    src:
+      'https://tn1-f2.kkmh.com/image/200109/nzequoNNC.webp-t.w207.webp.h',
+    bookName: '神泽',
+    suspenseAuthor: 'Djade(主笔）+KRE（编剧）',
+  },
+  {
+    id: 4,
+    src:
+      'https://tn1-f2.kkmh.com/image/170123/33h3huvuw.webp-t.w207.webp.h',
+    bookName: '反转现实',
+    suspenseAuthor: '天极焉加+快看漫画团队',
+  },
+  {
+    id: 5,
+    src:
+      'https://tn1-f2.kkmh.com/image/200417/TdrJAkUsh.webp-t.w207.webp.h',
+    bookName: '唐人街小先生',
+    suspenseAuthor: '三老爷',
+  },
+  {
+    id: 6,
+    src:
+      'https://tn1-f2.kkmh.com/image/190627/7ca0LRvVk.webp-t.w207.webp.h',
+    bookName: '灵烛少女',
+    suspenseAuthor: 'leu',
+  },
+  {
+    id: 7,
+    src:
+      'https://tn1-f2.kkmh.com/image/190118/7wFkUEjHk.webp-t.w207.webp.h ',
+    bookName: '傀园',
+    suspenseAuthor: 'BING',
+  },
+  {
+    id: 8,
+    src:
+      'https://tn1-f2.kkmh.com/image/191130/lDyEeKoWS.webp-t.w207.webp.h',
+    bookName: '看见禽兽的声音',
+    suspenseAuthor: '好饭+新果十二三',
+  },
+  {
+    id: 9,
+    src:
+      ' https://tn1-f2.kkmh.com/image/180705/Z8fSi2plu.webp-t.w207.webp.h',
+    bookName: '狼的谎言',
+    suspenseAuthor: '金丘（主笔）+谨斯里（编剧）',
+  },
+  {
+    id: 10,
+    src:
+      ' https://tn1-f2.kkmh.com/image/170922/43h4885wg.webp-t.w207.webp.h',
+    bookName: '第二模式',
+    suspenseAuthor: '幽·灵',
+  },
+  {
+    id: 11,
+    src:
+      'https://tn1-f2.kkmh.com/image/180706/K3O0ERxy5.webp-t.w207.webp.h',
+    bookName: '人类进化论',
+    suspenseAuthor: '祝耕夫',
+  },
+  {
+    id: 12,
+    src:
+      ' https://tn1-f2.kkmh.com/image/200327/AmfqfPkOh.webp-t.w207.webp.h',
+    bookName: '未来航班',
+    suspenseAuthor: '非人哉工作室',
+  },
+]
+//新作榜图片
+let  newWorkImgsList=[
+  {
+    id: 1,
+    top: 'TOP.1',
+    rank: '新晋黑马',
+    bookName: 'FOG[电竞]',
+    author: '漫漫何其多/晋江文学城+吃饱饭工厂',
+    description: '两年前，余邃被传卖队友，被人口诛笔伐，他可以…',
+    src:
+      'https://tn1-f2.kkmh.com/image/200925/kLFxrFMAV.webp-t.w180.webp.h',
+  },
+  {
+    id: 2,
+    top: 'TOP.2',
+    rank: '新晋黑马',
+    bookName: '成为伯爵家的废物',
+    author: 'PAN4+PING+Yu Ryeo Han+COPIN',
+    description: '一个出场5秒就下线的贵族混混，一个高冷霸气的…',
+    src:
+      'https://tn1-f2.kkmh.com/image/200923/BFjxwqSfy.webp-t.w180.webp.h',
+  },
+  {
+    id: 3,
+    top: 'TOP.3',
+    rank: '新晋黑马',
+    bookName: '龙脉守护者',
+    author: '娃哈哈-哈宝',
+    description: '在华夏，先贤称之为“龙脉”，其强弱与流向，决…',
+    src:
+      'https://tn1-f2.kkmh.com/image/201119/McGOGMJoa.webp-t.w180.webp.h',
+  },
+  {
+    id: 4,
+    top: 'TOP.4',
+    rank: '下降2名',
+    bookName: '恋人夜间营业',
+    author: '大雨儿（主笔）+谨斯里（编剧）',
+    description: '和未婚夫一起匿名参加相亲节目！？一对很穷的职…',
+    src:
+      'https://tn1-f2.kkmh.com/image/200923/DCdolEdES.webp-t.w180.webp.h',
+  },
+  {
+    id: 5,
+    top: 'TOP.5',
+    rank: '下降2名',
+    bookName: '妻为上',
+    author: '绿野千鹤/晋江文学城+博易漫画',
+    description: '景韶战功赫赫，却遭人诬陷落得鸟尽弓藏，没想到…',
+    src:
+      'https://tn1-f2.kkmh.com/image/200925/kFqcvilNm.webp-t.w180.webp.h',
+  },
+  {
+    id: 6,
+    top: 'TOP.6',
+    rank: '下降1名',
+    bookName: '他那么撩',
+    author: '曲小蛐（原著）+这块瓜有毒（主笔）+花村蘑菇（编剧）',
+    description: '乖乖女学霸秦晴转学第一天，意外被卷入到一场约…',
+    src:
+      'https://tn1-f2.kkmh.com/image/200925/nLtcHbBAW.webp-t.w180.webp.h',
+  },
+  {
+    id: 7,
+    top: 'TOP.7',
+    rank: '下降6名',
+    bookName: '他的苹果',
+    author: '橘枳',
+    description: '普通高中生竟是红发魔女的女儿————满级大佬…',
+    src:
+      'https://tn1-f2.kkmh.com/image/201111/dkzBFiFIO.webp-t.w180.webp.h',
+  },
+  {
+    id: 8,
+    top: 'TOP.8',
+    rank: '上升六名',
+    bookName: '月光雕刻师',
+    author: 'PARK JUNG YEOL',
+    description: '在现实体感游戏风靡的未来，游戏天才少年李贤为…',
+    src:
+      'https://tn1-f2.kkmh.com/image/200610/ZunryLzNj.webp-t.w180.webp.h',
+  },
+  {
+    id: 9,
+    top: 'TOP.9',
+    rank: '新晋黑马',
+    bookName: '胖子英雄',
+    author: '插座君+俊男桑',
+    description: '他是个胖子，也是个英雄! 然而肥胖的烦恼却远大…',
+    src:
+      'https://tn1-f2.kkmh.com/image/201118/ommUjrLfL.webp-t.w180.webp.h',
+  },
+]
+//飙升榜
+let  riseWorkImgsList=[
+  {
+    id: 1,
+    top: 'TOP.1',
+    rank: '新晋黑马',
+    bookName: '成为伯爵家的废物',
+    author: 'PAN4+PING+Yu Ryeo Han+COPIN',
+    description: '一个出场5秒就下线的贵族混混，一个高冷霸气的…',
+    src:
+      'https://tn1-f2.kkmh.com/image/200923/BFjxwqSfy.webp-t.w180.webp.h',
+  },
+  {
+    id: 2,
+    top: 'TOP.2',
+    rank: '新晋黑马',
+    bookName: 'FOG[电竞]',
+    author: '漫漫何其多/晋江文学城+吃饱饭工厂',
+    description: '两年前，余邃被传卖队友，被人口诛笔伐，他可以…',
+    src:
+      'https://tn1-f2.kkmh.com/image/200925/kLFxrFMAV.webp-t.w180.webp.h',
+  },
+  {
+    id: 3,
+    top: 'TOP.3',
+    rank: '新晋黑马',
+    bookName: '小心被梦魔吃掉哦',
+    author: '西域儿',
+    description: '因为生病而晚入学一个月的小透明，和最受欢迎的…',
+    src:
+      'https://tn1-f2.kkmh.com/image/200929/gK7KHIE54.webp-t.w180.webp.h',
+  },
+  {
+    id: 4,
+    top: 'TOP.4',
+    rank: '新晋黑马',
+    bookName: '不协调的恋爱',
+    author: '莉茉',
+    description: '对周围女孩子没有兴趣的全校第一美男子才贺京助…',
+    src:
+      'https://tn1-f2.kkmh.com/image/201119/bIrggfxiX.webp-t.w180.webp.h',
+  },
+  {
+    id: 5,
+    top: 'TOP.5',
+    rank: '新晋黑马',
+    bookName: '有妻徒刑',
+    author: '绯小月',
+    description: '妖异女督察与上百名穷凶极恶的囚犯一同被困于这…',
+    src:
+      'https://tn1-f2.kkmh.com/image/200923/nPPQTalZG.webp-t.w180.webp.h',
+  },
+  {
+    id: 6,
+    top: 'TOP.6',
+    rank: '新晋黑马',
+    bookName: '八十一道超纲题',
+    author: '条纹花瓶（原著）+常盘勇者',
+    description: '2030年，世界末日来临，无数人神秘死亡，剩下的…',
+    src:
+      'https://tn1-f2.kkmh.com/image/200405/RVYeKpepr.webp-t.w180.webp.h',
+  },
+  {
+    id: 7,
+    top: 'TOP.7',
+    rank: '新晋黑马',
+    bookName: 'MONSTER沉默野兽的温度',
+    author: '六柴',
+    description: '被黑蝴蝶诅咒的少女，从小就遭遇各种危险事故，…',
+    src:
+      'https://tn1-f2.kkmh.com/image/200618/hdHAKBvev.webp-t.w180.webp.h',
+  },
+  {
+    id: 8,
+    top: 'TOP.8',
+    rank: '新晋黑马',
+    bookName: '魔女的逆袭',
+    author: 'MinJakk',
+    description: '斯佩拉多家族的次女莱斯莉，她的人生完全是为了…',
+    src:
+      'https://tn1-f2.kkmh.com/image/200709/rAvHoSLMa.webp-t.w180.webp.h',
+  },
+  {
+    id: 9,
+    top: 'TOP.9',
+    rank: '下降1名',
+    bookName: '星辰于我',
+    author: '犬一',
+    description: '沐子星五岁时，一个好看的男孩子.司南，如春天…',
+    src:
+      'https://tn1-f2.kkmh.com/image/200716/vdTwyZvcw.webp-t.w180.webp.h',
+  },
+]
+//漫改图片
+let  cartoonChangeImgsList= [
+  {
+    id: 1,
+    bookName: '斗罗大陆外传唐门英雄传',
+    description:
+      '被封印的神界，只有唐三的神力可以直接与外面联系。要战败的时候，从遥远…',
+    src:
+      'https://tn1-f2.kkmh.com/image/190115/6uDRSET7T.webp-t.w320.webp.h',
+  },
+  {
+    id: 2,
+    bookName: '被遗忘的7月',
+    description:
+      '【热播剧《偶然发现的一天》原著漫画】记忆断片的女主俞璐丹以为自己患…',
+    src:
+      'https://tn1-f2.kkmh.com/image/190703/4l7VcZNZN.webp-t.w320.webp.h',
+  },
+  {
+    id: 3,
+    bookName: '哑舍',
+    description:
+      '哑舍里的古物，每一件都有着自己的故事，承载了许多年，无人倾听，默然等…',
+    src:
+      'https://tn1-f2.kkmh.com/image/170809/olw79erkq.webp-t.w320.webp.h',
+  },
+  {
+    id: 4,
+    bookName: '八十一道超纲题',
+    description:
+      '2030年，世界末日来临，无数人神秘死亡，剩下的幸存者被一款叫做“八十一…',
+    src:
+      'https://tn1-f2.kkmh.com/image/200405/RVYeKpepr.webp-t.w320.webp.h',
+  },
+]
+//上头图片
+let toHeadImgsList= [
+  {
+    id: 1,
+    src:
+      'https://tn1-f2.kkmh.com/image/200814/QNRIXWFQq.webp-t.w180.webp.h',
+    bookName: '步天歌',
+    ToheadAuthor: '夏达',
+  },
+  {
+    id: 2,
+    src:
+      'https://tn1-f2.kkmh.com/image/191025/HbtCpvYqz.webp-t.w180.webp.h',
+    bookName: '桃与末世之书',
+    ToheadAuthor: '晨曦',
+  },
+  {
+    id: 3,
+    src:
+      'https://tn1-f2.kkmh.com/image/200303/hWCVwjEfc.webp-t.w180.webp.h',
+    bookName: '刀鞘的孩子',
+    ToheadAuthor: ' Kyungil Yang（主笔）',
+  },
+  {
+    id: 4,
+    src:
+      'https://tn1-f2.kkmh.com/image/200727/edEjPcrEp.webp-t.w180.webp.h',
+    bookName: '我独自升级',
+    ToheadAuthor: 'DUBU(主笔)',
+  },
+  {
+    id: 5,
+    src:
+      'https://tn1-f2.kkmh.com/image/200714/juxCCvnxK.webp-t.w180.webp.h',
+    bookName: '谷围南亭',
+    ToheadAuthor: '墨飞',
+  },
+  {
+    id: 6,
+    src:
+      'https://tn1-f2.kkmh.com/image/181025/4diVYyMUJ.webp-t.w180.webp.h',
+    bookName: '蝉女',
+    ToheadAuthor: '宫缘乾 ',
+  },
+  {
+    id: 7,
+    src:
+      'https://tn1-f2.kkmh.com/image/200109/RZbXGSASA.webp-t.w180.webp.h',
+    bookName: '第N次恋爱',
+    ToheadAuthor: ' 栗路 ',
+  },
+  {
+    id: 8,
+    src:
+      'https://tn1-f2.kkmh.com/image/200202/thKbsYdzJ.webp-t.w180.webp.h',
+    bookName: '万能恋爱杂货店',
+    ToheadAuthor: ' 鲤鱼丸一 ',
+  },
+  {
+    id: 9,
+    src:
+      'https://tn1-f2.kkmh.com/image/191011/bAcCyBfCx.webp-t.w180.webp.h',
+    bookName: '欺星客栈',
+    ToheadAuthor: '抽纸小jin ',
+  },
+  {
+    id: 10,
+    src:
+      'https://tn1-f2.kkmh.com/image/171201/wd4irlrb9.webp-t.w180.webp.h',
+    bookName: '魔道祖师',
+    ToheadAuthor: '墨香铜臭（原著）',
+  },
+]
+//上头排行榜
+let ToheadpopularityLists= [
+  {
+    id: 2,
+    title: '爱情的样子：心之所向',
+    dated: '第18话  心动不自知',
+  },
+  {
+    id: 3,
+    title: '八十一道超纲题',
+    dated: '第69话 新副本又将来临',
+  },
+  {
+    id: 4,
+    title: 'FOG[电竞]',
+    dated: '第2话 重逢',
+  },
+  {
+    id: 5,
+    title: '星辰于我',
+    dated: '第18话 星星的夜空',
+  },
+  {
+    id: 6,
+    title: '怪奇实录',
+    dated: '第334话  人头蜂巢',
+  },
+  {
+    id: 7,
+    title: '超能立方',
+    dated: '第196话  交易的艺术',
+  },
+  {
+    id: 8,
+    title: '非友人关系',
+    dated: '第18话  心动不自知',
+  },
+  {
+    id: 9,
+    title: '他那么撩',
+    dated: '后记（下）好久不见',
+  },
+  {
+    id: 10,
+    title: '不可爱的TA',
+    dated: '第9话  让他的眼里只...',
+  },
+]
+//获取主页面的接口
+const allImg=Mock.mock('/all/getAll','get',(options)=>{
+   return{
+     msg:'获取成功',
+     status:200,
+     LBimgList:LBimgList,
+     originalImgList:originalImgList,
+     suspenseImgsList:suspenseImgsList,
+     newWorkImgsList:newWorkImgsList,
+     riseWorkImgsList:riseWorkImgsList,
+     cartoonChangeImgsList:cartoonChangeImgsList,
+     toHeadImgsList:toHeadImgsList,
+     ToheadpopularityLists:ToheadpopularityLists
+   }
+})
+
+       /* 登录页面的数据和接口 */
 /* 用户列表 */
 let userList = [
   {
@@ -34,7 +547,7 @@ let userList = [
 // 添加用户
 const addUser = Mock.mock('/user/add', 'post', (options) => {
   const body = JSON.parse(options.body)
-  userList.unshift(body)
+  userList.push(body)
   console.log(body)
   return {
     list: userList,
@@ -64,7 +577,7 @@ const login = Mock.mock('/user/search', 'post', (options) => {
   }
 })
 
-/* 排行榜区域请求接口和数据 */
+      /* 排行榜区域请求接口和数据 */
 
 //总表单数据
 let rankPopularityLists = [
@@ -571,7 +1084,7 @@ const getYong = Mock.mock('/rank/yong', 'get', (options) => {
   }
 })
 
-// 世界评论页面的数据和接口
+       /* 世界评论页面的数据和接口 */
 // 数据
 let commentsList = [
   {
@@ -616,22 +1129,18 @@ const existComment = Mock.mock('/world/getComment', 'get', (options) => {
     list: commentsList,
   }
 })
-let newUserList = userList;
-let addContent = {
-  url:
-    'https://tncache1-f1.v3mh.com/social/9aa6e4a060ddad59aac4e2926f9738e8-cover-faces',
-  userName:newUserList[0].name,
-}
+
 // 发表评论接口
 const publishComment = Mock.mock('/world/publish', 'post', (options) => {
   const { inputComments, date } = JSON.parse(options.body)
-  addContent.word = inputComments
-  addContent.time = date
-  console.log(addContent)
+  let addContent = {
+    url:
+      'https://tncache1-f1.v3mh.com/social/9aa6e4a060ddad59aac4e2926f9738e8-cover-faces',
+    userName:userList[userList.length-1].name,
+    word:inputComments,
+    time:date
+  }
   commentsList.unshift(addContent)
-  console.log(commentsList)
-  console.log(userList)
-  console.log(newUserList)
   return {
     status: 200,
     msg: '评论成功',
@@ -649,7 +1158,7 @@ const deleteComment = Mock.mock(/\/world\/delete/, 'get', (options) => {
   }
 })
 
-/* 分类图片数据与接口*/
+           /* 分类图片数据与接口*/
 //分类数据
 let sortImgsList = [
   {
@@ -1212,6 +1721,86 @@ let sortImgsList = [
     distinguish: true,
     type: '总裁',
   },
+  {
+    id: 71,
+    bookName: '整容游戏',
+    author: '金丘',
+    url: 'https://tn1-f2.kkmh.com/image/171213/rt79rf2bj.webp-t.w207.webp.h',
+    distinguish: true,
+    type: '剧情',
+  },
+  {
+    id: 72,
+    bookName: '前任战争',
+    author: 'SASA夏蒂（主笔）',
+    url: 'https://tn1-f2.kkmh.com/image/180831/l2WcBVX3F.webp-t.w207.webp.h',
+    distinguish: true,
+    type: '剧情',
+  },
+  {
+    id: 73,
+    bookName: '哑舅',
+    author: '紫陌堂',
+    url: 'https://tn1-f2.kkmh.com/image/180119/f7ee10leh.webp-t.w207.webp.h',
+    distinguish: true,
+    type: '剧情',
+  },
+  {
+    id: 74,
+    bookName: '万能恋爱杂货店',
+    author: '鲤鱼丸一',
+    url: 'https://tn1-f2.kkmh.com/image/200202/thKbsYdzJ.webp-t.w207.webp.h',
+    distinguish: true,
+    type: '剧情',
+  },
+  {
+    id: 75,
+    bookName: '明日星程',
+    author: '金刚圈（原著）',
+    url: 'https://tn1-f2.kkmh.com/image/200109/arFWfhJLK.webp-t.w207.webp.h',
+    distinguish: true,
+    type: '剧情',
+  },
+  {
+    id: 76,
+    bookName: '教主，注意名声！',
+    author: '鲸鱼合合',
+    url: 'https://tn1-f2.kkmh.com/image/170331/ob28qu3re.webp-t.w207.webp.h',
+    distinguish: true,
+    type: '古风',
+  },
+  {
+    id: 77,
+    bookName: '吾凰在上',
+    author: '嗷小泽',
+    url: 'https://tn1-f2.kkmh.com/image/200528/foq9muA1L.webp-t.w207.webp.h',
+    distinguish: true,
+    type: '古风',
+  },
+  {
+    id: 78,
+    bookName: '月沉吟',
+    author: '卿妃（原著）',
+    url: 'https://tn1-f2.kkmh.com/image/170718/mscmnmoh3.webp-t.w207.webp.h',
+    distinguish: true,
+    type: '古风',
+  },
+  {
+    id: 79,
+    bookName: '年年有鱼了！',
+    author: '汤十碗',
+    url: 'https://tn1-f2.kkmh.com/image/200430/kbIRMQdvG.webp-t.w207.webp.h',
+    distinguish: true,
+    type: '奇幻',
+  },
+  {
+    id: 80,
+    bookName: '月沉吟',
+    author: '卿妃（原著）',
+    url: 'https://tn1-f2.kkmh.com/image/170718/mscmnmoh3.webp-t.w207.webp.h',
+    distinguish: true,
+    type: '奇幻',
+  },
 ]
 //分页功能
 const paging = Mock.mock(/\/paging\/img/, 'get', (options) => {
@@ -1651,4 +2240,43 @@ const followed = Mock.mock('/works/followed', 'post', (options) => {
       msg: '已取消关注，记得回来哟!!!',
     }
   }
+})
+
+
+         /* 个人中心接口 */
+
+//获取用户姓名
+ 
+const userOwner =Mock.mock('/userOwner/name','get',(options)=>{
+    return{
+      msg:'获取成功',
+      status:200,
+      name:userList[userList.length-1].name,
+      userCollection:collectionList
+    }
+})
+
+
+/* 搜索功能接口*/
+
+const searchCartoon=Mock.mock('/search/cartoon','post',(options)=>{
+  if(options===''){
+    return {
+      msg:'搜索成功',
+        status:200,
+        newBookName:[]
+    }
+  }
+  let searchBody=JSON.parse(options.body).title
+  let newBook=[]
+  sortImgsList.forEach(item=>{
+    if(item.bookName.search(searchBody)!==-1){
+        newBook.push(item.bookName)
+    }
+  })
+      return{
+        msg:'搜索成功',
+        status:200,
+        newBookName:newBook
+      }
 })
