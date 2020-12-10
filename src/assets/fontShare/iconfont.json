@@ -1,0 +1,30 @@
+{
+  "id": "2262757",
+  "name": "分享，热度，点赞",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "6129201",
+      "name": "160加热、火焰-线性",
+      "font_class": "jiarehuoyan-xianxing",
+      "unicode": "e7a2",
+      "unicode_decimal": 59298
+    },
+    {
+      "icon_id": "6548528",
+      "name": "点赞",
+      "font_class": "dianzan",
+      "unicode": "e653",
+      "unicode_decimal": 58963
+    },
+    {
+      "icon_id": "14295229",
+      "name": "分享",
+      "font_class": "fenxiang",
+      "unicode": "e623",
+      "unicode_decimal": 58915
+    }
+  ]
+}

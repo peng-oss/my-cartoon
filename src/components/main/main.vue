@@ -13,7 +13,7 @@
             >
               <router-link
                 :to="item.path"
-                :class="currentId == item.id ? 'navActive' : ''"
+                :class="$store.state.currentId == item.id ? 'navActive' : ''"
               >
                 {{ item.topMenuName }}</router-link
               >
@@ -132,17 +132,17 @@ export default {
   data() {
     return {
       topMenuList: [
-        { id: 1, topMenuName: '首页', path: '/context' },
-        { id: 2, topMenuName: '分类', path: '/sort' },
-        { id: 3, topMenuName: '排行榜', path: '/rank' },
-        { id: 4, topMenuName: '世界', path: '/world' },
-        { id: 5, topMenuName: '原创投稿', path: '/' },
-        { id: 6, topMenuName: 'APP下载', path: '/' },
-        { id: 7, topMenuName: 'IP合作', path: '/' },
-        { id: 8, topMenuName: '营销合作', path: '/' },
-        { id: 9, topMenuName: '条漫大赛', path: '/' },
+        { id: 1, topMenuName: "首页", path: "/context" },
+        { id: 2, topMenuName: "分类", path: "/sort" },
+        { id: 3, topMenuName: "排行榜", path: "/rank" },
+        { id: 4, topMenuName: "世界", path: "/world" },
+        { id: 5, topMenuName: "热门推荐", path: "/works" },
+        { id: 6, topMenuName: "APP下载", path: "/" },
+        { id: 7, topMenuName: "IP合作", path: "/" },
+        { id: 8, topMenuName: "营销合作", path: "/" },
+        { id: 9, topMenuName: "条漫大赛", path: "/" },
       ],
-      currentId: 1, // 当前导航栏的位置
+     // 当前导航栏的位置
       inputValue: '',
       drawer: false,
       user: '',
@@ -155,13 +155,13 @@ export default {
   methods: {
     // 导航栏位置改变
     changeNav(id) {
-      this.currentId = id
+      this.$store.state.currentId = id
     },
     loging() {
       this.$router.push('/login')
     },
     backMain() {
-      this.currentId = 1
+      this.$store.state.currentId = 1
       this.$router.push('./')
     },
     async showuser() {
@@ -246,6 +246,7 @@ header {
 }
 .headerNav li {
   float: left;
+/*   height: 20.8px!important; */
 }
 .headerNav li a {
   padding-right: 24px;
@@ -447,7 +448,7 @@ header {
 }
 .dropDownList li {
   padding: 0 12px;
-  height: 32px;
+  height: 40px;
   line-height: 32px;
   font-size: 14px;
   color: #151515;
@@ -455,5 +456,6 @@ header {
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 100%;
+ 
 }
 </style>

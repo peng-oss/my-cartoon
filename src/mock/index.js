@@ -2158,7 +2158,6 @@ const searchSort = Mock.mock(/\/paging\/sort/, 'post', (options) => {
 /* 作品组件(works)获取作品简介 */
 // 数据
 let BackArtData = {
-  url: 'https://tn1-f2.kkmh.com/image/201208/hyIKSuRfi.webp-t.w750.webp.h',
   name: '狄奥多之歌',
   autor: '乱步羊羊羊（主笔）+角年千兆（编剧）',
   introduction:
@@ -2167,6 +2166,7 @@ let BackArtData = {
 /* 作品组件(works)获取漫画章节 */
 let backSItemData = [
   {
+    id: 0,
     url: 'https://f2.kkmh.com/image/200103/klF8eNuNi.webp-t.w207.webp.h',
     chapter: '序章  硝烟域泪',
     num: '69486',
@@ -2174,6 +2174,7 @@ let backSItemData = [
     likeIf: false,
   },
   {
+    id: 1,
     url: 'https://f2.kkmh.com/image/200104/KXXNqCAXU.webp-t.w207.webp.h',
     chapter: ' 第1话  我要你做我仆人！',
     num: '120024',
@@ -2181,6 +2182,7 @@ let backSItemData = [
     likeIf: false,
   },
   {
+    id: 2,
     url: 'https://f2.kkmh.com/image/200106/P3VV5iFbK.webp-t.w207.webp.h',
     chapter: '第2话  作为仆人的“惩罚',
     num: '82362',
@@ -2188,6 +2190,7 @@ let backSItemData = [
     likeIf: false,
   },
   {
+    id: 3,
     url: 'https://f2.kkmh.com/image/200113/bmowYN7al.webp-t.w207.webp.h',
     chapter: '第3话  骑马教学这么甜？！',
     num: '78106',
@@ -2195,6 +2198,7 @@ let backSItemData = [
     likeIf: false,
   },
   {
+    id: 4,
     url: 'https://f2.kkmh.com/image/200203/OnfHiC4Dy.webp-t.w207.webp.h',
     chapter: '第4话  公主的价值',
     num: '571440',
@@ -2202,6 +2206,7 @@ let backSItemData = [
     likeIf: false,
   },
   {
+    id: 5,
     url: 'https://f2.kkmh.com/image/200120/BBY4tBVir.webp-t.w207.webp.h',
     chapter: '第5话  鼓励',
     num: '69367',

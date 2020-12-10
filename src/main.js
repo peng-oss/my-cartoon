@@ -13,6 +13,7 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
     state: {
         appear: true,
+        currentId: 1
     }
   })
 Vue.config.productionTip = false

@@ -31,7 +31,7 @@
         <h1 class="originalDesign">原创投稿</h1>
         <span class="edit">编辑推荐</span>
         <span class="new">最新上架</span>
-        <div class="more"><a href="/sort">更多</a></div>
+        <div class="more"><a href="javascript:;" @click="tosort">更多</a></div>
       </el-row>
 
       <ul class="originalBooks">
@@ -170,7 +170,7 @@
         <span :class="{ listActive: riseActive }" @click="riseChange"
           >飙升榜</span
         >
-        <a href="javascript:;" class="moreList">更多榜单</a>
+        <a href="javascript:;" class="moreList" @click="tosort">更多榜单</a>
       </div>
       <!-- 新作榜和飙升榜图片区域 -->
       <ul class="newWorkImgs">
@@ -331,20 +331,25 @@ export default {
       if (res.status !== 200) return this.$message.error('获取数据失败')
       this.LBimgList = res.LBimgList
       this.originalImgList = res.originalImgList
-      this.suspenseImgsList=res.suspenseImgsList
-      this.newWorkImgsList=res.newWorkImgsList
-      this.riseWorkImgsList=res.riseWorkImgsList
-      this.cartoonChangeImgsList=res.cartoonChangeImgsList
-      this.toHeadImgsList=res.toHeadImgsList
-     this.popularityLists=res.ToheadpopularityLists
+      this.suspenseImgsList = res.suspenseImgsList
+      this.newWorkImgsList = res.newWorkImgsList
+      this.riseWorkImgsList = res.riseWorkImgsList
+      this.cartoonChangeImgsList = res.cartoonChangeImgsList
+      this.toHeadImgsList = res.toHeadImgsList
+      this.popularityLists = res.ToheadpopularityLists
 
       this.showImgsList = this.newWorkImgsList
     },
     enterWorks(index) {
       if (index == 0) {
         this.$router.push('/works')
+        this.$store.state.currentId=5
       }
     },
+    tosort(){
+      this.$router.push('/sort')
+      this.$store.state.currentId=2
+    }
   },
   // 生命周期触发开始的事件
   created() {
@@ -641,21 +646,24 @@ li:nth-of-type(3n) .imgandp {
   padding-right: 10px;
   padding-top: 16px;
 }
+
 .ToheadImgFather {
   width: 184px;
   height: 224px;
+  overflow: hidden;
 }
-.ToheadImgFather.el-image {
-  width: 100%;
-  height: 100%;
+.ToheadImgFather .el-image {
   border-radius: 5px;
   transition: all 0.2s linear;
   transform: translateZ(0);
   cursor: pointer;
+  box-shadow: 0px 1px 4px #ccc;
+  border-radius: 4px;
+  transition: all 0.2s linear;
 }
-.ToheadImgFather.el-image:hover {
-  width: 105%;
-  height: 105%;
+.ToheadImgFather .el-image:hover {
+  box-shadow: 8px 8px 20px #ccc;
+  transform: translate(0, -5px);
 }
 .tohead {
   width: 800px;

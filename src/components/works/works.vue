@@ -10,9 +10,10 @@
         <!-- 顶部左侧图片 -->
         <div class="HeaderLeft">
           <el-image
+           @click="enterLook"
             class="blankImg"
             style="width: 338px; height: 213px"
-            :src="cartoonData.url"
+            :src="url"
           ></el-image>
         </div>
         <!-- 顶部右侧内容 -->
@@ -28,16 +29,22 @@
           </div>
           <!-- 下侧按钮 -->
           <div class="btnList">
-            <a href="#" class="firstBtn btns">查看第一话</a>
+            <a href="#" class="firstBtn btns" @click="enterLook">开始观看</a>
             <a class="followBtn btns" v-if="flag" @click="ifFollow">关注</a>
             <a class="followBtn btns af" v-else @click.prevent="ifFollow"
               >已关注</a
             >
             <div class="btnListRight">
-              <span><i class="el-icon-loading"></i>&nbsp;分享</span>
-              <span><i class="el-icon-lollipop"></i>&nbsp;16.88亿</span>
+              <span @click="share"><svg class="icon" aria-hidden="true">
+              <use xlink:href="#icon-fenxiang"></use>
+              </svg>&nbsp;分享</span>
+              <span><svg class="icon" aria-hidden="true">
+                     <use xlink:href="#icon-jiarehuoyan-xianxing"></use>
+                     </svg>&nbsp;16.88亿</span>
               <span class="likes"
-                ><i class="el-icon-sugar"></i>&nbsp;{{ likeSum }}</span
+                 ><svg class="icon" aria-hidden="true">
+                 <use xlink:href="#icon-dianzan"></use>
+                </svg>&nbsp;{{ likeSum }}</span
               >
             </div>
           </div>
@@ -45,18 +52,20 @@
       </div>
       <!-- 漫画章节内容 -->
       <div class="TopicItem" v-for="(value, index) in itemData" :key="index">
-        <div class="rowImgs f">
-          <el-image :src="value.url"></el-image>
+        <div class="rowImgs f" >
+          <el-image  :src="value.url"  @click="enterLookn(value.id)"></el-image>
         </div>
         <div class="rowTitle f">
-          <i>{{ value.chapter }}</i>
+          <i @click="enterLookn(value.id)">{{ value.chapter }}</i>
         </div>
         <!-- 点赞位置 -->
         <div class="rowGreat f">
           <i
             :class="value.likeIf ? 'myLike' : ''"
             @click="itemLike(index, value.likeIf)"
-            ><i class="el-icon-sugar"></i>&nbsp;{{ value.num }}</i
+            ><svg class="icon" aria-hidden="true">
+                 <use xlink:href="#icon-dianzan"></use>
+                </svg>&nbsp;{{ value.num }}</i
           >
         </div>
         <div class="rowTime f">{{ value.time }}</div>
@@ -65,6 +74,8 @@
   </div>
 </template>
 <script>
+import '../../assets/fontShare/iconfont.js'
+import '../../assets/font002/iconfont.js'
 export default {
   data() {
     return {
@@ -74,6 +85,7 @@ export default {
       itemData: [],
       flag: true,
       reverse: true,
+      url: require("./works.jpg")
     };
   },
   created() {
@@ -93,12 +105,44 @@ export default {
   },
   // 方法
   methods: {
+    // 去往每一话的方法
+    enterLookn(id){
+      switch(id) {
+      case 0:
+        this.$router.push('/look0')
+        break;
+      case 1:
+         this.$router.push('/look1')
+        break;
+      case 2:
+         this.$router.push('/look2')
+        break;
+      case 3:
+         this.$router.push('/look3')
+        break;
+      case 4:
+         this.$router.push('/look4')
+        break;
+      case 5:
+         this.$router.push('/look5')
+        break;
+      default:
+    }
+    },
+    share() {
+      this.$message.success("该功能正在开发中，请耐心等待")
+    },
+    // 查看第一话的方法
+    enterLook(){
+      this.$router.push('/look0')
+    },
     // 从后台获取漫画数据对象
     async getcartoonData() {
       const { data: res } = await this.$http.get("/works/artData");
       this.cartoonData = res.BackArtData;
       this.itemData = res.backSItemData;
     },
+    // 是否关注的方法
     async ifFollow() {
       if (this.flag) {
         const { data: res } = await this.$http.post("/works/followed", {
@@ -120,6 +164,7 @@ export default {
         }
       }
     },
+    // 正序，逆序的方法
     async ifReverse() {
       if (this.reverse) {
         const { data: res } = await this.$http.get("/works/artData");
@@ -130,10 +175,9 @@ export default {
         this.reverse = !this.reverse;
       }
     },
+    // 点赞漫画的数据处理方法
     itemLike(likeIndex, likeIf) {
-      console.log(likeIndex);
-      console.log(likeIf);
-      this.itemData.some((value, index) => {
+      this.itemData.forEach((value, index) => {
         if (likeIndex == index && likeIf === false) {
           value.num = parseInt(value.num) + 1;
           value.likeIf = !value.likeIf;
@@ -147,13 +191,20 @@ export default {
 };
 </script>
 <style scoped>
+ /* 图标 */
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
 .myLike {
-  color: pink;
+  color: #c0392b;
 }
 .likes {
-  color: pink !important;
-  font-size: 18px;
-  font-weight: 500 !important;
+  color: #c0392b !important;
+  font-size: 20px;
 }
 .zb {
   background-color: skyblue;
@@ -257,19 +308,19 @@ export default {
 } */
 .btnListRight {
   display: inline-block;
-  margin-left: 100px;
+  margin-left: 50px;
 }
 .btnListRight span {
-  font-weight: 300;
+  font-weight: 300!important;
   display: inline-block;
   margin: 0 20px 0 36px;
   color: #666;
   line-height: 26px;
   cursor: pointer;
 }
-.btnListRight span:hover {
-  color: pink;
-}
+/* .btnListRight span:hover {
+  color: pink!important;
+} */
 .TopicItem {
   padding: 16px;
   margin: 0 24px;
@@ -309,7 +360,7 @@ export default {
   cursor: pointer;
 }
 .rowTitle i:hover {
-  color: pink;
+  color: #c0392b;
 }
 /* .rowGreat i:hover {
   color: pink;
