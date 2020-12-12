@@ -15,10 +15,10 @@ const getQuery = (url, name) => {
   /* return null */
 }
 
-   /* 主页面的获取数据与接口 */
+/* 主页面的获取数据与接口 */
 
 //轮播图图片源
-let  LBimgList= [
+let LBimgList = [
   {
     url:
       "https://tn1-f2.kkmh.com/image/201208/hyIKSuRfi.webp-t.w750.webp.h",
@@ -45,7 +45,7 @@ let  LBimgList= [
   },
 ]
 //原创数据与图片源
-let originalImgList= [
+let originalImgList = [
   {
     id: 1,
     url:
@@ -84,7 +84,7 @@ let originalImgList= [
   },
 ]
 //惊恐数据与图片源
-let   suspenseImgsList= [
+let suspenseImgsList = [
   {
     id: 1,
     src:
@@ -171,7 +171,7 @@ let   suspenseImgsList= [
   },
 ]
 //新作榜图片
-let  newWorkImgsList=[
+let newWorkImgsList = [
   {
     id: 1,
     top: 'TOP.1',
@@ -264,7 +264,7 @@ let  newWorkImgsList=[
   },
 ]
 //飙升榜
-let  riseWorkImgsList=[
+let riseWorkImgsList = [
   {
     id: 1,
     top: 'TOP.1',
@@ -357,7 +357,7 @@ let  riseWorkImgsList=[
   },
 ]
 //漫改图片
-let  cartoonChangeImgsList= [
+let cartoonChangeImgsList = [
   {
     id: 1,
     bookName: '斗罗大陆外传唐门英雄传',
@@ -392,7 +392,7 @@ let  cartoonChangeImgsList= [
   },
 ]
 //上头图片
-let toHeadImgsList= [
+let toHeadImgsList = [
   {
     id: 1,
     src:
@@ -465,7 +465,7 @@ let toHeadImgsList= [
   },
 ]
 //上头排行榜
-let ToheadpopularityLists= [
+let ToheadpopularityLists = [
   {
     id: 2,
     title: '爱情的样子：心之所向',
@@ -513,22 +513,22 @@ let ToheadpopularityLists= [
   },
 ]
 //获取主页面的接口
-const allImg=Mock.mock('/all/getAll','get',(options)=>{
-   return{
-     msg:'获取成功',
-     status:200,
-     LBimgList:LBimgList,
-     originalImgList:originalImgList,
-     suspenseImgsList:suspenseImgsList,
-     newWorkImgsList:newWorkImgsList,
-     riseWorkImgsList:riseWorkImgsList,
-     cartoonChangeImgsList:cartoonChangeImgsList,
-     toHeadImgsList:toHeadImgsList,
-     ToheadpopularityLists:ToheadpopularityLists
-   }
+const allImg = Mock.mock('/all/getAll', 'get', (options) => {
+  return {
+    msg: '获取成功',
+    status: 200,
+    LBimgList: LBimgList,
+    originalImgList: originalImgList,
+    suspenseImgsList: suspenseImgsList,
+    newWorkImgsList: newWorkImgsList,
+    riseWorkImgsList: riseWorkImgsList,
+    cartoonChangeImgsList: cartoonChangeImgsList,
+    toHeadImgsList: toHeadImgsList,
+    ToheadpopularityLists: ToheadpopularityLists
+  }
 })
 
-       /* 登录页面的数据和接口 */
+/* 登录页面的数据和接口 */
 /* 用户列表 */
 let userList = [
   {
@@ -577,9 +577,9 @@ const login = Mock.mock('/user/search', 'post', (options) => {
   }
 })
 
-      /* 排行榜区域请求接口和数据 */
+/* 排行榜区域请求接口和数据 */
 
-//总表单数据
+// 总表单数据
 let rankPopularityLists = [
   {
     rankName: '少女榜',
@@ -630,7 +630,7 @@ let rankPopularityLists = [
     chapter: '第2话 面对我你的心跳好快',
   },
 ]
-//总表单下的小表单
+// 总表单下的小表单
 let popularityLists = [
   {
     id: 2,
@@ -678,7 +678,7 @@ let popularityLists = [
     dated: '第9话  让他的眼里只...',
   },
 ]
-//少女榜数据
+// 少女榜数据
 let girlLists = [
   {
     id: 1,
@@ -801,7 +801,7 @@ let girlLists = [
     type: ['奇幻', '剧情'],
   },
 ]
-//青女榜数据
+// 青女榜数据
 let yongGirllists = [
   {
     id: 1,
@@ -924,7 +924,7 @@ let yongGirllists = [
     type: ['恋爱', '剧情'],
   },
 ]
-//少年榜数据
+// 少年榜数据
 let yongLists = [
   {
     id: 1,
@@ -1056,7 +1056,7 @@ const getAllRank = Mock.mock('/rank/all', 'get', (options) => {
     little: popularityLists,
   }
 })
-//获取少女榜接口
+// 获取少女榜接口
 
 const getGirlRank = Mock.mock('/rank/girl', 'get', (options) => {
   return {
@@ -1066,7 +1066,7 @@ const getGirlRank = Mock.mock('/rank/girl', 'get', (options) => {
   }
 })
 
-//获取青女榜
+// 获取青女榜
 const getYongRank = Mock.mock('/rank/yongGirl', 'get', (options) => {
   return {
     status: 200,
@@ -1075,7 +1075,7 @@ const getYongRank = Mock.mock('/rank/yongGirl', 'get', (options) => {
   }
 })
 
-//获取少年榜
+// 获取少年榜
 const getYong = Mock.mock('/rank/yong', 'get', (options) => {
   return {
     status: 200,
@@ -1084,7 +1084,7 @@ const getYong = Mock.mock('/rank/yong', 'get', (options) => {
   }
 })
 
-       /* 世界评论页面的数据和接口 */
+/* 世界评论页面的数据和接口 */
 // 数据
 let commentsList = [
   {
@@ -1134,12 +1134,17 @@ const existComment = Mock.mock('/world/getComment', 'get', (options) => {
 const publishComment = Mock.mock('/world/publish', 'post', (options) => {
   const { inputComments, date } = JSON.parse(options.body)
   let addContent = {
+    // 头像
     url:
       'https://tncache1-f1.v3mh.com/social/9aa6e4a060ddad59aac4e2926f9738e8-cover-faces',
-    userName:userList[userList.length-1].name,
-    word:inputComments,
-    time:date
+    // 用户名
+    userName: userList[userList.length - 1].name,
+    // 评论内容
+    word: inputComments,
+    // 实时日期
+    time: date
   }
+  // 给评论总数组添加一个新对象
   commentsList.unshift(addContent)
   return {
     status: 200,
@@ -1154,12 +1159,11 @@ const deleteComment = Mock.mock(/\/world\/delete/, 'get', (options) => {
   return {
     status: 200,
     msg: '删除成功',
-    backContent: addContent,
   }
 })
 
-           /* 分类图片数据与接口*/
-//分类数据
+/* 分类图片数据与接口*/
+// 分类数据
 let sortImgsList = [
   {
     id: 1,
@@ -1826,6 +1830,7 @@ const paging = Mock.mock(/\/paging\/img/, 'get', (options) => {
 
 //收藏漫画的数据
 let collectionList = []
+
 //增加收藏功能
 const Collection = Mock.mock('/paging/collection', 'post', (options) => {
   const collections = JSON.parse(options.body)
@@ -2230,16 +2235,17 @@ const followed = Mock.mock('/works/followed', 'post', (options) => {
   const { id: id } = JSON.parse(options.body)
   if (id == 1) {
     const { name, author } = JSON.parse(options.body)
-    followWorks.worksName = name
-    followWorks.worksAuthor = author
+    followWorks.title = name
+    followWorks.author = author
     console.log(followWorks)
+    collectionList.push(followWorks)
     return {
       status: 200,
       msg: '关注成功咯!!!',
     }
-  } else {
-    followWorks = {}
-    console.log(followWorks)
+  } else if (id == 2) {
+    collectionList.splice(collectionList.length - 1, 1)
+    console.log(collectionList)
     return {
       status: 200,
       msg: '已取消关注，记得回来哟!!!',
@@ -2248,40 +2254,614 @@ const followed = Mock.mock('/works/followed', 'post', (options) => {
 })
 
 
-         /* 个人中心接口 */
+/* 个人中心接口 */
 
 //获取用户姓名
- 
-const userOwner =Mock.mock('/userOwner/name','get',(options)=>{
-    return{
-      msg:'获取成功',
-      status:200,
-      name:userList[userList.length-1].name,
-      userCollection:collectionList
-    }
+
+const userOwner = Mock.mock('/userOwner/name', 'get', (options) => {
+  return {
+    msg: '获取成功',
+    status: 200,
+    name: userList[userList.length - 1].name,
+    userCollection: collectionList
+  }
 })
 
 
 /* 搜索功能接口*/
 
-const searchCartoon=Mock.mock('/search/cartoon','post',(options)=>{
-  if(options===''){
+const searchCartoon = Mock.mock('/search/cartoon', 'post', (options) => {
+  if (options === '') {
     return {
-      msg:'搜索成功',
-        status:200,
-        newBookName:[]
+      msg: '搜索成功',
+      status: 200,
+      newBookName: []
     }
   }
-  let searchBody=JSON.parse(options.body).title
-  let newBook=[]
-  sortImgsList.forEach(item=>{
-    if(item.bookName.search(searchBody)!==-1){
-        newBook.push(item.bookName)
+  let searchBody = JSON.parse(options.body).title
+  let newBook = []
+  sortImgsList.forEach(item => {
+    if (item.bookName.search(searchBody) !== -1) {
+      newBook.push(item.bookName)
     }
   })
-      return{
-        msg:'搜索成功',
-        status:200,
-        newBookName:newBook
-      }
+  return {
+    msg: '搜索成功',
+    status: 200,
+    newBookName: newBook
+  }
 })
+// 漫画章节页面获取每一章的图片和漫画简介
+// 序章
+let backImgsList0 = [
+  {
+    id: 1,
+    url: require("../components/look/imgs/001.jpg")
+  },
+  {
+    id: 2,
+    url: require("../components/look/imgs/002.jpg")
+  },
+  {
+    id: 3,
+    url: require("../components/look/imgs/003.jpg")
+  },
+  {
+    id: 4,
+    url: require("../components/look/imgs/004.jpg")
+  },
+  {
+    id: 5,
+    url: require("../components/look/imgs/005.jpg")
+  },
+  {
+    id: 6,
+    url: require("../components/look/imgs/006.jpg")
+  },
+  {
+    id: 7,
+    url: require("../components/look/imgs/007.jpg")
+  },
+  {
+    id: 8,
+    url: require("../components/look/imgs/008.jpg")
+  },
+  {
+    id: 9,
+    url: require("../components/look/imgs/009.jpg")
+  },
+  {
+    id: 10,
+    url: require("../components/look/imgs/010.jpg")
+  },
+  {
+    id: 11,
+    url: require("../components/look/imgs/011.jpg")
+  },
+  {
+    id: 12,
+    url: require("../components/look/imgs/012.jpg")
+  },
+  {
+    id: 13,
+    url: require("../components/look/imgs/013.jpg")
+  },
+  {
+    id: 14,
+    url: require("../components/look/imgs/014.jpg")
+  },
+  {
+    id: 15,
+    url: require("../components/look/imgs/015.jpg")
+  },
+  {
+    id: 16,
+    url: require("../components/look/imgs/016.jpg")
+  },
+  {
+    id: 17,
+    url: require("../components/look/imgs/017.jpg")
+  },
+]
+// 第一话
+let backImgsList1 = [
+  {
+    id: 1,
+    url: require("../components/look/imgs/101.jpg")
+  },
+  {
+    id: 2,
+    url: require("../components/look/imgs/102.jpg")
+  },
+  {
+    id: 3,
+    url: require("../components/look/imgs/103.jpg")
+  },
+  {
+    id: 4,
+    url: require("../components/look/imgs/104.jpg")
+  },
+  {
+    id: 5,
+    url: require("../components/look/imgs/105.jpg")
+  },
+  {
+    id: 6,
+    url: require("../components/look/imgs/106.jpg")
+  },
+  {
+    id: 7,
+    url: require("../components/look/imgs/107.jpg")
+  },
+  {
+    id: 8,
+    url: require("../components/look/imgs/108.jpg")
+  },
+  {
+    id: 9,
+    url: require("../components/look/imgs/109.jpg")
+  },
+  {
+    id: 10,
+    url: require("../components/look/imgs/110.jpg")
+  },
+  {
+    id: 11,
+    url: require("../components/look/imgs/111.jpg")
+  },
+  {
+    id: 12,
+    url: require("../components/look/imgs/112.jpg")
+  },
+  {
+    id: 13,
+    url: require("../components/look/imgs/113.jpg")
+  },
+  {
+    id: 14,
+    url: require("../components/look/imgs/114.jpg")
+  },
+  {
+    id: 15,
+    url: require("../components/look/imgs/115.jpg")
+  },
+  {
+    id: 16,
+    url: require("../components/look/imgs/116.jpg")
+  },
+  {
+    id: 17,
+    url: require("../components/look/imgs/117.jpg")
+  },
+  {
+    id: 18,
+    url: require("../components/look/imgs/118.jpg")
+  },
+  {
+    id: 19,
+    url: require("../components/look/imgs/119.jpg")
+  },
+  {
+    id: 20,
+    url: require("../components/look/imgs/120.jpg")
+  },
+]
+// 第二话
+let backImgsList2 = [
+  {
+    id: 1,
+    url: require("../components/look/imgs/201.jpg")
+  },
+  {
+    id: 2,
+    url: require("../components/look/imgs/202.jpg")
+  },
+  {
+    id: 3,
+    url: require("../components/look/imgs/203.jpg")
+  },
+  {
+    id: 4,
+    url: require("../components/look/imgs/204.jpg")
+  },
+  {
+    id: 5,
+    url: require("../components/look/imgs/205.jpg")
+  },
+  {
+    id: 6,
+    url: require("../components/look/imgs/206.jpg")
+  },
+  {
+    id: 7,
+    url: require("../components/look/imgs/207.jpg")
+  },
+  {
+    id: 8,
+    url: require("../components/look/imgs/208.jpg")
+  },
+  {
+    id: 9,
+    url: require("../components/look/imgs/209.jpg")
+  },
+  {
+    id: 10,
+    url: require("../components/look/imgs/210.jpg")
+  },
+  {
+    id: 11,
+    url: require("../components/look/imgs/211.jpg")
+  },
+  {
+    id: 12,
+    url: require("../components/look/imgs/212.jpg")
+  },
+  {
+    id: 13,
+    url: require("../components/look/imgs/213.jpg")
+  },
+  {
+    id: 14,
+    url: require("../components/look/imgs/214.jpg")
+  },
+  {
+    id: 15,
+    url: require("../components/look/imgs/215.jpg")
+  },
+  {
+    id: 16,
+    url: require("../components/look/imgs/216.jpg")
+  },
+  {
+    id: 17,
+    url: require("../components/look/imgs/217.jpg")
+  },
+  {
+    id: 18,
+    url: require("../components/look/imgs/218.jpg")
+  },
+  {
+    id: 19,
+    url: require("../components/look/imgs/219.jpg")
+  },
+  {
+    id: 20,
+    url: require("../components/look/imgs/220.jpg")
+  },
+]
+// 第三话
+let backImgsList3 = [
+  {
+    id: 1,
+    url: require("../components/look/imgs/301.jpg")
+  },
+  {
+    id: 2,
+    url: require("../components/look/imgs/302.jpg")
+  },
+  {
+    id: 3,
+    url: require("../components/look/imgs/303.jpg")
+  },
+  {
+    id: 4,
+    url: require("../components/look/imgs/304.jpg")
+  },
+  {
+    id: 5,
+    url: require("../components/look/imgs/305.jpg")
+  },
+  {
+    id: 6,
+    url: require("../components/look/imgs/306.jpg")
+  },
+  {
+    id: 7,
+    url: require("../components/look/imgs/307.jpg")
+  },
+  {
+    id: 8,
+    url: require("../components/look/imgs/308.jpg")
+  },
+  {
+    id: 9,
+    url: require("../components/look/imgs/309.jpg")
+  },
+  {
+    id: 10,
+    url: require("../components/look/imgs/310.jpg")
+  },
+  {
+    id: 11,
+    url: require("../components/look/imgs/311.jpg")
+  },
+  {
+    id: 12,
+    url: require("../components/look/imgs/312.jpg")
+  },
+  {
+    id: 13,
+    url: require("../components/look/imgs/313.jpg")
+  },
+  {
+    id: 14,
+    url: require("../components/look/imgs/314.jpg")
+  },
+  {
+    id: 15,
+    url: require("../components/look/imgs/315.jpg")
+  },
+  {
+    id: 16,
+    url: require("../components/look/imgs/316.jpg")
+  },
+  {
+    id: 17,
+    url: require("../components/look/imgs/317.jpg")
+  },
+  {
+    id: 18,
+    url: require("../components/look/imgs/318.jpg")
+  },
+  {
+    id: 19,
+    url: require("../components/look/imgs/319.jpg")
+  },
+  {
+    id: 20,
+    url: require("../components/look/imgs/320.jpg")
+  },
+]
+// 第四话
+let backImgsList4 = [
+  {
+    id: 1,
+    url: require("../components/look/imgs/401.jpg")
+  },
+  {
+    id: 2,
+    url: require("../components/look/imgs/402.jpg")
+  },
+  {
+    id: 3,
+    url: require("../components/look/imgs/403.jpg")
+  },
+  {
+    id: 4,
+    url: require("../components/look/imgs/404.jpg")
+  },
+  {
+    id: 5,
+    url: require("../components/look/imgs/405.jpg")
+  },
+  {
+    id: 6,
+    url: require("../components/look/imgs/406.jpg")
+  },
+  {
+    id: 7,
+    url: require("../components/look/imgs/407.jpg")
+  },
+  {
+    id: 8,
+    url: require("../components/look/imgs/408.jpg")
+  },
+  {
+    id: 9,
+    url: require("../components/look/imgs/409.jpg")
+  },
+  {
+    id: 10,
+    url: require("../components/look/imgs/410.jpg")
+  },
+  {
+    id: 11,
+    url: require("../components/look/imgs/411.jpg")
+  },
+  {
+    id: 12,
+    url: require("../components/look/imgs/412.jpg")
+  },
+  {
+    id: 13,
+    url: require("../components/look/imgs/413.jpg")
+  },
+  {
+    id: 14,
+    url: require("../components/look/imgs/414.jpg")
+  },
+  {
+    id: 15,
+    url: require("../components/look/imgs/415.jpg")
+  },
+  {
+    id: 16,
+    url: require("../components/look/imgs/416.jpg")
+  },
+  {
+    id: 17,
+    url: require("../components/look/imgs/417.jpg")
+  },
+  {
+    id: 18,
+    url: require("../components/look/imgs/418.jpg")
+  },
+  {
+    id: 19,
+    url: require("../components/look/imgs/419.jpg")
+  },
+  {
+    id: 20,
+    url: require("../components/look/imgs/420.jpg")
+  },
+  {
+    id: 21,
+    url: require("../components/look/imgs/421.jpg")
+  },
+]
+// 第五话
+let backImgsList5 = [
+  {
+    id: 1,
+    url: require("../components/look/imgs/501.jpg")
+  },
+  {
+    id: 2,
+    url: require("../components/look/imgs/502.jpg")
+  },
+  {
+    id: 3,
+    url: require("../components/look/imgs/503.jpg")
+  },
+  {
+    id: 4,
+    url: require("../components/look/imgs/504.jpg")
+  },
+  {
+    id: 5,
+    url: require("../components/look/imgs/505.jpg")
+  },
+  {
+    id: 6,
+    url: require("../components/look/imgs/506.jpg")
+  },
+  {
+    id: 7,
+    url: require("../components/look/imgs/507.jpg")
+  },
+  {
+    id: 8,
+    url: require("../components/look/imgs/508.jpg")
+  },
+  {
+    id: 9,
+    url: require("../components/look/imgs/509.jpg")
+  },
+  {
+    id: 10,
+    url: require("../components/look/imgs/510.jpg")
+  },
+  {
+    id: 11,
+    url: require("../components/look/imgs/511.jpg")
+  },
+  {
+    id: 12,
+    url: require("../components/look/imgs/512.jpg")
+  },
+  {
+    id: 13,
+    url: require("../components/look/imgs/513.jpg")
+  },
+  {
+    id: 14,
+    url: require("../components/look/imgs/514.jpg")
+  },
+  {
+    id: 15,
+    url: require("../components/look/imgs/515.jpg")
+  },
+  {
+    id: 16,
+    url: require("../components/look/imgs/516.jpg")
+  },
+  {
+    id: 17,
+    url: require("../components/look/imgs/517.jpg")
+  },
+  {
+    id: 18,
+    url: require("../components/look/imgs/518.jpg")
+  },
+  {
+    id: 19,
+    url: require("../components/look/imgs/519.jpg")
+  }
+]
+// 左侧章节导航栏内容
+let backchatperList = [
+  {
+    id: 999,
+    chatperName: "狄奥多之歌",
+  },
+  {
+    id: 0,
+    chatperName: "序章 硝烟域泪",
+  },
+  {
+    id: 1,
+    chatperName: "第1话 我要你做我仆人！",
+  },
+  {
+    id: 2,
+    chatperName: "第2话 作为仆人的“惩罚",
+  },
+  {
+    id: 3,
+    chatperName: "第3话 骑马教学这么甜？！",
+  },
+  {
+    id: 4,
+    chatperName: "第4话 公主的价值",
+  },
+  {
+    id: 5,
+    chatperName: "第5话 鼓励",
+  },
+]
+const backLook = Mock.mock(/\/works\/look/, 'get', (options) => {
+  const id = getQuery(options.url, 'toId')
+  if (id == 0) {
+    return {
+      status: 200,
+      msg: '序章 获取成功',
+      backImgsList0,
+      backchatperList,
+    }
+  } else if (id == 1) {
+    return {
+      status: 200,
+      msg: '第一话 获取成功',
+      backImgsList1,
+      backchatperList,
+    }
+  } else if (id == 2) {
+    return {
+      status: 200,
+      msg: '第二话 获取成功',
+      backImgsList2,
+      backchatperList,
+    }
+  } else if (id == 3) {
+    return {
+      status: 200,
+      msg: '第三话 获取成功',
+      backImgsList3,
+      backchatperList,
+    }
+  } else if (id == 4) {
+    return {
+      status: 200,
+      msg: '第四话 获取成功',
+      backImgsList4,
+      backchatperList,
+    }
+  }
+  else if (id == 5) {
+    return {
+      status: 200,
+      msg: '第五话 获取成功',
+      backImgsList5,
+      backchatperList,
+    }
+  }
+  else if (id == 6) {
+    return {
+      status: 200,
+      msg: '第六话 获取成功',
+      backImgsList6,
+      backchatperList,
+    }
+  }
+})
+

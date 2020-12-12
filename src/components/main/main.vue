@@ -3,10 +3,12 @@
     <el-container>
       <!-- 头部区域 -->
       <el-header>
+        <!-- 头部导航栏 -->
         <div class="headerContent">
           <div class="logo" @click="backMain">灰喵！</div>
           <ul class="headerNav">
             <li
+              class="bug"
               :key="item.id"
               v-for="item in topMenuList"
               @click="changeNav(item.id)"
@@ -18,6 +20,7 @@
                 {{ item.topMenuName }}</router-link
               >
             </li>
+            <!-- 输入框 -->
             <span class="inputFather">
               <input
                 type="text"
@@ -33,10 +36,13 @@
                   相关
                 </div>
                 <ul class="dropDownList">
-                  <li v-for="(item, index) in newBookName">{{ item }}</li>
+                  <li v-for="(item, index) in newBookName" :key="index">
+                    {{ item }}
+                  </li>
                 </ul>
               </div>
             </span>
+            <!-- 登录按钮 -->
             <a
               href="#"
               class="login"
@@ -91,7 +97,6 @@
             <a href="javascript:;" class="profilepic">
               <img
                 src="https://tncache1-f1.v3mh.com/social/9aa6e4a060ddad59aac4e2926f9738e8-cover-faces"
-                alt=""
                 class="avatar"
               />
             </a>
@@ -110,6 +115,7 @@
               <div
                 class="CollectionLitsOne"
                 v-for="(item, index) in connectionlists"
+                :key="index"
               >
                 <div class="letfText">
                   <strong class="letfTextNum">{{ index + 1 }}</strong>
@@ -142,63 +148,63 @@ export default {
         { id: 8, topMenuName: "营销合作", path: "/" },
         { id: 9, topMenuName: "条漫大赛", path: "/" },
       ],
-     // 当前导航栏的位置
-      inputValue: '',
+      // 当前导航栏的位置
+      inputValue: "",
       drawer: false,
-      user: '',
+      user: "",
       connectionlists: [],
       searchShow: false,
       newBookName: [],
       timer: null,
-    }
+    };
   },
   methods: {
     // 导航栏位置改变
     changeNav(id) {
-      this.$store.state.currentId = id
+      this.$store.state.currentId = id;
     },
     loging() {
-      this.$router.push('/login')
+      this.$router.push("/login");
     },
     backMain() {
-      this.$store.state.currentId = 1
-      this.$router.push('./')
+      this.$store.state.currentId = 1;
+      this.$router.push("./");
     },
     async showuser() {
-      const { data: res } = await this.$http.get('/userOwner/name')
-      if (res.status !== 200) return this.$message.error('获取个人中心失败')
-      this.user = res.name
-      this.connectionlists = res.userCollection
-      this.drawer = true
+      const { data: res } = await this.$http.get("/userOwner/name");
+      if (res.status !== 200) return this.$message.error("获取个人中心失败");
+      this.user = res.name;
+      this.connectionlists = res.userCollection;
+      this.drawer = true;
     },
     inputBlur() {
-      this.searchShow = false
+      this.searchShow = false;
     },
     searchforEach() {
       if (this.timer) {
-        clearTimeout(this.timer)
+        clearTimeout(this.timer);
       }
-      if (this.inputValue === '') {
-        this.searchShow = false
+      if (this.inputValue === "") {
+        this.searchShow = false;
       }
       if (this.inputValue) {
-        this.newBookName = []
-        this.searchShow = true
+        this.newBookName = [];
+        this.searchShow = true;
         this.timer = setTimeout(async () => {
-          const { data: res } = await this.$http.post('/search/cartoon', {
+          const { data: res } = await this.$http.post("/search/cartoon", {
             title: this.inputValue,
-          })
-          if (res.status !== 200) return this.$message.error('搜索失败')
-          this.newBookName = res.newBookName
-        }, 100)
+          });
+          if (res.status !== 200) return this.$message.error("搜索失败");
+          this.newBookName = res.newBookName;
+        }, 100);
       }
     },
   },
   created() {},
   watch: {
-    inputValue: 'searchforEach',
+    inputValue: "searchforEach",
   },
-}
+};
 </script>
 <style scoped>
 .navActive {
@@ -244,14 +250,14 @@ header {
   line-height: 32px;
   margin-top: 16px;
 }
-.headerNav li {
+.headerNav .bug {
   float: left;
-/*   height: 20.8px!important; */
+  height: 20.8px !important;
 }
-.headerNav li a {
+.headerNav .bug a {
   padding-right: 24px;
 }
-.headerNav li:hover a {
+.headerNav .bug:hover a {
   color: white;
 }
 /* 输入框 */
@@ -456,6 +462,5 @@ header {
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 100%;
- 
 }
 </style>

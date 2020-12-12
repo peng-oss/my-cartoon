@@ -10,7 +10,7 @@
         <!-- 顶部左侧图片 -->
         <div class="HeaderLeft">
           <el-image
-           @click="enterLook"
+            @click="enterLook"
             class="blankImg"
             style="width: 338px; height: 213px"
             :src="url"
@@ -30,21 +30,26 @@
           <!-- 下侧按钮 -->
           <div class="btnList">
             <a href="#" class="firstBtn btns" @click="enterLook">开始观看</a>
+            <!-- 关注按钮 -->
             <a class="followBtn btns" v-if="flag" @click="ifFollow">关注</a>
             <a class="followBtn btns af" v-else @click.prevent="ifFollow"
               >已关注</a
             >
             <div class="btnListRight">
-              <span @click="share"><svg class="icon" aria-hidden="true">
-              <use xlink:href="#icon-fenxiang"></use>
-              </svg>&nbsp;分享</span>
-              <span><svg class="icon" aria-hidden="true">
-                     <use xlink:href="#icon-jiarehuoyan-xianxing"></use>
-                     </svg>&nbsp;16.88亿</span>
+              <span @click="share"
+                ><svg class="icon" aria-hidden="true">
+                  <use xlink:href="#icon-fenxiang"></use></svg
+                >&nbsp;分享</span
+              >
+              <span
+                ><svg class="icon" aria-hidden="true">
+                  <use xlink:href="#icon-jiarehuoyan-xianxing"></use></svg
+                >&nbsp;16.88亿</span
+              >
               <span class="likes"
-                 ><svg class="icon" aria-hidden="true">
-                 <use xlink:href="#icon-dianzan"></use>
-                </svg>&nbsp;{{ likeSum }}</span
+                ><svg class="icon" aria-hidden="true">
+                  <use xlink:href="#icon-dianzan"></use></svg
+                >&nbsp;{{ likeSum }}</span
               >
             </div>
           </div>
@@ -52,8 +57,8 @@
       </div>
       <!-- 漫画章节内容 -->
       <div class="TopicItem" v-for="(value, index) in itemData" :key="index">
-        <div class="rowImgs f" >
-          <el-image  :src="value.url"  @click="enterLookn(value.id)"></el-image>
+        <div class="rowImgs f">
+          <el-image :src="value.url" @click="enterLookn(value.id)"></el-image>
         </div>
         <div class="rowTitle f">
           <i @click="enterLookn(value.id)">{{ value.chapter }}</i>
@@ -64,8 +69,8 @@
             :class="value.likeIf ? 'myLike' : ''"
             @click="itemLike(index, value.likeIf)"
             ><svg class="icon" aria-hidden="true">
-                 <use xlink:href="#icon-dianzan"></use>
-                </svg>&nbsp;{{ value.num }}</i
+              <use xlink:href="#icon-dianzan"></use></svg
+            >&nbsp;{{ value.num }}</i
           >
         </div>
         <div class="rowTime f">{{ value.time }}</div>
@@ -74,8 +79,8 @@
   </div>
 </template>
 <script>
-import '../../assets/fontShare/iconfont.js'
-import '../../assets/font002/iconfont.js'
+import "../../assets/fontShare/iconfont.js";
+import "../../assets/font002/iconfont.js";
 export default {
   data() {
     return {
@@ -85,7 +90,7 @@ export default {
       itemData: [],
       flag: true,
       reverse: true,
-      url: require("./works.jpg")
+      url: require("./works.jpg"),
     };
   },
   created() {
@@ -106,35 +111,35 @@ export default {
   // 方法
   methods: {
     // 去往每一话的方法
-    enterLookn(id){
-      switch(id) {
-      case 0:
-        this.$router.push('/look0')
-        break;
-      case 1:
-         this.$router.push('/look1')
-        break;
-      case 2:
-         this.$router.push('/look2')
-        break;
-      case 3:
-         this.$router.push('/look3')
-        break;
-      case 4:
-         this.$router.push('/look4')
-        break;
-      case 5:
-         this.$router.push('/look5')
-        break;
-      default:
-    }
+    enterLookn(id) {
+      switch (id) {
+        case 0:
+          this.$router.push("/look0");
+          break;
+        case 1:
+          this.$router.push("/look1");
+          break;
+        case 2:
+          this.$router.push("/look2");
+          break;
+        case 3:
+          this.$router.push("/look3");
+          break;
+        case 4:
+          this.$router.push("/look4");
+          break;
+        case 5:
+          this.$router.push("/look5");
+          break;
+        default:
+      }
     },
     share() {
-      this.$message.success("该功能正在开发中，请耐心等待")
+      this.$message.success("该功能正在开发中，请耐心等待");
     },
     // 查看第一话的方法
-    enterLook(){
-      this.$router.push('/look0')
+    enterLook() {
+      this.$router.push("/look0");
     },
     // 从后台获取漫画数据对象
     async getcartoonData() {
@@ -191,7 +196,7 @@ export default {
 };
 </script>
 <style scoped>
- /* 图标 */
+/* 图标 */
 .icon {
   width: 1em;
   height: 1em;
@@ -311,7 +316,7 @@ export default {
   margin-left: 50px;
 }
 .btnListRight span {
-  font-weight: 300!important;
+  font-weight: 300 !important;
   display: inline-block;
   margin: 0 20px 0 36px;
   color: #666;
