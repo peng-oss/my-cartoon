@@ -33,7 +33,7 @@ let  LBimgList= [
   },
   {
     url:
-      "https://tn1-f2.kkmh.com/image/201208/VLvIkiQDr.webp-t.w750.webp.h",
+      "https://tn1-f2.kkmh.com/image/201211/UqnRfBAcA.webp-t.w750.webp.h",
   },
   {
     url:
@@ -1130,6 +1130,8 @@ const existComment = Mock.mock('/world/getComment', 'get', (options) => {
   }
 })
 
+
+
 // 发表评论接口
 const publishComment = Mock.mock('/world/publish', 'post', (options) => {
   const { inputComments, date } = JSON.parse(options.body)
@@ -1154,7 +1156,7 @@ const deleteComment = Mock.mock(/\/world\/delete/, 'get', (options) => {
   return {
     status: 200,
     msg: '删除成功',
-    backContent: addContent,
+   /*  backContent: addContent, */
   }
 })
 

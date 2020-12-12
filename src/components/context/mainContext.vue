@@ -22,6 +22,7 @@
         v-for="item in cartoonTypeList"
         :index="item.index"
         :key="item.id"
+        @click="tosort"
         >{{ item.typeName }}</el-menu-item
       >
     </el-menu>
@@ -57,7 +58,7 @@
       <div class="toheadAndlistbig">
         <!--  这个漫画令我上头 -->
         <div class="tohead">
-          <p class="suspense-title">这漫画令我上头</p>
+          <h1 class="suspense-title">这漫画令我上头</h1>
           <ul class="toHead-content">
             <li :key="item.id" v-for="item in toHeadImgsList">
               <a href="javascript:;" class="ToheadImgFather"
