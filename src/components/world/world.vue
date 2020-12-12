@@ -66,29 +66,30 @@ export default {
     this.getComments()
   },
   methods: {
-    // 发表评论
+    // 发表评论 喵喵拳欧耶
     async publishContent() {
       if (this.inputComments.length != '') {
         const { data: res } = await this.$http.post('/world/publish', {
           inputComments: this.inputComments,
           date: this.date,
         })
+        // 发表数组成功
         if (res.status == 200) {
+          // 重新渲染一下页面
           this.getComments()
+          // 并且清除输入框内容
           this.inputComments = ''
         }
       } else {
         this.$message.error('主人评论不能为空哟')
       }
     },
-    // 删除评论
+    // 删除评论 需要传入 被删除评论的 索引 
     async deleteComment(index) {
-      console.log(index)
       // this.commentsList.splice(index, 1);
       const { data: res } = await this.$http.get('/world/delete', {
         params: { delIndex: index },
       })
-      console.log(res)
       if (res.status == 200) {
         this.getComments()
       }

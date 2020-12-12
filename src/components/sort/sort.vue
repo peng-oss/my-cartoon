@@ -18,7 +18,7 @@
           <div>
             <span>题材</span>
             <el-tag
-              :key="item.index"
+              :key="index"
               v-for="(item, index) in themeList"
               @click="seletOne(item.themeName)"
               >{{ item.themeName }}</el-tag
@@ -28,7 +28,7 @@
         <div class="schedule">
           <span>进度</span>
           <el-tag
-            :key="item.index"
+            :key="index"
             v-for="(item, index) in scheduleList"
             @click="seletOne(item.themeName)"
             >{{ item.themeName }}</el-tag
