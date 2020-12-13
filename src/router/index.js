@@ -1,19 +1,34 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Main from '../components/main/main.vue'
-import Login from '../components/login/login.vue'
-import MainContext from '../components/context/mainContext.vue'
-import Sort from '../components/sort/sort.vue'
-import Rank from '../components/rank/rank.vue'
-import World from '../components/world/world.vue'
-import Works from '../components/works/works.vue'
-import Look0 from '../components/look/look0.vue'
-import Look1 from '../components/look/look1.vue'
-import Look2 from '../components/look/look2.vue'
-import Look3 from '../components/look/look3.vue'
-import Look4 from '../components/look/look4.vue'
-import Look5 from '../components/look/look5.vue'
 
+/* import Main from '../components/main/main.vue' */
+const Main = () => import(/* webpackChunkName: "main_mainContext" */ '../components/main/main.vue')
+/* import MainContext from '../components/context/mainContext.vue' */
+const MainContext = () => import(/* webpackChunkName: "main_mainContext" */ '../components/context/mainContext.vue')
+/* import Login from '../components/login/login.vue' */
+const Login = () => import(/* webpackChunkName: "login_sort_rank_world" */ '../components/login/login.vue')
+/* import Sort from '../components/sort/sort.vue' */
+const Sort = () => import(/* webpackChunkName: "login_sort_rank_world" */ '../components/sort/sort.vue')
+/* import Rank from '../components/rank/rank.vue' */
+const Rank = () => import(/* webpackChunkName: "login_sort_rank_world" */ '../components/rank/rank.vue')
+/* import World from '../components/world/world.vue' */
+const World = () => import(/* webpackChunkName: "login_sort_rank_world" */ '../components/world/world.vue')
+
+
+const Works = () => import(/* webpackChunkName: "words_look" */ '../components/works/works.vue')
+/* import Works from '../components/works/works.vue' */
+/* import Look0 from '../components/look/look0.vue' */
+const Look0 = () => import(/* webpackChunkName: "words_look" */ '../components/look/look0.vue')
+/* import Look1 from '../components/look/look1.vue' */
+const Look1 = () => import(/* webpackChunkName: "words_look" */ '../components/look/look1.vue')
+/* import Look2 from '../components/look/look2.vue' */
+const Look2 = () => import(/* webpackChunkName: "words_look" */ '../components/look/look2.vue')
+/* import Look3 from '../components/look/look3.vue' */
+const Look3 = () => import(/* webpackChunkName: "words_look" */ '../components/look/look3.vue')
+/* import Look4 from '../components/look/look4.vue' */
+const Look4  = () => import(/* webpackChunkName: "words_look" */ '../components/look/look4.vue')
+/* import Look5 from '../components/look/look5.vue' */
+const Look5 = () => import(/* webpackChunkName: "words_look" */ '../components/look/look5.vue')
 
 Vue.use(VueRouter)
 
