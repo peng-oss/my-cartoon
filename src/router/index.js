@@ -1,57 +1,63 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-/* import Main from '../components/main/main.vue' */
-const Main = () => import(/* webpackChunkName: "main_mainContext" */ '../components/main/main.vue')
-/* import MainContext from '../components/context/mainContext.vue' */
-const MainContext = () => import(/* webpackChunkName: "main_mainContext" */ '../components/context/mainContext.vue')
-/* import Login from '../components/login/login.vue' */
-const Login = () => import(/* webpackChunkName: "login_sort_rank_world" */ '../components/login/login.vue')
-/* import Sort from '../components/sort/sort.vue' */
-const Sort = () => import(/* webpackChunkName: "login_sort_rank_world" */ '../components/sort/sort.vue')
-/* import Rank from '../components/rank/rank.vue' */
-const Rank = () => import(/* webpackChunkName: "login_sort_rank_world" */ '../components/rank/rank.vue')
-/* import World from '../components/world/world.vue' */
-const World = () => import(/* webpackChunkName: "login_sort_rank_world" */ '../components/world/world.vue')
-
-
-const Works = () => import(/* webpackChunkName: "words_look" */ '../components/works/works.vue')
-/* import Works from '../components/works/works.vue' */
-/* import Look0 from '../components/look/look0.vue' */
-const Look0 = () => import(/* webpackChunkName: "words_look" */ '../components/look/look0.vue')
-/* import Look1 from '../components/look/look1.vue' */
-const Look1 = () => import(/* webpackChunkName: "words_look" */ '../components/look/look1.vue')
-/* import Look2 from '../components/look/look2.vue' */
-const Look2 = () => import(/* webpackChunkName: "words_look" */ '../components/look/look2.vue')
-/* import Look3 from '../components/look/look3.vue' */
-const Look3 = () => import(/* webpackChunkName: "words_look" */ '../components/look/look3.vue')
-/* import Look4 from '../components/look/look4.vue' */
-const Look4  = () => import(/* webpackChunkName: "words_look" */ '../components/look/look4.vue')
-/* import Look5 from '../components/look/look5.vue' */
-const Look5 = () => import(/* webpackChunkName: "words_look" */ '../components/look/look5.vue')
-
 Vue.use(VueRouter)
-
+//获取原型对象上的push函数
+const originalPush = VueRouter.prototype.push
+//修改原型对象中的push方法
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch((err) => err)
+}
 const routes = [
   {
     path: '/',
-    component: Main,
+    component: () => import('../components/main/main.vue'),
     children: [
       { path: '/', redirect: '/context' },
-      { path: '/context', component: MainContext, },
-      { path: '/sort', component: Sort },
-      { path: '/rank', component: Rank },
-      { path: '/world', component: World },
-      { path: '/login', component: Login },
-      { path: '/works', component: Works },
-      { path: '/look0', component: Look0 },
-      { path: '/look1', component: Look1 },
-      { path: '/look2', component: Look2 },
-      { path: '/look3', component: Look3 },
-      { path: '/look4', component: Look4 },
-      { path: '/look5', component: Look5 },
+      {
+        path: '/context',
+        component: () => import('../components/context/mainContext.vue'),
+      },
+      { path: '/sort', component: () => import('../components/sort/sort.vue') },
+      { path: '/rank', component: () => import('../components/rank/rank.vue') },
+      {
+        path: '/world',
+        component: () => import('../components/world/world.vue'),
+      },
+      {
+        path: '/login',
+        component: () => import('../components/login/login.vue'),
+      },
+      {
+        path: '/works',
+        component: () => import('../components/works/works.vue'),
+      },
+      {
+        path: '/look0',
+        component: () => import('../components/look/look0.vue'),
+      },
+      {
+        path: '/look1',
+        component: () => import('../components/look/look1.vue'),
+      },
+      {
+        path: '/look2',
+        component: () => import('../components/look/look2.vue'),
+      },
+      {
+        path: '/look3',
+        component: () => import('../components/look/look3.vue'),
+      },
+      {
+        path: '/look4',
+        component: () => import('../components/look/look4.vue'),
+      },
+      {
+        path: '/look5',
+        component: () => import('../components/look/look5.vue'),
+      },
     ],
-  }
+  },
 ]
 
 const router = new VueRouter({

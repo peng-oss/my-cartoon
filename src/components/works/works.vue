@@ -107,6 +107,10 @@ export default {
       // console.log(sum);
       return sum
     },
+    getele(){
+      const ele_login=localStorage.getItem('ele_login')
+      return ele_login
+    }
   },
   // 方法
   methods: {
@@ -151,6 +155,7 @@ export default {
     // 是否关注的方法
     async ifFollow() {
       if (this.flag) {
+       if(!this.getele) return this.$router.push('/login')
         const { data: res } = await this.$http.post('/works/followed', {
           name: this.cartoonData.name,
           author: this.cartoonData.autor,
@@ -196,6 +201,7 @@ export default {
         }
       })
     },
+  
   },
 }
 </script>

@@ -101,8 +101,9 @@ export default {
           console.log(res);
           if (res.meta.status === 200) {
             this.$message.success("登录成功");
+            localStorage.setItem('ele_login',true)
             this.$router.push("/context");
-           this.$store.state.appear = false;
+           this.$store.dispatch('changeAppear',false)
           } else {
             this.$message.error("没有匹配用户");
           }

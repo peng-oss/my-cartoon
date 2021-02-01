@@ -7,22 +7,23 @@ import 'element-ui/lib/theme-chalk/index.css'
 import './assets/css/global.css'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-import Vuex from 'vuex'
+import store from './store'
 Vue.prototype.$http = axios
-Vue.use(Vuex)
-const store = new Vuex.Store({
+/* Vue.use(Vuex) */
+/* const store = new Vuex.Store({
     state: {
         appear: true,
         currentId: 1
     }
-  })
+  }) */
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.use(VueAxios, axios)
 new Vue({
   router,
+  store,
   render: (h) => h(App),
-  store: store,
+  
 }).$mount('#app')
 // 时间过滤器
 Vue.filter('format', function (value, arg) {

@@ -78,62 +78,10 @@
         </div>
         <!--  国漫榜 -->
         <div class="RankingList">
-          <span><h1>国漫榜</h1></span>
-          <div class="popularityList">
-            <div class="list">
-              <div class="hovers">
-                <div class="leftFl">
-                  <a href="#"
-                    ><img
-                      src="https://tn1-f2.kkmh.com/image/190802/fmXsWW7tI.webp-t.w120.webp.h"
-                      alt=""
-                  /></a>
-                  <i class="hoversI">1</i>
-                </div>
-                <div class="rightFr">
-                  <div class="title">
-                    <a href="#">再度与你</a>
-                  </div>
-                  <div class="labelListCls">
-                    <span class="fl">日常</span>
-                    <span class="fl">恋爱</span>
-                    <span class="fl">治愈</span>
-                  </div>
-                  <div class="depict">
-                    <span class="dec"
-                      >高中时因误会相互错过的两人，在大学毕业后重回高中母校任教。...</span
-                    >
-                  </div>
-                  <a href="#" class="chapter">
-                    <span class="LFl">更新至：</span>
-                    <span class="RFl">第61话 两个麻烦</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div
-              class="list"
-              v-for="(item, index) in popularityLists"
-              :key="index"
-            >
-              <div class="textBox">
-                <div class="leftText">
-                  <strong class="leftTextFl" style="color: rgb(245, 166, 35)">{{
-                    item.id
-                  }}</strong>
-                  <span class="titleFl">
-                    {{ item.title }}
-                  </span>
-                </div>
-                <div class="rightText">
-                  <span class="rightText1"> 更新至 </span>
-                  <span class="rightText2">
-                    {{ item.dated }}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
+          <rankList
+            :firstWork="firstWork"
+            :popularityLists="popularityLists"
+          />
         </div>
       </div>
     </el-card>
@@ -161,14 +109,14 @@
     <el-card
       class="newWork"
       :body-style="{ padding: '0px' }"
-      :class="{ redBgc: redActive, greenBgc: greenActive }"
+      :class="{ redBgc: newActive===true, greenBgc: newActive===false }"
     >
       <!-- 标题导航栏 -->
       <div class="newWorkTitle">
-        <span :class="{ listActive: newActive }" @click="newChange"
+        <span :class="{ listActive: newActive===true }" @click="newChange"
           >新作榜</span
         >
-        <span :class="{ listActive: riseActive }" @click="riseChange"
+        <span :class="{ listActive: newActive===false }" @click="riseChange"
           >飙升榜</span
         >
         <a href="javascript:;" class="moreList" @click="tosort">更多榜单</a>
@@ -217,6 +165,7 @@
   </div>
 </template>
 <script>
+import rankList from '../../views/rankList'
 export default {
   data() {
     return {
@@ -297,9 +246,6 @@ export default {
       // 新作榜飙升榜展示图片
       showImgsList: [],
       newActive: true,
-      riseActive: false,
-      redActive: true,
-      greenActive: false,
       // 漫改图片
       cartoonChangeImgsList: [],
       // 上头图片
@@ -307,24 +253,37 @@ export default {
       // 上头图片右边排行榜
       popularityLists: [],
       activeName: 'second',
+      firstWork: {
+        rankName: '国漫榜',
+        imgUrl:
+          'https://tn1-f2.kkmh.com/image/190802/fmXsWW7tI.webp-t.w120.webp.h',
+        title: '再度与你',
+        type: ['日常', '恋爱', '治愈'],
+        dec: '高中时因误会相互错过的两人，在大学毕业后重回高中母校任教。...',
+        chapter: '第61话 两个麻烦',
+      },
     }
+  },
+  components: {
+    rankList,
   },
   methods: {
     // 新作榜事件
     newChange() {
-      this.newActive = true
-      this.riseActive = !this.newActive
-      this.redActive = true
-      this.greenActive = !this.redActive
-      this.showImgsList = this.newWorkImgsList
+     this.newActive=!this.newActive
+     this.jugeList()
     },
     // 飙升榜事件
     riseChange() {
-      this.riseActive = true
-      this.newActive = !this.riseActive
-      this.greenActive = true
-      this.redActive = !this.greenActive
-      this.showImgsList = this.riseWorkImgsList
+      this.newActive=!this.newActive
+       this.jugeList()
+    },
+    jugeList(){
+      if(this.newActive===true){
+       this.showImgsList=this.newWorkImgsList
+     }else{
+       this.showImgsList=this.riseWorkImgsList
+     }
     },
     // 获取所有图片及数据来源
     async getAllImgs() {
@@ -338,19 +297,18 @@ export default {
       this.cartoonChangeImgsList = res.cartoonChangeImgsList
       this.toHeadImgsList = res.toHeadImgsList
       this.popularityLists = res.ToheadpopularityLists
-
       this.showImgsList = this.newWorkImgsList
     },
     enterWorks(index) {
       if (index == 0) {
         this.$router.push('/works')
-        this.$store.state.currentId=5
+        this.$store.dispatch('changeCurrentId', 5)
       }
     },
-    tosort(){
+    tosort() {
       this.$router.push('/sort')
-      this.$store.state.currentId=2
-    }
+      this.$store.dispatch('changeCurrentId', 2)
+    },
   },
   // 生命周期触发开始的事件
   created() {
@@ -687,121 +645,5 @@ li:nth-of-type(3n) .imgandp {
 .RankingList {
   width: 356px;
   float: right;
-}
-.list {
-  margin-bottom: 17px;
-}
-.hovers {
-  width: 356px;
-  height: 167px;
-}
-.rightFr {
-  float: right;
-  padding-left: 12px;
-  width: 224px;
-}
-.leftFl {
-  width: 120px;
-  height: 162px;
-  margin: 0 !important;
-  padding: 0 !important;
-  overflow: hidden;
-  float: left;
-  position: relative;
-}
-.labelListCls {
-  padding: 6px 0;
-  overflow: hidden;
-}
-.fl {
-  padding-right: 10px;
-  line-height: 20px;
-}
-.dec {
-  width: 224px;
-  height: 40px;
-  line-height: 20px;
-  font-size: 14px;
-  color: #999999;
-  cursor: default;
-}
-.chapter {
-  display: block;
-  padding-top: 16px;
-}
-.LFl {
-  float: left;
-  line-height: 20px;
-  font-size: 14px;
-}
-.RFl {
-  float: right;
-  width: 168px;
-  line-height: 20px;
-  font-size: 14px;
-  color: #f56c6c;
-  overflow: hidden;
-}
-.textBox {
-  max-width: 356px;
-  width: 356px;
-  display: block;
-  height: 20px;
-}
-.leftTextFl {
-  width: 10px;
-  line-height: 20px;
-  padding-right: 11px;
-  font-size: 16px;
-  font-weight: normal;
-  float: left;
-}
-.titleFl {
-  float: left;
-  display: block;
-  line-height: 20px;
-  max-width: 112px;
-  font-size: 14px;
-  color: #333333;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-.rightText {
-  height: 20px;
-  line-height: 20px;
-  float: right;
-}
-.rightText1 {
-  line-height: 20px;
-  font-size: 14px;
-  color: #999999;
-  float: left;
-}
-.rightText2 {
-  display: block;
-  line-height: 20px;
-  margin-left: 4px;
-  max-width: 145px;
-  font-size: 14px;
-  color: #f56c6c;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.hoversI {
-  display: block;
-  position: absolute;
-  width: 26px;
-  height: 26px;
-  line-height: 26px;
-  top: 0;
-  left: 0;
-  background: #f5a623;
-  border-bottom-right-radius: 4px;
-  font-size: 18px;
-  color: #fff;
-  font-style: normal;
-  text-align: center;
 }
 </style>

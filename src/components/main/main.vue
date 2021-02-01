@@ -15,7 +15,7 @@
             >
               <router-link
                 :to="item.path"
-                :class="$store.state.currentId == item.id ? 'navActive' : ''"
+                :class="getCurrentID == item.id ? 'navActive' : ''"
               >
                 {{ item.topMenuName }}</router-link
               >
@@ -47,10 +47,10 @@
               href="#"
               class="login"
               @click="loging"
-              v-if="$store.state.appear === true"
+              v-if="getAppear === true"
               >登录</a
             >
-            <a href="#" class="login" v-else @click="showuser">个人中心</a>
+            <a href="#" class="login"  v-if="getAppear === false" @click="showuser">个人中心</a>
           </ul>
         </div>
       </el-header>
@@ -158,16 +158,24 @@ export default {
       timer: null,
     };
   },
+  computed:{
+    getAppear(){
+     return this.$store.getters.appear
+    },
+    getCurrentID(){
+     return this.$store.getters.currentId
+    }
+  },
   methods: {
     // 导航栏位置改变
     changeNav(id) {
-      this.$store.state.currentId = id;
+      this.$store.dispatch('changeCurrentId',id)
     },
     loging() {
       this.$router.push("/login");
     },
     backMain() {
-      this.$store.state.currentId = 1;
+      this.$store.dispatch('changeCurrentId',1)
       this.$router.push("./");
     },
     async showuser() {

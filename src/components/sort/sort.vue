@@ -133,7 +133,14 @@ export default {
       pagenum: 1,
       total: 100,
       pagesize: 18,
+      checkone:'全部'
       //收藏的显示与隐藏
+    }
+  },
+  computed:{
+ getele(){
+      const ele_login=localStorage.getItem('ele_login')
+      return ele_login
     }
   },
   methods: {
@@ -141,7 +148,7 @@ export default {
       let obj = { selectName: name }
       this.allSelect.push(obj)
       this.allSelect.splice(0, 1)
-     
+     this.checkone=name
       const { data: res } = await this.$http.post('/paging/sort', {
         name: name,
       })
@@ -166,6 +173,7 @@ export default {
       this.getList()
     },
     async Collectionadd(id, bookName, author, distinguish) {
+      if(!this.getele) return this.$router.push('/login')
       const { data: res } = await this.$http.post('/paging/collection', {
         id: id,
         title: bookName,
@@ -173,16 +181,29 @@ export default {
         distinguish: distinguish,
       })
       if (res.status !== 200) return this.$message.error('收藏失败')
-      this.getList()
+     this.judge()
     },
     async Collectiondelect(id) {
       const { data: res } = await this.$http.post('/paging/collectionDec', {
         id: id,
       })
       if (res.status !== 200) return this.$message.error('取消收藏失败')
-      this.getList()
+      this.judge()
       this.$message.success('取消收藏成功')
     },
+    judge(){
+      if(this.checkone==='全部'){
+        this.getList()
+      }else{
+        this.seletOne(this.checkone)
+      }
+    },
+    islogin(){
+      const ele_login=localStorage.getItem('ele_login')
+      if(!ele_login){
+        this.$router.push('/login')
+      }
+    }
   },
 }
 </script>
