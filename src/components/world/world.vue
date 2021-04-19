@@ -97,6 +97,7 @@ export default {
     // 打开页面渲染已存在的评论
     async getComments() {
       const { data: res } = await this.$http.get('/world/getComment')
+      console.log(data);
       this.commentsList = res.list
     },
   },

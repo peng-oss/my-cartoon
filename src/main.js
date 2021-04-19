@@ -2,13 +2,16 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import ElementUI from 'element-ui'
-import './mock/index'
+// import './mock/index'
 import 'element-ui/lib/theme-chalk/index.css'
 import './assets/css/global.css'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import store from './store'
+
+axios.defaults.baseURL = 'http://localhost:5000/';
 Vue.prototype.$http = axios
+      
 /* Vue.use(Vuex) */
 /* const store = new Vuex.Store({
     state: {
