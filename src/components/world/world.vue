@@ -35,13 +35,13 @@
               <h5 class="userName">{{ item.userName }}</h5>
             </td>
             <td>
-              <p class="publishContent">{{ item.word }}</p>
+              <p class="publishContent">{{ item.content }}</p>
               <p class="publishTime">
-                {{ item.time | format('yyyy-MM-dd hh:mm ') }}
+                {{ item.publicTime | format("yyyy-MM-dd hh:mm ") }}
               </p>
             </td>
             <td>
-              <a href="" class="delete" @click.prevent="deleteComment(index)"
+              <a href="" class="delete" @click.prevent="deleteComment(item)"
                 >删除</a
               >
             </td>
@@ -55,53 +55,66 @@
 export default {
   data() {
     return {
-      inputComments: '',
+      inputComments: "",
       // 评论的数据
       commentsList: [],
-      date: new Date(),
-    }
+      userName: this.$store.getters.name,
+    };
   },
   created() {
     // 调用渲染已存在的评论方法
-    this.getComments()
+    this.getComments();
   },
   methods: {
-    // 发表评论 喵喵拳欧耶
+    // 1.发表评论 喵喵拳欧耶
     async publishContent() {
-      if (this.inputComments.length != '') {
-        const { data: res } = await this.$http.post('/world/publish', {
-          inputComments: this.inputComments,
-          date: this.date,
-        })
+      if (this.inputComments.length != "") {
+        const { data: res } = await this.$http.post("/world/public", {
+          content: this.inputComments,
+          publicTime: new Date(),
+          userName: this.userName,
+          url: "https://tncache1-f1.v3mh.com/social/9aa6e4a060ddad59aac4e2926f9738e8-cover-faces", // 默认头像
+        });
         // 发表数组成功
         if (res.status == 200) {
           // 重新渲染一下页面
-          this.getComments()
+          this.commentsList = res.list;
           // 并且清除输入框内容
-          this.inputComments = ''
+          this.inputComments = "";
         }
       } else {
-        this.$message.error('主人评论不能为空哟')
+        this.$message.error("主人评论不能为空哟");
       }
     },
-    // 删除评论 需要传入 被删除评论的 索引 
-    async deleteComment(index) {
-      // this.commentsList.splice(index, 1);
-      const { data: res } = await this.$http.get('/world/delete', {
-        params: { delIndex: index },
-      })
-      if (res.status == 200) {
-        this.getComments()
+
+    // 2.删除评论
+    async deleteComment(item) {
+      if (item.userName === this.$store.getters.name) {
+        if (confirm()) {
+          const { data: res } = await this.$http.delete("/world/delete", {
+            params: { id: item._id },
+          });
+          if (res.status == 200) {
+            // this.getComments();
+            this.commentsList = res.list;
+          }
+        }
+      } else {
+        this.$message.error("主人不能删除别人的评论哟!!!");
       }
     },
-    // 打开页面渲染已存在的评论
+
+    // 3.渲染评论
     async getComments() {
-      const { data: res } = await this.$http.get('/world/getComment')
-      console.log(data);
-      this.commentsList = res.list
+      const { data: res } = await this.$http.get("/world/getComment");
+      if (res.msg === "获取成功") {
+        this.commentsList = res.list;
+      } else {
+        this.$message.error("网络出现了一些小故障");
+      }
     },
   },
-}
+};
 </script>
 <style scoped>
 .worldContent {

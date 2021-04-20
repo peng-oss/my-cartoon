@@ -78,23 +78,23 @@ export default {
       switch (tab.label) {
         case '少女榜':
           const { data: res1 } = await this.$http.get('/rank/girl')
-          this.girllists = res1.list
+          this.girllists = res1.list[0].list
           break
         case '青女榜':
           const { data: res2 } = await this.$http.get('/rank/yongGirl')
-          this.yongGirllists = res2.list
+          this.yongGirllists = res2.list[0].list
           break
         case '少年榜':
           const { data: res3 } = await this.$http.get('/rank/yong')
-          this.yonglists = res3.list
+          this.yonglists = res3.list[0].list
           break
       }
     },
     async gerAllrankList() {
       const { data: res } = await this.$http.get('/rank/all')
       if (res.status !== 200) return this.$message.error('获取榜单失败')
-      this.rankPopularityLists = res.list
-      this.popularityLists = res.little
+      this.rankPopularityLists = res.list[0].list
+      this.popularityLists = res.little[0].list
     },
   },
   created() {

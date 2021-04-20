@@ -102,7 +102,7 @@
             </a>
             <hgroup>
               <h1 class="headerAuthor">
-                <a href="javascript:;">{{ user }}</a>
+                <a href="javascript:;">{{ getName }}</a>
               </h1>
             </hgroup>
             <hgroup>
@@ -151,7 +151,6 @@ export default {
       // 当前导航栏的位置
       inputValue: "",
       drawer: false,
-      user: "",
       connectionlists: [],
       searchShow: false,
       newBookName: [],
@@ -164,6 +163,9 @@ export default {
     },
     getCurrentID(){
      return this.$store.getters.currentId
+    },
+    getName(){
+      return this.$store.getters.name
     }
   },
   methods: {
@@ -179,9 +181,8 @@ export default {
       this.$router.push("./");
     },
     async showuser() {
-      const { data: res } = await this.$http.get("/userOwner/name");
+      const { data: res } = await this.$http.get("/userOwner");
       if (res.status !== 200) return this.$message.error("获取个人中心失败");
-      this.user = res.name;
       this.connectionlists = res.userCollection;
       this.drawer = true;
     },

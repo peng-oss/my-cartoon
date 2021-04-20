@@ -68,7 +68,7 @@
                   <svg
                     class="iconS"
                     aria-hidden="true"
-                    @click="Collectiondelect(item.id, item.distinguish)"
+                    @click="Collectiondelect(item.bookName, item.distinguish)"
                     v-else-if="item.distinguish === false"
                   >
                     <use xlink:href="#icon-shoucang1"></use>
@@ -139,7 +139,7 @@ export default {
   },
   computed:{
  getele(){
-      const ele_login=localStorage.getItem('ele_login')
+      const ele_login=sessionStorage.getItem('token')
       return ele_login
     }
   },
@@ -149,8 +149,10 @@ export default {
       this.allSelect.push(obj)
       this.allSelect.splice(0, 1)
      this.checkone=name
-      const { data: res } = await this.$http.post('/paging/sort', {
-        name: name,
+      const { data: res } = await this.$http.get('/paging/sort', {
+        params:{
+          name
+        }
       })
  if (name === '全部') {
         this.getList()
@@ -183,9 +185,11 @@ export default {
       if (res.status !== 200) return this.$message.error('收藏失败')
      this.judge()
     },
-    async Collectiondelect(id) {
-      const { data: res } = await this.$http.post('/paging/collectionDec', {
-        id: id,
+    async Collectiondelect(bookName) {
+      const { data: res } = await this.$http.delete('/paging/collectionDec', {
+       params:{
+              bookName
+       }
       })
       if (res.status !== 200) return this.$message.error('取消收藏失败')
       this.judge()
@@ -199,7 +203,7 @@ export default {
       }
     },
     islogin(){
-      const ele_login=localStorage.getItem('ele_login')
+      const ele_login=sessionStorage.getItem('ele_login')
       if(!ele_login){
         this.$router.push('/login')
       }

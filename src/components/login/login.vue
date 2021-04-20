@@ -81,7 +81,7 @@ export default {
       this.$refs.ruleForm.validate(async (validate) => {
         if (validate) {
           const { data: res } = await this.$http.post(
-            "/user/add",
+            "/login/reg",
             this.ruleForm
           );
           console.log(res);
@@ -95,13 +95,15 @@ export default {
       this.$refs.ruleForm.validate(async (validate) => {
         if (validate) {
           const { data: res } = await this.$http.post(
-            "/user/search",
+            "/login",
             this.ruleForm
           );
           console.log(res);
-          if (res.meta.status === 200) {
+          if (res.status === 200) {
             this.$message.success("登录成功");
-            localStorage.setItem('ele_login',true)
+            sessionStorage.setItem('token',res.token)
+            this.$store.dispatch('changeName',res.name)
+            this.$store.dispatch("changeCollections",res.collections)
             this.$router.push("/context");
            this.$store.dispatch('changeAppear',false)
           } else {
