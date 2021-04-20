@@ -33,8 +33,8 @@ const routes = [
         component: () => import('../components/works/works.vue'),
       },
       {
-        path: '/look0',
-        component: () => import('../components/look/look0.vue'),
+        path: '/look/:title',
+        component: () => import('../components/look/look.vue'),
       },
       {
         path: '/look1',

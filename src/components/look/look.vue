@@ -1,16 +1,14 @@
 <template>
   <div>
-    <!-- 章节侧边栏 -->
-    <Chatper
-    :chatperList=chatperList
-    @enterLookn=enterLookn
-    :chatperName="chatperName"
-    />
     <div class="lookContent">
-      <!-- 漫画题目导航栏 -->
-      <bread
-      titleName="序章 硝烟域泪"
+      <!-- 章节侧边栏 -->
+      <Chatper
+        :chatperList="chatperList"
+        @enterLookn="enterLookn"
+        :chatperName="chatperName"
       />
+      <!-- 漫画题目导航栏 -->
+      <bread :titleName="chatperName" />
       <!-- 翻页位置 -->
       <div class="turnPage">
         <ul>
@@ -20,43 +18,49 @@
         </ul>
       </div>
       <!-- 中间漫画图片内容  -->
-     <lookImgs
-    :lookImgsList="lookImgsList"
-    />
+      <lookImgs :lookImgsList="lookImgsList" />
     </div>
   </div>
 </template>
 <script>
-import Chatper from '../../views/chatper'
-import lookImgs from '../../views/lookImgs'
-import bread from '../../views/bread'
+import Chatper from "../../views/chatper";
+import lookImgs from "../../views/lookImgs";
+import bread from "../../views/bread";
 export default {
   data() {
     return {
-      // 中间漫画图片内容
-      lookImgsList: [],
-      // 左侧章节导航栏
-      chatperList: [],
+      lookImgsList: [], // 中间漫画图片内容
+      chatperList: [], // 左侧章节导航栏
       ifHideStyle: true,
-      chatperName:''
+      chatperName: "",
     };
   },
-  components:{
-  Chatper,
-  lookImgs,
-  bread
+  components: {
+    Chatper,
+    lookImgs,
+    bread,
   },
   created() {
-    this.getData();
+    this.getData(this.$route.params.title);
   },
   methods: {
-    async getData() {
-      const { data: res } = await this.$http.get("/works/look", {
-        params: { toId: 0 },
+    async getData(title) {
+      const { data: res } = await this.$http.get("/look", {
+        params: { title },
       });
       if (res.status == 200) {
-        this.chatperList = res.backchatperList;
-        this.lookImgsList = res.backImgsList0;
+        // console.log(res.cartoonImg[0].imgList);
+        res.cartoonImg.forEach((value) => {
+          if (
+            value.title.slice(0, 2) === this.$route.params.title.slice(0, 2)
+          ) {
+            this.lookImgsList = value.imgList; // 漫画图面列表地址
+            this.chatperName = value.title; // 漫画题目
+          }
+        });
+
+        // this.chatperList = res.backchatperList;
+        // this.lookImgsList = res.backImgsList0;
       }
     },
     backPage() {
@@ -65,10 +69,10 @@ export default {
     nextPage() {
       this.$router.push("/look1");
     },
-  
+
     // 通过侧边章节导航栏跳往不同的章节
     enterLookn(value) {
-        this.chatperName=value.chatperName
+      this.chatperName = value.chatperName;
       switch (value.id) {
         case 999:
           this.$router.push("/works");
@@ -92,7 +96,7 @@ export default {
           this.$router.push("/look5");
           break;
         default:
-         return
+          return;
       }
     },
   },
@@ -125,5 +129,4 @@ export default {
   float: left;
   font-weight: 300;
 }
-
 </style>

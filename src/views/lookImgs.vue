@@ -1,24 +1,21 @@
 <template>
-   <div class="lookImgs">
-        <ul>
-          <li v-for="(item, index) in lookImgsList" :key="index">
-            <el-image
-              style="width: 564px; height: 440.66px"
-              :src="item.url"
-            ></el-image>
-          </li>
-        </ul>
-      </div>
+  <div class="lookImgs">
+    <ul>
+      <li v-for="(item, index) in lookImgsList" :key="index">
+        <img style="width: 564px; height: 440.66px" :src="item.url" />
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
 export default {
-name:'lookImgs',
-props:{
-  lookImgsList:Array
-}
-}
-
+  name: "lookImgs",
+  props: {
+    lookImgsList: Array,
+  },
+  //  :src="item.url"
+};
 </script>
 <style scoped>
 .lookImgs {

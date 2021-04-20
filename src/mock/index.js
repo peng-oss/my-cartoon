@@ -2109,7 +2109,7 @@ const searchSort = Mock.mock(/\/paging\/sort/, 'post', (options) => {
 // 数据
 let BackArtData = {
   name: '狄奥多之歌',
-  autor: '乱步羊羊羊（主笔）+角年千兆（编剧）',
+  author: '乱步羊羊羊（主笔）+角年千兆（编剧）',
   introduction:
     '活泼好动的西帝国公主希尔娜在年幼时邂逅了来自北方王国的质子拉提奥，两人的心逐渐靠近，而东帝国的少年国王尼亚也在暗中窥视...可惜三国之间只是表面和平，战争一触即发，昔日的青梅竹马也终将面临爱情、责任间的抉择：剑与血，硝烟与眼泪，真心与背叛，共同交织谱写一曲少年少女的“狄奥多之歌”.每周二更新...',
 }
@@ -2170,8 +2170,8 @@ const getArtData = Mock.mock('/works/artData', 'get', (options) => {
   return {
     status: 200,
     msg: '获取成功',
-    BackArtData,
-    backSItemData,
+    BackArtData,       // 漫画简介
+    backSItemData,     // 漫画章节
     ifFlag,
   }
 })

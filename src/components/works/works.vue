@@ -55,13 +55,17 @@
           </div>
         </div>
       </div>
+
       <!-- 漫画章节内容 -->
       <div class="TopicItem" v-for="(value, index) in itemData" :key="index">
         <div class="rowImgs f">
-          <el-image :src="value.url" @click="enterLookn(value.id)"></el-image>
+          <el-image
+            :src="value.url"
+            @click="enterLookn(value.chapter)"
+          ></el-image>
         </div>
         <div class="rowTitle f">
-          <i @click="enterLookn(value.id)">{{ value.chapter }}</i>
+          <i @click="enterLookn(value.chapter)">{{ value.chapter }}</i>
         </div>
         <!-- 点赞位置 -->
         <div class="rowGreat f">
@@ -79,8 +83,8 @@
   </div>
 </template>
 <script>
-import '../../assets/fontShare/iconfont.js'
-import '../../assets/font002/iconfont.js'
+import "../../assets/fontShare/iconfont.js";
+import "../../assets/font002/iconfont.js";
 export default {
   data() {
     return {
@@ -90,120 +94,102 @@ export default {
       itemData: [],
       flag: true,
       reverse: true,
-      url: require('./works.jpg'),
-    }
+      url: require("./works.jpg"),
+    };
   },
   created() {
-    this.getcartoonData()
+    this.getcartoonData();
   },
   // 通过计算属性统计总的点赞数
   computed: {
     likeSum() {
-      var sum = 0
-      this.itemData.forEach(function(value) {
+      var sum = 0;
+      this.itemData.forEach(function (value) {
         // console.log(value.num);
-        sum += parseInt(value.num)
-      })
+        sum += parseInt(value.num);
+      });
       // console.log(sum);
-      return sum
+      return sum;
     },
-    getele(){
-      const ele_login=localStorage.getItem('ele_login')
-      return ele_login
-    }
+    getele() {
+      const ele_login = localStorage.getItem("ele_login");
+      return ele_login;
+    },
   },
   // 方法
   methods: {
     // 去往每一话的方法
-    enterLookn(id) {
-      switch (id) {
-        case 0:
-          this.$router.push('/look0')
-          break
-        case 1:
-          this.$router.push('/look1')
-          break
-        case 2:
-          this.$router.push('/look2')
-          break
-        case 3:
-          this.$router.push('/look3')
-          break
-        case 4:
-          this.$router.push('/look4')
-          break
-        case 5:
-          this.$router.push('/look5')
-          break
-        default:
-      }
+    enterLookn(title) {
+      console.log(title);
+      this.$router.push(`/look/${title}`);
     },
     share() {
-      this.$message.success('该功能正在开发中，请耐心等待')
+      this.$message.success("该功能正在开发中，请耐心等待");
     },
     // 查看第一话的方法
     enterLook() {
-      this.$router.push('/look0')
+      this.$router.push("/look/607e415ecc71c03b94c02533");
     },
+
     // 从后台获取漫画数据对象
     async getcartoonData() {
-      const { data: res } = await this.$http.get('/works/artData')
-      this.cartoonData = res.BackArtData
-      this.itemData = res.backSItemData
-      this.flag = res.ifFlag
+      const { data: res } = await this.$http.get("/works/chapterList");
+      this.cartoonData = res.describe[0]; // 漫画描述
+      this.itemData = res.chapterList; // 漫画章节
+      this.flag = res.ifFlag;
     },
+
     // 是否关注的方法
     async ifFollow() {
       if (this.flag) {
-       if(!this.getele) return this.$router.push('/login')
-        const { data: res } = await this.$http.post('/works/followed', {
+        if (!this.getele) return this.$router.push("/login");
+        const { data: res } = await this.$http.post("/works/followed", {
           name: this.cartoonData.name,
-          author: this.cartoonData.autor,
+          author: this.cartoonData.author,
           id: 1,
-        })
+        });
         if (res.status == 200) {
-          this.$message.success(res.msg)
-          console.log(res.ifFlag)
-          this.flag = res.ifFlag
-          this.getcartoonData()
+          this.$message.success(res.msg);
+          console.log(res.ifFlag);
+          this.flag = res.ifFlag;
+          this.getcartoonData();
         }
       } else if (this.flag == false) {
-        const { data: res } = await this.$http.post('/works/followed', {
+        const { data: res } = await this.$http.post("/works/followed", {
           id: 2,
-        })
+        });
         if (res.status == 200) {
-          this.$message.error(res.msg)
-          this.flag = res.ifFlag
-          this.getcartoonData()
+          this.$message.error(res.msg);
+          this.flag = res.ifFlag;
+          this.getcartoonData();
         }
       }
     },
     // 正序，逆序的方法
     async ifReverse() {
       if (this.reverse) {
-        const { data: res } = await this.$http.get('/works/artData')
-        this.itemData = res.backSItemData.reverse()
-        this.reverse = !this.reverse
+        const { data: res } = await this.$http.get("/works/chapterList");
+        this.itemData = res.chapterList.reverse();
+        this.reverse = !this.reverse;
       } else {
-        this.getcartoonData()
-        this.reverse = !this.reverse
+        this.getcartoonData();
+        this.reverse = !this.reverse;
       }
     },
     // 点赞漫画的数据处理方法
     itemLike(likeIndex, likeIf) {
       this.itemData.forEach((value, index) => {
         if (likeIndex == index && likeIf === false) {
-          value.num = parseInt(value.num) + 1
-          value.likeIf = !value.likeIf
+          value.num = parseInt(value.num) + 1;
+          value.likeIf = !value.likeIf;
         } else if (likeIndex == index && likeIf === true) {
-          value.num = parseInt(value.num) - 1
-          value.likeIf = !value.likeIf
+          value.num = parseInt(value.num) - 1;
+          value.likeIf = !value.likeIf;
         }
-      })
+      });
     },
-  
   },
-}
+};
 </script>
 <style scoped>
 /* 图标 */
