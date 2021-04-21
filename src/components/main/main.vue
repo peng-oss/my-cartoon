@@ -43,14 +43,16 @@
               </div>
             </span>
             <!-- 登录按钮 -->
+            <a href="#" class="login" @click="loging" v-if="getAppear === true"
+              >登录</a
+            >
             <a
               href="#"
               class="login"
-              @click="loging"
-              v-if="getAppear === true"
-              >登录</a
+              v-if="getAppear === false"
+              @click="showuser"
+              >个人中心</a
             >
-            <a href="#" class="login"  v-if="getAppear === false" @click="showuser">个人中心</a>
           </ul>
         </div>
       </el-header>
@@ -157,27 +159,27 @@ export default {
       timer: null,
     };
   },
-  computed:{
-    getAppear(){
-     return this.$store.getters.appear
+  computed: {
+    getAppear() {
+      return this.$store.getters.appear;
     },
-    getCurrentID(){
-     return this.$store.getters.currentId
+    getCurrentID() {
+      return this.$store.getters.currentId;
     },
-    getName(){
-      return this.$store.getters.name
-    }
+    getName() {
+      return this.$store.getters.name;
+    },
   },
   methods: {
     // 导航栏位置改变
     changeNav(id) {
-      this.$store.dispatch('changeCurrentId',id)
+      this.$store.dispatch("changeCurrentId", id);
     },
     loging() {
       this.$router.push("/login");
     },
     backMain() {
-      this.$store.dispatch('changeCurrentId',1)
+      this.$store.dispatch("changeCurrentId", 1);
       this.$router.push("./");
     },
     async showuser() {

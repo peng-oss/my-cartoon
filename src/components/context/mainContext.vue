@@ -78,10 +78,7 @@
         </div>
         <!--  国漫榜 -->
         <div class="RankingList">
-          <rankList
-            :firstWork="firstWork"
-            :popularityLists="popularityLists"
-          />
+          <rankList :firstWork="firstWork" :popularityLists="popularityLists" />
         </div>
       </div>
     </el-card>
@@ -109,14 +106,14 @@
     <el-card
       class="newWork"
       :body-style="{ padding: '0px' }"
-      :class="{ redBgc: newActive===true, greenBgc: newActive===false }"
+      :class="{ redBgc: newActive === true, greenBgc: newActive === false }"
     >
       <!-- 标题导航栏 -->
       <div class="newWorkTitle">
-        <span :class="{ listActive: newActive===true }" @click="newChange"
+        <span :class="{ listActive: newActive === true }" @click="newChange"
           >新作榜</span
         >
-        <span :class="{ listActive: newActive===false }" @click="riseChange"
+        <span :class="{ listActive: newActive === false }" @click="riseChange"
           >飙升榜</span
         >
         <a href="javascript:;" class="moreList" @click="tosort">更多榜单</a>
@@ -165,7 +162,7 @@
   </div>
 </template>
 <script>
-import rankList from '../../views/rankList'
+import rankList from "../../views/rankList";
 export default {
   data() {
     return {
@@ -174,70 +171,22 @@ export default {
       originalImgList: [],
       suspenseImgsList: [],
       cartoonTypeList: [
-        {
-          id: 1,
-          typeName: '恋爱',
-        },
-        {
-          id: 2,
-          typeName: '强剧情',
-        },
-        {
-          id: 3,
-          typeName: '古风',
-        },
-        {
-          id: 4,
-          typeName: '校园',
-        },
-        {
-          id: 5,
-          typeName: '奇幻',
-        },
-        {
-          id: 6,
-          typeName: '唯美',
-        },
-        {
-          id: 7,
-          typeName: '热血',
-        },
-        {
-          id: 8,
-          typeName: '日漫',
-        },
-        {
-          id: 9,
-          typeName: '韩漫',
-        },
-        {
-          id: 10,
-          typeName: '大女主',
-        },
-        {
-          id: 11,
-          typeName: '韩漫',
-        },
-        {
-          id: 12,
-          typeName: '完结',
-        },
-        {
-          id: 13,
-          typeName: '穿越',
-        },
-        {
-          id: 14,
-          typeName: '萌系',
-        },
-        {
-          id: 15,
-          typeName: '灵异',
-        },
-        {
-          id: 16,
-          typeName: '全部',
-        },
+        { id: 1, typeName: "恋爱" },
+        { id: 2, typeName: "强剧情" },
+        { id: 3, typeName: "古风" },
+        { id: 4, typeName: "校园" },
+        { id: 5, typeName: "奇幻" },
+        { id: 6, typeName: "唯美" },
+        { id: 7, typeName: "热血" },
+        { id: 8, typeName: "日漫" },
+        { id: 9, typeName: "韩漫" },
+        { id: 10, typeName: "大女主" },
+        { id: 11, typeName: "韩漫" },
+        { id: 12, typeName: "完结" },
+        { id: 13, typeName: "穿越" },
+        { id: 14, typeName: "萌系" },
+        { id: 15, typeName: "灵异" },
+        { id: 16, typeName: "全部" },
       ],
       // 新作榜图片
       newWorkImgsList: [],
@@ -252,17 +201,17 @@ export default {
       toHeadImgsList: [],
       // 上头图片右边排行榜
       popularityLists: [],
-      activeName: 'second',
+      activeName: "second",
       firstWork: {
-        rankName: '国漫榜',
+        rankName: "国漫榜",
         imgUrl:
-          'https://tn1-f2.kkmh.com/image/190802/fmXsWW7tI.webp-t.w120.webp.h',
-        title: '再度与你',
-        type: ['日常', '恋爱', '治愈'],
-        dec: '高中时因误会相互错过的两人，在大学毕业后重回高中母校任教。...',
-        chapter: '第61话 两个麻烦',
+          "https://tn1-f2.kkmh.com/image/190802/fmXsWW7tI.webp-t.w120.webp.h",
+        title: "再度与你",
+        type: ["日常", "恋爱", "治愈"],
+        dec: "高中时因误会相互错过的两人，在大学毕业后重回高中母校任教...",
+        chapter: "第61话 两个麻烦",
       },
-    }
+    };
   },
   components: {
     rankList,
@@ -270,51 +219,52 @@ export default {
   methods: {
     // 新作榜事件
     newChange() {
-     this.newActive=!this.newActive
-     this.jugeList()
+      this.newActive = !this.newActive;
+      this.jugeList();
     },
     // 飙升榜事件
     riseChange() {
-      this.newActive=!this.newActive
-       this.jugeList()
+      this.newActive = !this.newActive;
+      this.jugeList();
     },
-    jugeList(){
-      if(this.newActive===true){
-       this.showImgsList=this.newWorkImgsList
-     }else{
-       this.showImgsList=this.riseWorkImgsList
-     }
+    jugeList() {
+      if (this.newActive === true) {
+        this.showImgsList = this.newWorkImgsList;
+      } else {
+        this.showImgsList = this.riseWorkImgsList;
+      }
     },
     // 获取所有图片及数据来源
     async getAllImgs() {
-      const { data: res } = await this.$http.get('/all/getAll')
-      if (res.status !== 200) return this.$message.error('获取数据失败')
-      this.LBimgList = res.LBimgList
-      this.originalImgList = res.originalImgList
-      this.suspenseImgsList = res.suspenseImgsList
-      this.newWorkImgsList = res.newWorkImgsList
-      this.riseWorkImgsList = res.riseWorkImgsList
-      this.cartoonChangeImgsList = res.cartoonChangeImgsList
-      this.toHeadImgsList = res.toHeadImgsList
-      this.popularityLists = res.ToheadpopularityLists
-      this.showImgsList = this.newWorkImgsList
+      const { data: res } = await this.$http.get("/home/getAll");
+      if (res.status !== 200) return this.$message.error("获取数据失败");
+      console.log(res.allData[0]);
+      this.LBimgList = res.allData[0].carouselList;
+      this.originalImgList =  res.allData[0].originalImgList;
+      this.suspenseImgsList =  res.allData[0].suspenseImgsList;
+      this.newWorkImgsList =  res.allData[0].newWorkImgsList;
+      this.riseWorkImgsList = res.allData[0].riseWorkImgsList;
+      this.cartoonChangeImgsList =  res.allData[0].cartoonChangeImgsList;
+      this.toHeadImgsList =  res.allData[0].toHeadImgsList;
+      this.popularityLists =  res.allData[0].toHeadPopularityList;
+      this.showImgsList =  res.allData[0].newWorkImgsList;
     },
     enterWorks(index) {
       if (index == 0) {
-        this.$router.push('/works')
-        this.$store.dispatch('changeCurrentId', 5)
+        this.$router.push("/works");
+        this.$store.dispatch("changeCurrentId", 5);
       }
     },
     tosort() {
-      this.$router.push('/sort')
-      this.$store.dispatch('changeCurrentId', 2)
+      this.$router.push("/sort");
+      this.$store.dispatch("changeCurrentId", 2);
     },
   },
   // 生命周期触发开始的事件
   created() {
-    this.getAllImgs()
+    this.getAllImgs();
   },
-}
+};
 </script>
 <style scoped>
 /* 轮播图于原创部分 */

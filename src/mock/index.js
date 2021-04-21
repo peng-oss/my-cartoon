@@ -17,8 +17,8 @@ const getQuery = (url, name) => {
 
 /* 主页面的获取数据与接口 */
 
-//轮播图图片源
-let LBimgList = [
+// 1.轮播图图片源
+let carouselList = [
   {
     url: 'https://tn1-f2.kkmh.com/image/201208/hyIKSuRfi.webp-t.w750.webp.h',
   },
@@ -38,7 +38,7 @@ let LBimgList = [
     url: 'https://tn1-f2.kkmh.com/image/201205/WyxxGsnJh.webp-t.w750.webp.h',
   },
 ]
-//原创数据与图片源
+// 2.原创数据与图片源
 let originalImgList = [
   {
     id: 1,
@@ -71,7 +71,7 @@ let originalImgList = [
     bookName: '浮游梦',
   },
 ]
-//惊恐数据与图片源
+// 3.惊恐数据与图片源
 let suspenseImgsList = [
   {
     id: 1,
@@ -146,7 +146,7 @@ let suspenseImgsList = [
     suspenseAuthor: '非人哉工作室',
   },
 ]
-//新作榜图片
+// 4.新作榜图片
 let newWorkImgsList = [
   {
     id: 1,
@@ -230,7 +230,7 @@ let newWorkImgsList = [
     src: 'https://tn1-f2.kkmh.com/image/201118/ommUjrLfL.webp-t.w180.webp.h',
   },
 ]
-//飙升榜
+// 5.飙升榜
 let riseWorkImgsList = [
   {
     id: 1,
@@ -314,7 +314,7 @@ let riseWorkImgsList = [
     src: 'https://tn1-f2.kkmh.com/image/200716/vdTwyZvcw.webp-t.w180.webp.h',
   },
 ]
-//漫改图片
+// 6.漫改图片
 let cartoonChangeImgsList = [
   {
     id: 1,
@@ -345,7 +345,7 @@ let cartoonChangeImgsList = [
     src: 'https://tn1-f2.kkmh.com/image/200405/RVYeKpepr.webp-t.w320.webp.h',
   },
 ]
-//上头图片
+// 7.上头图片
 let toHeadImgsList = [
   {
     id: 1,
@@ -408,8 +408,8 @@ let toHeadImgsList = [
     ToheadAuthor: '墨香铜臭（原著）',
   },
 ]
-//上头排行榜
-let ToheadpopularityLists = [
+// 8.上头排行榜
+let toHeadPopularityList = [
   {
     id: 2,
     title: '爱情的样子：心之所向',
@@ -456,19 +456,19 @@ let ToheadpopularityLists = [
     dated: '第9话  让他的眼里只...',
   },
 ]
-//获取主页面的接口
+// 获取主页面的接口
 const allImg = Mock.mock('/all/getAll', 'get', (options) => {
   return {
     msg: '获取成功',
     status: 200,
-    LBimgList: LBimgList,
-    originalImgList: originalImgList,
-    suspenseImgsList: suspenseImgsList,
-    newWorkImgsList: newWorkImgsList,
-    riseWorkImgsList: riseWorkImgsList,
-    cartoonChangeImgsList: cartoonChangeImgsList,
-    toHeadImgsList: toHeadImgsList,
-    ToheadpopularityLists: ToheadpopularityLists,
+    carouselList,
+    originalImgList,
+    suspenseImgsList,
+    newWorkImgsList,
+    riseWorkImgsList,
+    cartoonChangeImgsList,
+    toHeadImgsList,
+    toHeadPopularityList
   }
 })
 
@@ -2165,7 +2165,7 @@ let backSItemData = [
   },
 ]
 let ifFlag = true
-// 接口
+// 获取漫画详细信息接口
 const getArtData = Mock.mock('/works/artData', 'get', (options) => {
   return {
     status: 200,
