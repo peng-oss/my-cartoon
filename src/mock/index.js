@@ -2728,34 +2728,34 @@ let backImgsList5 = [
   },
 ]
 // 左侧章节导航栏内容
-let backchatperList = [
+let backChapterList = [
   {
     id: 999,
-    chatperName: '狄奥多之歌',
+    chapterName: '狄奥多之歌',
   },
   {
     id: 0,
-    chatperName: '序章 硝烟域泪',
+    chapterName: '序章 硝烟域泪',
   },
   {
     id: 1,
-    chatperName: '第1话 我要你做我仆人！',
+    chapterName: '第1话 我要你做我仆人！',
   },
   {
     id: 2,
-    chatperName: '第2话 作为仆人的“惩罚',
+    chapterName: '第2话 作为仆人的“惩罚',
   },
   {
     id: 3,
-    chatperName: '第3话 骑马教学这么甜？！',
+    chapterName: '第3话 骑马教学这么甜？！',
   },
   {
     id: 4,
-    chatperName: '第4话 公主的价值',
+    chapterName: '第4话 公主的价值',
   },
   {
     id: 5,
-    chatperName: '第5话 鼓励',
+    chapterName: '第5话 鼓励',
   },
 ]
 const backLook = Mock.mock(/\/works\/look/, 'get', (options) => {
@@ -2765,49 +2765,49 @@ const backLook = Mock.mock(/\/works\/look/, 'get', (options) => {
       status: 200,
       msg: '序章 获取成功',
       backImgsList0,
-      backchatperList,
+      backChapterList,
     }
   } else if (id == 1) {
     return {
       status: 200,
       msg: '第一话 获取成功',
       backImgsList1,
-      backchatperList,
+      backChapterList,
     }
   } else if (id == 2) {
     return {
       status: 200,
       msg: '第二话 获取成功',
       backImgsList2,
-      backchatperList,
+      backChapterList,
     }
   } else if (id == 3) {
     return {
       status: 200,
       msg: '第三话 获取成功',
       backImgsList3,
-      backchatperList,
+      backChapterList,
     }
   } else if (id == 4) {
     return {
       status: 200,
       msg: '第四话 获取成功',
       backImgsList4,
-      backchatperList,
+      backChapterList,
     }
   } else if (id == 5) {
     return {
       status: 200,
       msg: '第五话 获取成功',
       backImgsList5,
-      backchatperList,
+      backChapterList,
     }
   } else if (id == 6) {
     return {
       status: 200,
       msg: '第六话 获取成功',
       backImgsList6,
-      backchatperList,
+      backChapterList,
     }
   }
 })

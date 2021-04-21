@@ -121,14 +121,14 @@ export default {
     // 去往每一话的方法
     enterLookn(title) {
       console.log(title);
-      this.$router.push(`/look/${title}`);
+      this.$router.push(`/look/${title.trim()}`);
     },
     share() {
       this.$message.success("该功能正在开发中，请耐心等待");
     },
     // 查看第一话的方法
     enterLook() {
-      this.$router.push("/look/607e415ecc71c03b94c02533");
+      this.$router.push("/look/序章 硝烟域泪");
     },
 
     // 从后台获取漫画数据对象

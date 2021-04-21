@@ -9,11 +9,11 @@
       <ul>
         <li
           :key="index"
-          v-for="(value,index) in chatperList"
+          v-for="(value, index) in chatperList"
           @click="$emit('enterLookn', value)"
-          :class="{'checkone':chatperName==value.chatperName}"
+          :class="{ checkone: chapterName == value.chapterName }"
         >
-          <a href="#">{{ value.chatperName }}</a>
+          <a href="#">{{ value.chapterName }}</a>
         </li>
       </ul>
     </div>
@@ -22,27 +22,27 @@
 
 <script>
 export default {
-  name: 'chatper',
+  name: "chatper",
   data() {
     return {
       ifHideStyle: false,
-    }
+    };
   },
   props: {
     chatperList: Array,
-    chatperName:String
+    chapterName: String,
   },
   methods: {
     ifHide() {
-      this.ifHideStyle = !this.ifHideStyle
+      this.ifHideStyle = !this.ifHideStyle;
     },
   },
-}
+};
 </script>
 <style scoped>
 .chatper {
   position: fixed;
-  top: 100px;
+  top: 120px;
   left: 148px;
   width: 40px;
   height: 90px;
@@ -80,7 +80,7 @@ export default {
 .chatperContent li:hover {
   background-color: #e5e5e5;
 }
-.checkone{
-   color: black; 
+.checkone {
+  color: black;
 }
 </style>

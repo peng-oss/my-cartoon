@@ -35,27 +35,7 @@ const routes = [
       {
         path: '/look/:title',
         component: () => import('../components/look/look.vue'),
-      },
-      {
-        path: '/look1',
-        component: () => import('../components/look/look1.vue'),
-      },
-      {
-        path: '/look2',
-        component: () => import('../components/look/look2.vue'),
-      },
-      {
-        path: '/look3',
-        component: () => import('../components/look/look3.vue'),
-      },
-      {
-        path: '/look4',
-        component: () => import('../components/look/look4.vue'),
-      },
-      {
-        path: '/look5',
-        component: () => import('../components/look/look5.vue'),
-      },
+      }
     ],
   },
 ]
